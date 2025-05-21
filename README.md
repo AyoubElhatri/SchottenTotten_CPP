@@ -1,6 +1,6 @@
 # SchottenTotten_CPP
 Implementation of the Schotten Totten game in the C++ language.<br>
-Project created by: <b>Yahya Atouf</b>, <b>Mohammed Hachelef</b>, <b>Ayoub Elhatri</b>.<br>
+Project created by: <b>Yahya Atouf</b>, <b>Mohamed Hachelef</b>, <b>Ayoub Elhatri</b>.<br>
 
 
 
