@@ -1,0 +1,3 @@
+/Users/elhatriayoub/SchottenTotten_CPP/cmake-build-debug/CMakeFiles/SchottenTotten_CPP.dir
+/Users/elhatriayoub/SchottenTotten_CPP/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/elhatriayoub/SchottenTotten_CPP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
