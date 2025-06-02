@@ -8,6 +8,6 @@ using namespace std;
 class CombatModeCards : public TacticalCards{
    private:
     shared_ptr<StoneTiles> sharedTiles;
-}
+};
 
 #endif //COMBATMODECARDS_H

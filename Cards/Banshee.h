@@ -1,0 +1,15 @@
+//
+// Created by Utilisateur on 02/06/2025.
+//
+
+#ifndef BANSHEE_H
+#define BANSHEE_H
+#include "RusesCards.h"
+
+class Banshee : public RusesCards {
+    public:
+        void getEvent();
+};
+
+
+#endif //BANSHEE_H
