@@ -23,11 +23,11 @@ class Rules{
 
             static Rules& getInstance();
             static void buildInstance(const Builder& builder);
-            unsigned int getNumberOfStoneTiles() const;
-            unsigned int getNumberOfClanCardsPerColor() const;
-            unsigned int getNumberOfAlignedTilesToWin() const;
-            unsigned int getNumberOfUnalignedTilesToWin() const;
-            unsigned int getNumberOfPlayer() const;
+            unsigned int getNumberOfStoneTiles() const { return numberOfStoneTiles;}
+            unsigned int getNumberOfClanCardsPerColor() const{return numberOfClanCardsPerColor;}
+            unsigned int getNumberOfAlignedTilesToWin() const {return numberOfAlignedTilesToWin;}
+            unsigned int getNumberOfUnalignedTilesToWin() const{return numberOfUnalignedTilesToWin;}
+            unsigned int getNumberOfPlayer() const{return numberOfPlayer;}
 
       class Builder {
       private:
