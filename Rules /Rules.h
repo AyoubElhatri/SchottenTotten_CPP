@@ -8,7 +8,7 @@ class Rules{
       public :
             class Builder;
       private:
-            static unique_ptr<Rules> instance ;
+            static unique_ptr<Rules> instance;
             unsigned int numberOfStoneTiles;
             unsigned int numberOfClanCardsPerColor;
             unsigned int numberOfAlignedTilesToWin;
@@ -17,8 +17,9 @@ class Rules{
             unordered_map<string, unsigned int> clanCardsByColor;
             unordered_map<string, unsigned int> tacticalCards;
             //Constructor
-            Rules() = default;
+            Rules();
             Rules(const Builder& builder);
+
       public:
 
             static Rules& getInstance();
