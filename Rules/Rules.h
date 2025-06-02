@@ -17,7 +17,7 @@ class Rules{
             unordered_map<string, unsigned int> clanCardsByColor;
             unordered_map<string, unsigned int> tacticalCards;
             //Constructor
-            Rules() = default;
+            Rules();
             Rules(const Builder& builder);
 
       public:
@@ -39,7 +39,7 @@ class Rules{
             Builder& setNumberOfClanCardsPerColor(unsigned int n){rules->numberOfClanCardsPerColor = n;}
             Builder& setNumberOfAlignedTilesToWin(unsigned int n){rules->numberOfAlignedTilesToWin = n;}
             Builder& setNumberOfUnalignedTilesToWin(unsigned int n){rules->numberOfUnalignedTilesToWin = n;}
-            Builder& setNumberOfPlayers(unsigned int n){rules->numberOfPlayer = n;
+            Builder& setNumberOfPlayers(unsigned int n){rules->numberOfPlayer = n;}
 
             //Builder& addClanCardColor(const std::string& color, unsigned int count);
             //Builder& addTacticalCard(const std::string& name, unsigned int count);
