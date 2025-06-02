@@ -1,7 +1,10 @@
 #ifndef CLANCARDS_H
 #define CLANCARDS_H
 
+#include '../Colors.h'
 
+
+enum class Colors;
 
 class ClanCards: public Cards {
     private:
