@@ -1,7 +1,3 @@
-//
-// Created by Utilisateur on 31/05/2025.
-//
-
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 using namespace std;
