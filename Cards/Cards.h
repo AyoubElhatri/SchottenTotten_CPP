@@ -4,7 +4,8 @@
 
 
 class Cards {
-
+    public:
+        void getEvent()=0;
 };
 
 
