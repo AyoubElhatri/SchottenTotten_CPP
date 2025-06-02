@@ -3,11 +3,15 @@
 
 
 
-class ClanCards {
+class ClanCards: public Cards {
     private:
         unsigned int number;
-
-
+		Colors color;
+	public:
+		unsigned int getNumber(){return number;};
+		Colors getColor(){return color;};
+		void setNumber(unsigned int numbers){number = numbers;};
+		void setColor(Colors colors){color = colors;};
 
 };
 
