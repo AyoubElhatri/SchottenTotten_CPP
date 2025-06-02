@@ -17,7 +17,7 @@ class Rules{
             unordered_map<string, unsigned int> clanCardsByColor;
             unordered_map<string, unsigned int> tacticalCards;
             //Constructor
-            Rules();
+            Rules() = default;
             Rules(const Builder& builder);
 
       public:
@@ -30,30 +30,23 @@ class Rules{
             unsigned int getNumberOfUnalignedTilesToWin() const{return numberOfUnalignedTilesToWin;}
             unsigned int getNumberOfPlayer() const{return numberOfPlayer;}
 
-      class Builder {
+     class Builder {
       private:
             unique_ptr<Rules> rules;
 
       public:
-            Builder& setNumberOfStoneTiles(unsigned int n);
-            Builder& setNumberOfClanCardsPerColor(unsigned int n);
-            Builder& setNumberOfAlignedTilesToWin(unsigned int n);
-            Builder& setNumberOfUnalignedTilesToWin(unsigned int n);
-            Builder& setNumberOfPlayers(unsigned int n);
+            Builder& setNumberOfStoneTiles(unsigned int n){rules->numberOfStoneTiles = n;}
+            Builder& setNumberOfClanCardsPerColor(unsigned int n){rules->numberOfClanCardsPerColor = n;}
+            Builder& setNumberOfAlignedTilesToWin(unsigned int n){rules->numberOfAlignedTilesToWin = n;}
+            Builder& setNumberOfUnalignedTilesToWin(unsigned int n){rules->numberOfUnalignedTilesToWin = n;}
+            Builder& setNumberOfPlayers(unsigned int n){rules->numberOfPlayer = n;
 
-            Builder& addClanCardColor(const std::string& color, unsigned int count);
-            Builder& addTacticalCard(const std::string& name, unsigned int count);
+            //Builder& addClanCardColor(const std::string& color, unsigned int count);
+            //Builder& addTacticalCard(const std::string& name, unsigned int count);
 
-            const Rules& getRules() const;
+
       };
-
-
-
-
-
-
 };
-
 
 
 #endif //RULES_H
