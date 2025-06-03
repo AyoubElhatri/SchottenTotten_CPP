@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "SchottenTotten_CPP"
+			"path" : "SchottenTotten_CPP.exe"
+		},
+		{
+			"path" : "SchottenTotten_CPP.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,7 +38,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu++20 -fdiagnostics-color=always"
 				}
 			],
 			"language" : "CXX",
@@ -68,12 +71,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "SchottenTotten_CPP",
-	"nameOnDisk" : "SchottenTotten_CPP",
+	"nameOnDisk" : "SchottenTotten_CPP.exe",
 	"paths" : 
 	{
 		"build" : ".",

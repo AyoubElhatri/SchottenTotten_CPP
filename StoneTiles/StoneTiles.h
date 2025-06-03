@@ -4,9 +4,9 @@
 
 #ifndef STONETILES_H
 #define STONETILES_H
-#include ""
+#include <memory>
 
-
+using namespace std;
 class StoneTiles {
        private:
 unsigned int Position;
