@@ -27,4 +27,6 @@ StoneTiles/StoneTiles.h
         TacticalCardsFactory.cpp
         TacticalCardsFactory.h
         Cards/Stratege.cpp
-        Cards/Stratege.h)
+        Cards/Stratege.h
+        Collections/Set.cpp
+        Collections/Set.h)

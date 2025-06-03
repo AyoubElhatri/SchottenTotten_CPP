@@ -5,7 +5,7 @@
 
 class Cards {
     public:
-        void getEvent()=0;
+        virtual void getEvent()=0;
 };
 
 
