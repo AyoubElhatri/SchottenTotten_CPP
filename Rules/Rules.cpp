@@ -3,6 +3,7 @@
 #include <unordered_map>
 
 
+
 Rules::Rules() : numberOfStoneTiles(9), numberOfClanCardsPerColor(6), numberOfAlignedTilesToWin(3), numberOfUnalignedTilesToWin(5) {}
 
 
