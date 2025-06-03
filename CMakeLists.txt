@@ -25,4 +25,6 @@ StoneTiles/StoneTiles.h
         DisplayConsole.cpp
         DisplayConsole.h
         TacticalCardsFactory.cpp
-        TacticalCardsFactory.h)
+        TacticalCardsFactory.h
+        Cards/Stratege.cpp
+        Cards/Stratege.h)
