@@ -6,7 +6,7 @@
 #define TACTICALCARDS_H
 #include "Cards.h"
 class TacticalCards : public Cards {
-}
+};
 
 
 

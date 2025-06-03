@@ -1,20 +1,35 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "../StoneTiles/StoneTiles.h"
+#include "../Collections/Set.h"
 class Player{
     private:
           unsigned int playerID ;
           Set playerDeck ;
           vector<shared_ptr<StoneTiles>> stoneTiles ;
           unsigned int tacticalCardsCounter = 0;
-    public:
+          /*__remove_reference_t(Set &) playerDecks;
+          unsigned int playerId;*/
+
+      public:
 
 
-      Player(unsigned int playerID, Set playerDeck);
-      virtual void playCard() = 0;
+      Player(unsigned int playerId, Set playerDecks);
+      virtual ~Player() = default;
+
+      unsigned int getPlayerID() const {return playerID;}
+      Set& getPlayerDeck();
+      vector<shared_ptr<StoneTiles>>& getStoneTiles();
+      unsigned int getTacticalCardsCounter() const {return tacticalCardsCounter;}
+
+      virtual void playCard(unique_ptr<Cards>) = 0;
       void revendicateStoneTiles();
       void drawClanCards();  //piocher
       void drawTacticalCards();
+      void incrementTacticalCardCounter();
+
+
+
 
 
 

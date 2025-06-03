@@ -29,4 +29,5 @@ StoneTiles/StoneTiles.h
         Cards/Stratege.cpp
         Cards/Stratege.h
         Collections/Set.cpp
-        Collections/Set.h)
+        Collections/Set.h
+        Player/.)
