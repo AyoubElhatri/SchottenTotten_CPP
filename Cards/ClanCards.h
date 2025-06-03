@@ -1,7 +1,8 @@
 #ifndef CLANCARDS_H
 #define CLANCARDS_H
 
-#include '../Colors.h'
+#include "../Colors.h"
+#include "Cards.h"
 
 
 enum class Colors;

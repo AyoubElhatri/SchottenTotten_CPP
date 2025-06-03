@@ -152,6 +152,54 @@ Cards/ClanCards.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.s
 .PHONY : Cards/ClanCards.cpp.s
 
+Cards/Stratege.obj: Cards/Stratege.cpp.obj
+.PHONY : Cards/Stratege.obj
+
+# target to build an object file
+Cards/Stratege.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj
+.PHONY : Cards/Stratege.cpp.obj
+
+Cards/Stratege.i: Cards/Stratege.cpp.i
+.PHONY : Cards/Stratege.i
+
+# target to preprocess a source file
+Cards/Stratege.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.i
+.PHONY : Cards/Stratege.cpp.i
+
+Cards/Stratege.s: Cards/Stratege.cpp.s
+.PHONY : Cards/Stratege.s
+
+# target to generate assembly for a file
+Cards/Stratege.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.s
+.PHONY : Cards/Stratege.cpp.s
+
+DisplayConsole.obj: DisplayConsole.cpp.obj
+.PHONY : DisplayConsole.obj
+
+# target to build an object file
+DisplayConsole.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj
+.PHONY : DisplayConsole.cpp.obj
+
+DisplayConsole.i: DisplayConsole.cpp.i
+.PHONY : DisplayConsole.i
+
+# target to preprocess a source file
+DisplayConsole.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.i
+.PHONY : DisplayConsole.cpp.i
+
+DisplayConsole.s: DisplayConsole.cpp.s
+.PHONY : DisplayConsole.s
+
+# target to generate assembly for a file
+DisplayConsole.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.s
+.PHONY : DisplayConsole.cpp.s
+
 Rules/Rules.obj: Rules/Rules.cpp.obj
 .PHONY : Rules/Rules.obj
 
@@ -200,6 +248,30 @@ StoneTiles/StoneTiles.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.s
 .PHONY : StoneTiles/StoneTiles.cpp.s
 
+TacticalCardsFactory.obj: TacticalCardsFactory.cpp.obj
+.PHONY : TacticalCardsFactory.obj
+
+# target to build an object file
+TacticalCardsFactory.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj
+.PHONY : TacticalCardsFactory.cpp.obj
+
+TacticalCardsFactory.i: TacticalCardsFactory.cpp.i
+.PHONY : TacticalCardsFactory.i
+
+# target to preprocess a source file
+TacticalCardsFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.i
+.PHONY : TacticalCardsFactory.cpp.i
+
+TacticalCardsFactory.s: TacticalCardsFactory.cpp.s
+.PHONY : TacticalCardsFactory.s
+
+# target to generate assembly for a file
+TacticalCardsFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.s
+.PHONY : TacticalCardsFactory.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -236,12 +308,21 @@ help:
 	@echo ... Cards/ClanCards.obj
 	@echo ... Cards/ClanCards.i
 	@echo ... Cards/ClanCards.s
+	@echo ... Cards/Stratege.obj
+	@echo ... Cards/Stratege.i
+	@echo ... Cards/Stratege.s
+	@echo ... DisplayConsole.obj
+	@echo ... DisplayConsole.i
+	@echo ... DisplayConsole.s
 	@echo ... Rules/Rules.obj
 	@echo ... Rules/Rules.i
 	@echo ... Rules/Rules.s
 	@echo ... StoneTiles/StoneTiles.obj
 	@echo ... StoneTiles/StoneTiles.i
 	@echo ... StoneTiles/StoneTiles.s
+	@echo ... TacticalCardsFactory.obj
+	@echo ... TacticalCardsFactory.i
+	@echo ... TacticalCardsFactory.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

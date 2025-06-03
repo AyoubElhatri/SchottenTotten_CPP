@@ -20,4 +20,11 @@ Cards/HeadsHunter.h
 Rules/Rules.cpp
 Rules/Rules.h
 StoneTiles/StoneTiles.cpp
-StoneTiles/StoneTiles.h)
+StoneTiles/StoneTiles.h
+        Display.h
+        DisplayConsole.cpp
+        DisplayConsole.h
+        TacticalCardsFactory.cpp
+        TacticalCardsFactory.h
+        Cards/Stratege.cpp
+        Cards/Stratege.h)

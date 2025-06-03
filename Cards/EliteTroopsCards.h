@@ -4,6 +4,9 @@
 
 #ifndef ELITETROOPSCARDS_H
 #define ELITETROOPSCARDS_H
+#include "ClanCards.h"
+#include "TacticalCards.h"
+
 class EliteTroopsCards : public ClanCards, public TacticalCards{
 
 

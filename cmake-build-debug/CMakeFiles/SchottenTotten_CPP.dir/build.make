@@ -124,12 +124,57 @@ CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\atoum\CLionProjects\SchottenTotten_CPP\StoneTiles\StoneTiles.cpp -o CMakeFiles\SchottenTotten_CPP.dir\StoneTiles\StoneTiles.cpp.s
 
+CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj: CMakeFiles/SchottenTotten_CPP.dir/flags.make
+CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj: C:/Users/atoum/CLionProjects/SchottenTotten_CPP/DisplayConsole.cpp
+CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj: CMakeFiles/SchottenTotten_CPP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\atoum\CLionProjects\SchottenTotten_CPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj -MF CMakeFiles\SchottenTotten_CPP.dir\DisplayConsole.cpp.obj.d -o CMakeFiles\SchottenTotten_CPP.dir\DisplayConsole.cpp.obj -c C:\Users\atoum\CLionProjects\SchottenTotten_CPP\DisplayConsole.cpp
+
+CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\atoum\CLionProjects\SchottenTotten_CPP\DisplayConsole.cpp > CMakeFiles\SchottenTotten_CPP.dir\DisplayConsole.cpp.i
+
+CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\atoum\CLionProjects\SchottenTotten_CPP\DisplayConsole.cpp -o CMakeFiles\SchottenTotten_CPP.dir\DisplayConsole.cpp.s
+
+CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj: CMakeFiles/SchottenTotten_CPP.dir/flags.make
+CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj: C:/Users/atoum/CLionProjects/SchottenTotten_CPP/TacticalCardsFactory.cpp
+CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj: CMakeFiles/SchottenTotten_CPP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\atoum\CLionProjects\SchottenTotten_CPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj -MF CMakeFiles\SchottenTotten_CPP.dir\TacticalCardsFactory.cpp.obj.d -o CMakeFiles\SchottenTotten_CPP.dir\TacticalCardsFactory.cpp.obj -c C:\Users\atoum\CLionProjects\SchottenTotten_CPP\TacticalCardsFactory.cpp
+
+CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\atoum\CLionProjects\SchottenTotten_CPP\TacticalCardsFactory.cpp > CMakeFiles\SchottenTotten_CPP.dir\TacticalCardsFactory.cpp.i
+
+CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\atoum\CLionProjects\SchottenTotten_CPP\TacticalCardsFactory.cpp -o CMakeFiles\SchottenTotten_CPP.dir\TacticalCardsFactory.cpp.s
+
+CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj: CMakeFiles/SchottenTotten_CPP.dir/flags.make
+CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj: C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Stratege.cpp
+CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj: CMakeFiles/SchottenTotten_CPP.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\atoum\CLionProjects\SchottenTotten_CPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj -MF CMakeFiles\SchottenTotten_CPP.dir\Cards\Stratege.cpp.obj.d -o CMakeFiles\SchottenTotten_CPP.dir\Cards\Stratege.cpp.obj -c C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Cards\Stratege.cpp
+
+CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Cards\Stratege.cpp > CMakeFiles\SchottenTotten_CPP.dir\Cards\Stratege.cpp.i
+
+CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Cards\Stratege.cpp -o CMakeFiles\SchottenTotten_CPP.dir\Cards\Stratege.cpp.s
+
 # Object files for target SchottenTotten_CPP
 SchottenTotten_CPP_OBJECTS = \
 "CMakeFiles/SchottenTotten_CPP.dir/main.cpp.obj" \
 "CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.obj" \
 "CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.obj" \
-"CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.obj"
+"CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.obj" \
+"CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj" \
+"CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj" \
+"CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj"
 
 # External object files for target SchottenTotten_CPP
 SchottenTotten_CPP_EXTERNAL_OBJECTS =
@@ -138,11 +183,14 @@ SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/main.cpp.obj
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.obj
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.obj
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.obj
+SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj
+SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.obj
+SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/build.make
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/linkLibs.rsp
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/objects1.rsp
 SchottenTotten_CPP.exe: CMakeFiles/SchottenTotten_CPP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\atoum\CLionProjects\SchottenTotten_CPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable SchottenTotten_CPP.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\atoum\CLionProjects\SchottenTotten_CPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable SchottenTotten_CPP.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\SchottenTotten_CPP.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
