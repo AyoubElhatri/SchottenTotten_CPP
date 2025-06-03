@@ -57,6 +57,30 @@ build CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o: CXX_COMPILER__SchottenTotten
   TARGET_COMPILE_PDB = CMakeFiles/SchottenTotten_CPP.dir/
   TARGET_PDB = SchottenTotten_CPP.pdb
 
+build CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Cards/ClanCards.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Cards
+  TARGET_COMPILE_PDB = CMakeFiles/SchottenTotten_CPP.dir/
+  TARGET_PDB = SchottenTotten_CPP.pdb
+
+build CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Rules/Rules.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Rules
+  TARGET_COMPILE_PDB = CMakeFiles/SchottenTotten_CPP.dir/
+  TARGET_PDB = SchottenTotten_CPP.pdb
+
+build CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/StoneTiles/StoneTiles.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/StoneTiles
+  TARGET_COMPILE_PDB = CMakeFiles/SchottenTotten_CPP.dir/
+  TARGET_PDB = SchottenTotten_CPP.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target SchottenTotten_CPP
@@ -65,7 +89,7 @@ build CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o: CXX_COMPILER__SchottenTotten
 #############################################
 # Link the executable SchottenTotten_CPP
 
-build SchottenTotten_CPP: CXX_EXECUTABLE_LINKER__SchottenTotten_CPP_Debug CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o
+build SchottenTotten_CPP: CXX_EXECUTABLE_LINKER__SchottenTotten_CPP_Debug CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk
   OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
   POST_BUILD = :

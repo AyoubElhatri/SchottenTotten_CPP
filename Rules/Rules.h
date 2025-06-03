@@ -8,51 +8,42 @@ class Rules{
       public :
             class Builder;
       private:
-            static unique_ptr<Rules> instance ;
+            static unique_ptr<Rules> instance;
             unsigned int numberOfStoneTiles;
             unsigned int numberOfClanCardsPerColor;
             unsigned int numberOfAlignedTilesToWin;
             unsigned int numberOfUnalignedTilesToWin;
-            unsigned int numberOfPlayer;
-            unordered_map<string, unsigned int> clanCardsByColor;
+            unordered_map<string, unsigned int> clanCardsByColor; // Quantité des cartes par couleur
             unordered_map<string, unsigned int> tacticalCards;
             //Constructor
-            Rules() = default;
+            Rules();
             Rules(const Builder& builder);
+
       public:
 
             static Rules& getInstance();
             static void buildInstance(const Builder& builder);
-            unsigned int getNumberOfStoneTiles() const;
-            unsigned int getNumberOfClanCardsPerColor() const;
-            unsigned int getNumberOfAlignedTilesToWin() const;
-            unsigned int getNumberOfUnalignedTilesToWin() const;
-            unsigned int getNumberOfPlayer() const;
+            unsigned int getNumberOfStoneTiles() const { return numberOfStoneTiles;}
+            unsigned int getNumberOfClanCardsPerColor() const{return numberOfClanCardsPerColor;}
+            unsigned int getNumberOfAlignedTilesToWin() const {return numberOfAlignedTilesToWin;}
+            unsigned int getNumberOfUnalignedTilesToWin() const{return numberOfUnalignedTilesToWin;}
 
-      class Builder {
+
+     class Builder {
       private:
             unique_ptr<Rules> rules;
 
       public:
-            Builder& setNumberOfStoneTiles(unsigned int n);
-            Builder& setNumberOfClanCardsPerColor(unsigned int n);
-            Builder& setNumberOfAlignedTilesToWin(unsigned int n);
-            Builder& setNumberOfUnalignedTilesToWin(unsigned int n);
-            Builder& setNumberOfPlayers(unsigned int n);
+            Builder& setNumberOfStoneTiles(unsigned int n){rules->numberOfStoneTiles = n;}
+            Builder& setNumberOfClanCardsPerColor(unsigned int n){rules->numberOfClanCardsPerColor = n;}
+            Builder& setNumberOfAlignedTilesToWin(unsigned int n){rules->numberOfAlignedTilesToWin = n;}
+            Builder& setNumberOfUnalignedTilesToWin(unsigned int n){rules->numberOfUnalignedTilesToWin = n;}
+            Builder& addClanCardColor(const string& color, unsigned int count);
+            Builder& addTacticalCard(const string& name, unsigned int count);
 
-            Builder& addClanCardColor(const std::string& color, unsigned int count);
-            Builder& addTacticalCard(const std::string& name, unsigned int count);
 
-            const Rules& getRules() const;
       };
-
-
-
-
-
-
 };
-
 
 
 #endif //RULES_H
