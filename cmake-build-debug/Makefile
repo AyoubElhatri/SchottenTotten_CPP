@@ -176,6 +176,30 @@ Cards/Stratege.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.s
 .PHONY : Cards/Stratege.cpp.s
 
+Collections/Set.obj: Collections/Set.cpp.obj
+.PHONY : Collections/Set.obj
+
+# target to build an object file
+Collections/Set.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.obj
+.PHONY : Collections/Set.cpp.obj
+
+Collections/Set.i: Collections/Set.cpp.i
+.PHONY : Collections/Set.i
+
+# target to preprocess a source file
+Collections/Set.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.i
+.PHONY : Collections/Set.cpp.i
+
+Collections/Set.s: Collections/Set.cpp.s
+.PHONY : Collections/Set.s
+
+# target to generate assembly for a file
+Collections/Set.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.s
+.PHONY : Collections/Set.cpp.s
+
 DisplayConsole.obj: DisplayConsole.cpp.obj
 .PHONY : DisplayConsole.obj
 
@@ -311,6 +335,9 @@ help:
 	@echo ... Cards/Stratege.obj
 	@echo ... Cards/Stratege.i
 	@echo ... Cards/Stratege.s
+	@echo ... Collections/Set.obj
+	@echo ... Collections/Set.i
+	@echo ... Collections/Set.s
 	@echo ... DisplayConsole.obj
 	@echo ... DisplayConsole.i
 	@echo ... DisplayConsole.s
