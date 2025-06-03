@@ -12,6 +12,7 @@ class ClanCards: public Cards {
         unsigned int number;
 		Colors color;
 	public:
+		ClanCards(unsigned int Number, Colors Color){number=Number; color=Color;};
 		unsigned int getNumber(){return number;};
 		Colors getColor(){return color;};
 		void setNumber(unsigned int numbers){number = numbers;};
