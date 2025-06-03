@@ -6,9 +6,8 @@
 
 #include <iostream>
 
-string DisplayConsole::takeInput(const string &message) {
+string DisplayConsole::takeInput() {
     string output;
-    cout << message << endl;
     cin>>output;
     return output;
 }
