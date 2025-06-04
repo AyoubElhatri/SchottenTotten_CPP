@@ -23,7 +23,7 @@ class Player{
       unsigned int getTacticalCardsCounter() const {return tacticalCardsCounter;}
 
       virtual void playCard(unique_ptr<Cards>) = 0;
-      void claimStoneTiles(unsigned int position);
+      bool claimStoneTiles(unsigned int position);
       void drawClanCards();  //piocher
       void drawTacticalCards();
       void incrementTacticalCardCounter();
