@@ -13,6 +13,7 @@ using namespace std;
 class Set {
  public:
   vector<unique_ptr<Cards>> SetOfCards;
+
 };
 
 
