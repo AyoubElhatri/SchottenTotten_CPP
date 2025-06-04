@@ -18,12 +18,12 @@ class Player{
       virtual ~Player() = default;
 
       unsigned int getPlayerID() const {return playerID;}
-      Set& getPlayerDeck();
+      Set& getPlayerDeck() {return playerDeck;}
       vector<shared_ptr<StoneTiles>>& getStoneTiles();
       unsigned int getTacticalCardsCounter() const {return tacticalCardsCounter;}
 
       virtual void playCard(unique_ptr<Cards>) = 0;
-      void revendicateStoneTiles();
+      void claimStoneTiles();
       void drawClanCards();  //piocher
       void drawTacticalCards();
       void incrementTacticalCardCounter();
