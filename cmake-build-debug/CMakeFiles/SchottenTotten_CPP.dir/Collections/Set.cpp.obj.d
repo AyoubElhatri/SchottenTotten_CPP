@@ -180,4 +180,7 @@ CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.obj: \
  C:/msys64/mingw64/include/c++/14.2.0/backward/auto_ptr.h \
  C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_uninitialized.h \
  C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_memory_defs.h \
- C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h \
+ C:/msys64/mingw64/include/c++/14.2.0/iostream \
+ C:/msys64/mingw64/include/c++/14.2.0/istream \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/istream.tcc

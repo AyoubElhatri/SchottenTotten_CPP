@@ -4,6 +4,8 @@
 
 #ifndef COMBATMODECARDS_H
 #define COMBATMODECARDS_H
+#include <memory>
+#include "../StoneTiles/StoneTiles.h"
 using namespace std;
 class CombatModeCards : public TacticalCards{
    private:

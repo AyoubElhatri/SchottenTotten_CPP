@@ -6,7 +6,7 @@
 #define TRAITOR_H
 #include "RusesCards.h"
 
-class Strategist : public RusesCards {
+class Traitor : public RusesCards {
 public:
     void getEvent();
 

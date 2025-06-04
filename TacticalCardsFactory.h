@@ -11,12 +11,13 @@
 #include "Cards/MudFight.h"
 #include "Cards/ShieldBear.h"
 #include "Cards/Spy.h"
+#include "Cards/Traitor.h"
 #include <string>
 
 using namespace std;
 
 class TacticalCardsFactory {
-    static TacticalCardsFactory* createTacticalCard(const string& Card) {
+    static TacticalCards* createTacticalCard(const string& Card) {
         if (Card=='Joker') return new Joker();
         else if (Card=='Banshee') return new Banshee();
         else if (Card=='MudFight') return new MudFight();
@@ -25,12 +26,11 @@ class TacticalCardsFactory {
         else if (Card=='ShieldBear') return new ShieldBear();
         else if (Card=='HeadsHunter') return new HeadsHunter();
         else if (Card=='BlindMan') return new Blindman();
-        else if (Card=='')
+        //else if (Card=='')
 
-        else return nullptr;
+            else return nullptr;
 
     }
-
 };
 
 

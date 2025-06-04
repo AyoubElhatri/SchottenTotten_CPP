@@ -166,4 +166,23 @@ CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.obj: \
  C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_uninitialized.h \
  C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_algobase.h \
  C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_memory_defs.h \
- C:/msys64/mingw64/include/c++/14.2.0/pstl/execution_defs.h
+ C:/msys64/mingw64/include/c++/14.2.0/pstl/execution_defs.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
+ C:/msys64/mingw64/include/c++/14.2.0/vector \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_vector.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_bvector.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/vector.tcc \
+ C:/msys64/mingw64/include/c++/14.2.0/algorithm \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_algo.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/algorithmfwd.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_heap.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/uniform_int_dist.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_algo.h \
+ C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h \
+ C:/msys64/mingw64/include/c++/14.2.0/iostream \
+ C:/msys64/mingw64/include/c++/14.2.0/istream \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/istream.tcc \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/StoneTiles/StoneTiles.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h
