@@ -10,13 +10,13 @@
 using namespace std;
 class StoneTiles {
        private:
-unsigned int Position;
-unsigned int PlayableCards;
-Set PlayerCards1;
-Set PlayerCards2;
-Set CombatModeCards;
-unique_ptr<Player> Player;
-bool StoneTileIsClaimed;
+       unsigned int Position;
+       unsigned int PlayableCards;
+       Set PlayerCards1;
+       Set PlayerCards2;
+       Set CombatModeCards;
+       unique_ptr<Player> Player;
+       bool StoneTileIsClaimed;
 };
 
 
