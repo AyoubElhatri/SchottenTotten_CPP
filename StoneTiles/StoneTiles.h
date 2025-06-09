@@ -15,8 +15,15 @@ class StoneTiles {
        Set PlayerCards1;
        Set PlayerCards2;
        Set CombatModeCards;
-       unique_ptr<Player> Player;
+       unique_ptr<Player> claimedBy;
        bool StoneTileIsClaimed;
+       public:
+       unsigned int getPosition() const{return Position;}
+       bool isAlreadyClaimed() const {return StoneTileIsClaimed;}
+       bool isClaimable(Player* player) const ;
+       void claim(Player* player);
+
+
 };
 
 
