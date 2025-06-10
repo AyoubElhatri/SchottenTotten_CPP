@@ -9,12 +9,11 @@ class GameBoard{
         Set DiscardedCards;
         GameBoard() {};
         GameBoard(const GameBoard&) = delete;
-        GameBoard& operator=(const GameBoard&) = delete
+        GameBoard& operator=(const GameBoard&) = delete;
+
     public:
-        static GameBoard& getInstance() {
-            static GameBoard instance;
-            return instance;
-        }
+        static GameBoard* getInstance() ;
+
 
 };
 #endif //GAMEBOARD_H
