@@ -1,19 +1,19 @@
 #include "StoneTiles.h"
 
-bool StoneTiles::isClaimable(Player* player) const {
+/*bool StoneTiles::isClaimable(Player* player) const {
     if (!player) return false;
 
-    const Set& playerCards = (player->getPlayerId() == 1) ? PlayerCards1 : PlayerCards2;
-    const Set& opponentCards = (player->getPlayerId() == 1) ? PlayerCards2 : PlayerCards1;
+    const Set& playerCards = (player->getPlayerID() == 1) ? PlayerCards1 : PlayerCards2;
+    const Set& opponentCards = (player->getPlayerID() == 1) ? PlayerCards2 : PlayerCards1;
 
-    if (playerCards.size() < PlayableCards || opponentCards.size() < PlayableCards)
+    if (playerCards.getSize() < PlayableCards || opponentCards.getSize() < PlayableCards)
         return false;
 
     int playerTotal = playerCards.getTotalValue();
     int opponentTotal = opponentCards.getTotalValue();
 
     return playerTotal > opponentTotal;
-}
+}*/
 
 void StoneTiles::claim(Player* player) {
     if (!isAlreadyClaimed())

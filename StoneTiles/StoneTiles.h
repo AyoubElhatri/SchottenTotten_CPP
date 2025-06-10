@@ -20,7 +20,7 @@ class StoneTiles {
        public:
        unsigned int getPosition() const{return Position;}
        bool isAlreadyClaimed() const {return StoneTileIsClaimed;}
-       bool isClaimable(Player* player) const ;
+       //bool isClaimable(Player* player) const ;
        void claim(Player* player);
 
 
