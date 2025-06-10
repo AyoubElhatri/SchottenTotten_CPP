@@ -10,7 +10,6 @@ class Rules{
       private:
             static unique_ptr<Rules> instance;
             unsigned int numberOfStoneTiles;
-            unsigned int numberOfClanCardsPerColor;
             unsigned int numberOfAlignedTilesToWin;
             unsigned int numberOfUnalignedTilesToWin;
             unordered_map<string, unsigned int> clanCardsByColor; // Quantité des cartes par couleur
@@ -24,7 +23,6 @@ class Rules{
             static Rules& getInstance();
             static void buildInstance(const Builder& builder);
             unsigned int getNumberOfStoneTiles() const { return numberOfStoneTiles;}
-            unsigned int getNumberOfClanCardsPerColor() const{return numberOfClanCardsPerColor;}
             unsigned int getNumberOfAlignedTilesToWin() const {return numberOfAlignedTilesToWin;}
             unsigned int getNumberOfUnalignedTilesToWin() const{return numberOfUnalignedTilesToWin;}
 
@@ -35,7 +33,6 @@ class Rules{
 
       public:
             void setNumberOfStoneTiles(unsigned int n){rules->numberOfStoneTiles = n;}
-            void setNumberOfClanCardsPerColor(unsigned int n){rules->numberOfClanCardsPerColor = n;}
             void setNumberOfAlignedTilesToWin(unsigned int n){rules->numberOfAlignedTilesToWin = n;}
             void setNumberOfUnalignedTilesToWin(unsigned int n){rules->numberOfUnalignedTilesToWin = n;}
             Builder& addClanCardColor(const string& color, unsigned int count);

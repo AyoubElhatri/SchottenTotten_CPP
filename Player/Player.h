@@ -26,7 +26,8 @@ class Player{
       bool claimStoneTiles(unsigned int position);
       void drawClanCards();  //piocher
       void drawTacticalCards();
-      void incrementTacticalCardCounter();
+      void incrementTacticalCardCounter(){ tacticalCardsCounter++;}
+
 
 
 

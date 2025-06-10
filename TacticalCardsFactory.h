@@ -26,7 +26,6 @@ class TacticalCardsFactory {
         else if (Card=='ShieldBear') return new ShieldBear();
         else if (Card=='HeadsHunter') return new HeadsHunter();
         else if (Card=='BlindMan') return new Blindman();
-        //else if (Card=='')
 
             else return nullptr;
 

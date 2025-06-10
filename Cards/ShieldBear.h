@@ -8,7 +8,7 @@
 
 class ShieldBear : public EliteTroopsCards {
     public:
-        void getEvent();
+        void getEvent(StoneTiles* stoneTiles);
 };
 
 
