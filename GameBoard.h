@@ -1,5 +1,6 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
+#include "./Collections/Set.h"
 using namespace std;
 class GameBoard{
     private:
