@@ -34,10 +34,10 @@ class Rules{
             unique_ptr<Rules> rules;
 
       public:
-            Builder& setNumberOfStoneTiles(unsigned int n){rules->numberOfStoneTiles = n;}
-            Builder& setNumberOfClanCardsPerColor(unsigned int n){rules->numberOfClanCardsPerColor = n;}
-            Builder& setNumberOfAlignedTilesToWin(unsigned int n){rules->numberOfAlignedTilesToWin = n;}
-            Builder& setNumberOfUnalignedTilesToWin(unsigned int n){rules->numberOfUnalignedTilesToWin = n;}
+            void setNumberOfStoneTiles(unsigned int n){rules->numberOfStoneTiles = n;}
+            void setNumberOfClanCardsPerColor(unsigned int n){rules->numberOfClanCardsPerColor = n;}
+            void setNumberOfAlignedTilesToWin(unsigned int n){rules->numberOfAlignedTilesToWin = n;}
+            void setNumberOfUnalignedTilesToWin(unsigned int n){rules->numberOfUnalignedTilesToWin = n;}
             Builder& addClanCardColor(const string& color, unsigned int count);
             Builder& addTacticalCard(const string& name, unsigned int count);
 
