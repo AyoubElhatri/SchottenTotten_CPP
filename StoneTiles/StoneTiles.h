@@ -11,7 +11,7 @@ using namespace std;
 class StoneTiles {
        private:
        unsigned int Position;
-       unsigned int PlayableCards;
+       unsigned int NbOfPlayableCards;
        Set PlayerCards1;
        Set PlayerCards2;
        Set CombatModeCards;
@@ -22,6 +22,16 @@ class StoneTiles {
        bool isAlreadyClaimed() const {return StoneTileIsClaimed;}
        //bool isClaimable(Player* player) const ;
        void claim(Player* player);
+       StoneTiles(unsigned int Pos) {
+              Position = Pos;
+              PlayerCards1= Set();
+              PlayerCards2=Set();
+              CombatModeCards=Set();
+
+       }
+       unsigned int getNbOfPlayableCards(){return NbOfPlayableCards;}
+       void setNbOfPlayableCards(unsigned int nbOfPlayableCards){NbOfPlayableCards=nbOfPlayableCards;}
+       void setPosition(unsigned int Pos){Position=Pos;}
 
 
 };
