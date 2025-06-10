@@ -9,6 +9,8 @@ using namespace std;
 #include <string>
 
 class DisplayConsole : public Display {
+private:
+     DisplayConsole();
 public:
      virtual Display * getInstance();
      virtual string takeInput();

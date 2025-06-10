@@ -10,7 +10,8 @@ using namespace std;
 class Display {
     private:
         Display();
-
+protected:
+        Display * DisplayInstance=nullptr;
     public:
 
         virtual Display * getInstance();
