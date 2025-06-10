@@ -8,12 +8,15 @@ class GameBoard{
         Set RemainingTacticalCards;
         Set DiscardedCards;
         GameBoard() {};
+        static GameBoard* instanceGameBoard;
         GameBoard(const GameBoard&) = delete;
         GameBoard& operator=(const GameBoard&) = delete;
 
     public:
-        static GameBoard* getInstance() ;
+        static GameBoard& getInstance() ;
 
 
 };
+
+Ga
 #endif //GAMEBOARD_H

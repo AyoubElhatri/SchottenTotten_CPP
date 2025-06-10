@@ -19,3 +19,7 @@ Display * DisplayConsole::getInstance() {
     }
     return DisplayInstance;
 }
+
+void DisplayConsole::output(string message) {
+    cout << message << endl;
+}
