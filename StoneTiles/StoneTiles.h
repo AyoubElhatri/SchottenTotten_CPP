@@ -10,14 +10,18 @@
 using namespace std;
 class StoneTiles {
        private:
-unsigned int Position;
-unsigned int NbOfPlayableCards;
-Set PlayerCards1;
-Set PlayerCards2;
-Set CombatModeCards;
-unique_ptr<Player> Player;
-bool StoneTileIsClaimed;
-public:
+       unsigned int Position;
+       unsigned int NbOfPlayableCards;
+       Set PlayerCards1;
+       Set PlayerCards2;
+       Set CombatModeCards;
+       unique_ptr<Player> claimedBy;
+       bool StoneTileIsClaimed;
+       public:
+       unsigned int getPosition() const{return Position;}
+       bool isAlreadyClaimed() const {return StoneTileIsClaimed;}
+       //bool isClaimable(Player* player) const ;
+       void claim(Player* player);
        StoneTiles(unsigned int Pos) {
               Position = Pos;
               PlayerCards1= Set();
@@ -25,10 +29,11 @@ public:
               CombatModeCards=Set();
 
        }
-       unsigned int getPosition(){return Position};
        unsigned int getNbOfPlayableCards(){return NbOfPlayableCards;}
        void setNbOfPlayableCards(unsigned int nbOfPlayableCards){NbOfPlayableCards=nbOfPlayableCards;}
        void setPosition(unsigned int Pos){Position=Pos;}
+
+
 };
 
 

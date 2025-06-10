@@ -5,6 +5,8 @@
 
 class Cards {
     public:
+        virtual unsigned int getNumber() const = 0;
+        virtual std::string getColor() const = 0;
         virtual void getEvent()=0;
 };
 
