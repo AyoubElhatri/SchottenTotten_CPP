@@ -1,5 +1,7 @@
 #ifndef GAMEBOARD_H
-#define GAMEBOARD_H"
+#define GAMEBOARD_H
+#include "Collections/Set.h"
+#include "StoneTiles/StoneTiles.h"
 using namespace std;
 class GameBoard{
     private:

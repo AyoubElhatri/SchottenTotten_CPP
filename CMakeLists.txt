@@ -30,4 +30,5 @@ StoneTiles/StoneTiles.h
         Cards/Stratege.h
         Collections/Set.cpp
         Collections/Set.h
-        Player/.)
+        Player/.
+        Cards/Joker.cpp)

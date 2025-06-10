@@ -4,7 +4,7 @@
 
 
 
-Rules::Rules() : numberOfStoneTiles(9), numberOfClanCardsPerColor(6), numberOfAlignedTilesToWin(3), numberOfUnalignedTilesToWin(5) {}
+Rules::Rules() : numberOfStoneTiles(9), numberOfAlignedTilesToWin(3), numberOfUnalignedTilesToWin(5) {}
 
 
 

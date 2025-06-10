@@ -16,6 +16,7 @@ protected:
 
         virtual Display * getInstance();
         virtual string takeInput();
+        virtual void output(string message);
 
 };
 
