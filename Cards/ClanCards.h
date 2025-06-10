@@ -12,8 +12,8 @@ class ClanCards: public Cards {
         unsigned int number;
 		Colors color;
 	public:
-		unsigned int getNumber(){return number;};
-		Colors getColor(){return color;};
+		unsigned int getNumber() const override {return number;};
+		Colors getColor()const override {return color;};
 		void setNumber(unsigned int numbers){number = numbers;};
 		void setColor(Colors colors){color = colors;};
 

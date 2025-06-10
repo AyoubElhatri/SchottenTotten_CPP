@@ -7,6 +7,7 @@
 #include "../Player/Player.h"
 #include "../CombinationType.h"
 #include "../Cards/ClanCards.h"
+#include "../Utils.h"
 #include <iostream>
 using namespace std;
 #define maxOfCards 3;

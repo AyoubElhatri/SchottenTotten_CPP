@@ -21,8 +21,11 @@ CombinationType Set::evaluateCombination() const {
     set<string> colors;
 
     for (const auto& card : SetOfCards) {
-        values.push_back(card->getValue()); //je ne sais pas comment faire ??
-        colors.insert(card->getColor()); // ..???
+        const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
+        if (clanCard) {
+        values.push_back(clanCard->getNumber()); //je ne sais pas comment faire ??
+        colors.insert(colorToString(clanCard->getColor())); // ..???
+        }
     }
     sort(values.begin(), values.end());
 
