@@ -13,6 +13,7 @@ private:
 public:
     unsigned int getSize()const {return SetOfCards.size();}
     Set(Set&& IndexSet) ;
+    Set()=default;
     unique_ptr<Cards> getCardbyIndex(unsigned int IndexParam);
     void addCard(unique_ptr<Cards>& Card) {SetOfCards.push_back(move(Card));}
     void moveCard(unsigned int IndexOfCard, Set& IndexSet);

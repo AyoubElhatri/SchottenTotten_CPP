@@ -11,12 +11,24 @@ using namespace std;
 class StoneTiles {
        private:
 unsigned int Position;
-unsigned int PlayableCards;
+unsigned int NbOfPlayableCards;
 Set PlayerCards1;
 Set PlayerCards2;
 Set CombatModeCards;
 unique_ptr<Player> Player;
 bool StoneTileIsClaimed;
+public:
+       StoneTiles(unsigned int Pos) {
+              Position = Pos;
+              PlayerCards1= Set();
+              PlayerCards2=Set();
+              CombatModeCards=Set();
+
+       }
+       unsigned int getPosition(){return Position};
+       unsigned int getNbOfPlayableCards(){return NbOfPlayableCards;}
+       void setNbOfPlayableCards(unsigned int nbOfPlayableCards){NbOfPlayableCards=nbOfPlayableCards;}
+       void setPosition(unsigned int Pos){Position=Pos;}
 };
 
 
