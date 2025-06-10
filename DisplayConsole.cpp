@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-string DisplayConsole::takeInput(string message) {
+string DisplayConsole::takeInput() {
     string output;
     cin>>output;
     return output;

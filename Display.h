@@ -4,8 +4,17 @@
 
 #ifndef DISPLAY_H
 #define DISPLAY_H
+#include <string>
+using namespace std;
 
 class Display {
+    private:
+        Display();
+
+    public:
+
+        virtual Display * getInstance();
+        virtual string takeInput();
 
 };
 
