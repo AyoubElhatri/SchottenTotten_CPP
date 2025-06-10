@@ -4,7 +4,7 @@
 #include "Colors.h"
 #include <iostream>
 
-std::string colorToString(Colors c) {
+/*std::string colorToString(Colors c) {
     switch (c) {
         case Colors::Red: return "Red";
         case Colors::Blue: return "Blue";
@@ -12,7 +12,7 @@ std::string colorToString(Colors c) {
         case Colors::Cyan: return "Cyan";
         default: return "Inconnue";
     }
-}
+}*/
 
 
 
