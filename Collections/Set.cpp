@@ -34,12 +34,12 @@ CombinationType Set::evaluateCombination() const {
     bool isSameColor = (colors.size() == 1);
     bool isSet = (values[0] == values[1]) && (values[1] == values[2]);
 
-    if (isSequence && isSameColor) return CombinationType::Suite_Couleur;
-    if (isSet) return CombinationType::Brelan;
-    if (isSameColor) return CombinationType::Couleur;
-    if (isSequence) return CombinationType::Suite;
+    if (isSequence && isSameColor) return CombinationType::ColorRun;
+    if (isSet) return CombinationType::nOfAKind;
+    if (isSameColor) return CombinationType::Color;
+    if (isSequence) return CombinationType::Run;
 
-    return CombinationType::Somme;
+    return CombinationType::Sum;
 }
 
 

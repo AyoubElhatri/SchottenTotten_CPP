@@ -31,4 +31,7 @@ StoneTiles/StoneTiles.h
         Collections/Set.cpp
         Collections/Set.h
         Player/.
-        Cards/Joker.cpp)
+        Cards/Joker.cpp
+        GameBoard.h
+        GameBoard.cpp
+        Cards/Traitor.cpp)

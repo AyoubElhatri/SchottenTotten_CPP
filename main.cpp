@@ -1,7 +1,10 @@
 #include <iostream>
+#include "GameBoard.h"
+#include "Player/Human.h"
+#include "Cards/ClanCards.h"  // adapte selon ta structure
 
-using namespace std;
-int main(void) {
-    cout<<"Hello"<<endl;
-    return 0;
+int main() {
+    // Récupérer l'instance unique du plateau
+    GameBoard& board = GameBoard::getInstance();
+    return 1;
 }
