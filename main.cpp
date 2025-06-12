@@ -5,6 +5,6 @@
 
 int main() {
     // Récupérer l'instance unique du plateau
-    GameBoard& board = GameBoard::getInstance();
+    cout<<"Heloo"<<endl;
     return 1;
 }

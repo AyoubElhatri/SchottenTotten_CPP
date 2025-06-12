@@ -34,16 +34,14 @@ StoneTiles/StoneTiles.h
         Player/Player.cpp
         Player/Human.h
         Player/Human.cpp
-        PLayer/AI.h
+        Player/AI.h
         Player/AI.cpp
         Player/AIEasy.cpp
         Player/AIEasy.h
         Cards/Joker.cpp
         GameBoard.cpp
-        Display.cpp
-        Display.h
         DisplayManager.h
-        DisplayManager.cpp)
+        DisplayManager.cpp
         Cards/Joker.cpp
         GameBoard.h
         GameBoard.cpp

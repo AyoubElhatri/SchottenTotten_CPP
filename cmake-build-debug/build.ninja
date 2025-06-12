@@ -61,6 +61,12 @@ build CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o: CXX_COMPILER__Sch
   OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Cards
 
+build CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Collections/Set.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Collections
+
 build CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Rules/Rules.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
   DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
@@ -91,11 +97,29 @@ build CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.o: CXX_COMPILER__Scho
   OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Cards
 
-build CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Collections/Set.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
-  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o.d
+build CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Player/Player.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
-  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Collections
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Player
+
+build CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Player/Human.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Player
+
+build CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Player/AI.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Player
+
+build CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Player/AIEasy.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir/Player
 
 build CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/Cards/Joker.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
   DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.o.d
@@ -105,6 +129,12 @@ build CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.o: CXX_COMPILER__Schotte
 
 build CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/GameBoard.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
   DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir
+
+build CMakeFiles/SchottenTotten_CPP.dir/DisplayManager.cpp.o: CXX_COMPILER__SchottenTotten_CPP_unscanned_Debug /Users/elhatriayoub/SchottenTotten_CPP/DisplayManager.cpp || cmake_object_order_depends_target_SchottenTotten_CPP
+  DEP_FILE = CMakeFiles/SchottenTotten_CPP.dir/DisplayManager.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles/SchottenTotten_CPP.dir
@@ -129,7 +159,7 @@ build CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.o: CXX_COMPILER__Schot
 #############################################
 # Link the executable SchottenTotten_CPP
 
-build SchottenTotten_CPP: CXX_EXECUTABLE_LINKER__SchottenTotten_CPP_Debug CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.o CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.o CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Traitor.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.o
+build SchottenTotten_CPP: CXX_EXECUTABLE_LINKER__SchottenTotten_CPP_Debug CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.o CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.o CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.o CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.o CMakeFiles/SchottenTotten_CPP.dir/DisplayManager.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Traitor.cpp.o CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk
   OBJECT_DIR = CMakeFiles/SchottenTotten_CPP.dir
   POST_BUILD = :

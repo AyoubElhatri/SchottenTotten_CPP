@@ -1,7 +1,7 @@
 #include "Rules.h"
 
 // Définit la variable statique
-unique_ptr<Rules> Rules::instance = nullptr;
+Rules* Rules::instance = nullptr;
 
 Rules::Rules()
     : numberOfStoneTiles(9), numberOfAlignedTilesToWin(3), numberOfUnalignedTilesToWin(5) {}
@@ -13,15 +13,15 @@ Rules::Rules(const Builder& builder)
       clanCardsByColor(builder.rules->clanCardsByColor),
       tacticalCards(builder.rules->tacticalCards) {}
 
-Rules& Rules::getInstance() {
-    if (!instance) {
-        instance=new Rules();
+Rules* Rules::getInstance() {
+    if (instance == nullptr) {
+        instance = new Rules();
     }
-    return *instance;
+    return instance;
 }
 
 void Rules::buildInstance(const Builder& builder) {
-    instance = make_unique<Rules>(builder);
+    instance = new Rules(builder);
 }
 
 Rules::Builder& Rules::Builder::addClanCardColor(const string& color, unsigned int count) {

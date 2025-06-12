@@ -7,11 +7,6 @@
 
 
 void Joker::getEvent() {
-    Display *display = nullptr;
-    display=display->getInstance();
-
-    display->output("Choose the value of the Joker");
-    int value = atoi(display->takeInput());
 
 
 }

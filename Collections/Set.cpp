@@ -5,13 +5,13 @@ unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
     if (IndexParam>=getSize()) {
         cout<<"Cexception";
     }
-    unique_ptr<Cards> IndexCard= move(SetOfCards[IndexParam]);
+    unique_ptr<Cards> IndexCard= std::move(SetOfCards[IndexParam]);
     SetOfCards.erase(SetOfCards.begin()+IndexParam);
-    return move(IndexCard);
+    return std::move(IndexCard);
 }
 void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
     unique_ptr<Cards> NewCard=getCardbyIndex(IndexOfCard);
-    IndexSet.addCard(move(NewCard));
+    IndexSet.addCard(std::move(NewCard));
 }
 
 CombinationType Set::evaluateCombination() const {

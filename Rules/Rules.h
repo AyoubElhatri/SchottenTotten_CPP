@@ -8,12 +8,12 @@
 
 using namespace std;
 
+class Builder;
 class Rules {
-public:
-    class Builder;
+private:
 
 
-    static unique_ptr<Rules> instance;
+    static Rules* instance;
 
     unsigned int numberOfStoneTiles;
     unsigned int numberOfAlignedTilesToWin;
@@ -25,8 +25,7 @@ public:
     Rules();
     Rules(const Builder& builder);
 
-public:
-    static Rules& getInstance();
+    static Rules* getInstance();
     static void buildInstance(const Builder& builder);
 
     unsigned int getNumberOfStoneTiles() const { return numberOfStoneTiles; }

@@ -1,8 +1,19 @@
 # ninja log v6
-692	792	1748440265409817282	SchottenTotten_CPP	60ce27fdddaa9042
-7	63	1748945108028258068	CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.o	ab0ae00e2e76eb25
-12	1194	1748945101321844224	CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o	dd011517605559ff
-12	236	1748945101322112353	CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o	4ea8bad4fdd5c9c0
-10	1714	1749669836644732934	CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.o	9b8f6668b944f16e
-2	82	1749672745759641443	build.ninja	47785f8b24eb8dea
-9	797	1748945108029890469	CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o	ad12650489d13ba8
+1	1270	1749732007358429355	CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o	4ea8bad4fdd5c9c0
+1	1279	1749732007358037192	CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o	dd011517605559ff
+3	1288	1749732007360085463	CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.o	9b8f6668b944f16e
+2	1355	1749732007359673675	CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o	7f8e69e486d813b
+1	1482	1749732007358760226	CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o	ad12650489d13ba8
+9	1728	1749732708367929805	CMakeFiles/SchottenTotten_CPP.dir/TacticalCardsFactory.cpp.o	e2ebe1097cf5f8e3
+7	1753	1749732708366270739	CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o	dd011517605559ff
+9	1766	1749732708367745141	CMakeFiles/SchottenTotten_CPP.dir/StoneTiles/StoneTiles.cpp.o	7f8e69e486d813b
+9	1888	1749732708368394009	CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.o	ab0ae00e2e76eb25
+8	1893	1749732708367273562	CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o	ad12650489d13ba8
+9	262	1749733474501583919	CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.o	a435b8f7e439beb2
+9	1719	1749733474502169579	CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.o	90cad1f2c3c4484a
+8	1742	1749733474500695970	CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.o	3d497e1a944f2191
+8	1763	1749733474501185840	CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.o	8dafcc509189a722
+262	1857	1749733474755305787	CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.o	bfe7ef184d818023
+9	1359	1749733569058011000	CMakeFiles/SchottenTotten_CPP.dir/Cards/Traitor.cpp.o	1f47d0175c421ce9
+9	1366	1749733569058202289	CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.o	8433e3bfe3d89282
+15	1069	1749733638509706355	CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.o	e3e251a306c6d5b0

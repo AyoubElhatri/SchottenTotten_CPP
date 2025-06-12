@@ -19,7 +19,7 @@ public:
     unsigned int getSize()const {return SetOfCards.size();}
     Set(Set&& IndexSet) ;
     unique_ptr<Cards> getCardbyIndex(unsigned int IndexParam);
-    void addCard(unique_ptr<Cards> Card) {SetOfCards.push_back(move(Card));}
+    void addCard(unique_ptr<Cards> Card) {SetOfCards.push_back(std::move(Card));}
     void moveCard(unsigned int IndexOfCard, Set& IndexSet);
     bool isComplete() const{ return SetOfCards.size() == maxOfCards;}
     /*Set(Player* ownerParam) : owner(ownerParam){}
