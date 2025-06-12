@@ -320,6 +320,102 @@ GameBoard.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.s
 .PHONY : GameBoard.cpp.s
 
+Player/AI.obj: Player/AI.cpp.obj
+.PHONY : Player/AI.obj
+
+# target to build an object file
+Player/AI.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.obj
+.PHONY : Player/AI.cpp.obj
+
+Player/AI.i: Player/AI.cpp.i
+.PHONY : Player/AI.i
+
+# target to preprocess a source file
+Player/AI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.i
+.PHONY : Player/AI.cpp.i
+
+Player/AI.s: Player/AI.cpp.s
+.PHONY : Player/AI.s
+
+# target to generate assembly for a file
+Player/AI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.s
+.PHONY : Player/AI.cpp.s
+
+Player/AIEasy.obj: Player/AIEasy.cpp.obj
+.PHONY : Player/AIEasy.obj
+
+# target to build an object file
+Player/AIEasy.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.obj
+.PHONY : Player/AIEasy.cpp.obj
+
+Player/AIEasy.i: Player/AIEasy.cpp.i
+.PHONY : Player/AIEasy.i
+
+# target to preprocess a source file
+Player/AIEasy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.i
+.PHONY : Player/AIEasy.cpp.i
+
+Player/AIEasy.s: Player/AIEasy.cpp.s
+.PHONY : Player/AIEasy.s
+
+# target to generate assembly for a file
+Player/AIEasy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.s
+.PHONY : Player/AIEasy.cpp.s
+
+Player/Human.obj: Player/Human.cpp.obj
+.PHONY : Player/Human.obj
+
+# target to build an object file
+Player/Human.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.obj
+.PHONY : Player/Human.cpp.obj
+
+Player/Human.i: Player/Human.cpp.i
+.PHONY : Player/Human.i
+
+# target to preprocess a source file
+Player/Human.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.i
+.PHONY : Player/Human.cpp.i
+
+Player/Human.s: Player/Human.cpp.s
+.PHONY : Player/Human.s
+
+# target to generate assembly for a file
+Player/Human.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.s
+.PHONY : Player/Human.cpp.s
+
+Player/Player.obj: Player/Player.cpp.obj
+.PHONY : Player/Player.obj
+
+# target to build an object file
+Player/Player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.obj
+.PHONY : Player/Player.cpp.obj
+
+Player/Player.i: Player/Player.cpp.i
+.PHONY : Player/Player.i
+
+# target to preprocess a source file
+Player/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.i
+.PHONY : Player/Player.cpp.i
+
+Player/Player.s: Player/Player.cpp.s
+.PHONY : Player/Player.s
+
+# target to generate assembly for a file
+Player/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Player/Player.cpp.s
+.PHONY : Player/Player.cpp.s
+
 Rules/Rules.obj: Rules/Rules.cpp.obj
 .PHONY : Rules/Rules.obj
 
@@ -449,6 +545,18 @@ help:
 	@echo ... GameBoard.obj
 	@echo ... GameBoard.i
 	@echo ... GameBoard.s
+	@echo ... Player/AI.obj
+	@echo ... Player/AI.i
+	@echo ... Player/AI.s
+	@echo ... Player/AIEasy.obj
+	@echo ... Player/AIEasy.i
+	@echo ... Player/AIEasy.s
+	@echo ... Player/Human.obj
+	@echo ... Player/Human.i
+	@echo ... Player/Human.s
+	@echo ... Player/Player.obj
+	@echo ... Player/Player.i
+	@echo ... Player/Player.s
 	@echo ... Rules/Rules.obj
 	@echo ... Rules/Rules.i
 	@echo ... Rules/Rules.s

@@ -9,6 +9,7 @@
 class RusesCards : public TacticalCards {
     public:
         void getEvent();
+
 };
 
 

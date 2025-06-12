@@ -9,6 +9,7 @@
 class HeadsHunter : public RusesCards {
     public:
         void getEvent();
+
 };
 
 #endif //HEADSHUNTER_H

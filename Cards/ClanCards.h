@@ -1,6 +1,7 @@
 #ifndef CLANCARDS_H
 #define CLANCARDS_H
 
+#include <iostream>
 #include <memory>
 
 #include "../Colors.h"
@@ -19,7 +20,7 @@ class ClanCards: public Cards {
 		void setNumber(unsigned int numbers){number = numbers;};
 		void setColor(Colors colors){color = colors;};
 		std::unique_ptr<Cards> clone() const override{return std::make_unique<ClanCards>(*this);};
-		void getEvent() override;
+		void getEvent() override{std::cout<<"";};
 };
 
 

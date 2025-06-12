@@ -9,7 +9,6 @@
 class Joker : public EliteTroopsCards {
 public:
     void getEvent();
-
 };
 
 

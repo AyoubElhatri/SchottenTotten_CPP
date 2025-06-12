@@ -11,7 +11,7 @@ unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
 }
 void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
     unique_ptr<Cards> NewCard=getCardbyIndex(IndexOfCard);
-    IndexSet.addCard(NewCard);
+    IndexSet.addCard(move(NewCard));
 }
 
 CombinationType Set::evaluateCombination() const {

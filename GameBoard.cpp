@@ -45,10 +45,10 @@ const Set& GameBoard::getDiscardedCards() const {
 
 void GameBoard::discardCard(const Cards& card) {
     auto copy = card.clone();
-    DiscardedCards.addCard(copy);
+    DiscardedCards.addCard(move(copy));
 }
 
-bool GameBoard::placeCardOnTile(int tileIndex, const Cards &card, int playerId) {
+void GameBoard::placeCardOnTile(int tileIndex, const Cards &card, int playerId) {
     if (tileIndex < 0 || tileIndex >= static_cast<int>(sharedTiles.size())) {
         throw std::out_of_range("Invalid tile index");
     }
@@ -68,7 +68,7 @@ bool GameBoard::isTileFree(int index) const {
     return sharedTiles[index]->canPlaceCard();
 }
 
-const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getUnclaimedBorders() const {
+const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getUnclaimedBorders() {
     std::vector<std::shared_ptr<StoneTiles>> unclaimed;
     for (auto& tile : sharedTiles) {
         if (!tile->isAlreadyClaimed()) {

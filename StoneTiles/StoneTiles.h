@@ -2,7 +2,6 @@
 #define STONETILES_H
 #include <memory>
 #include "../Collections/Set.h"
-#include "../Player/Player.h"
 using namespace std;
 class StoneTiles {
        private:
@@ -11,22 +10,19 @@ class StoneTiles {
        Set PlayerCards1;
        Set PlayerCards2;
        Set CombatModeCards;
-       unique_ptr<Player> claimedBy;
+       unsigned int claimedBy;
        bool StoneTileIsClaimed;
        public:
        unsigned int getPosition() const{return Position;}
        bool isAlreadyClaimed() const {return StoneTileIsClaimed;}
        //bool isClaimable(Player* player) const ;
-       void claim(Player* player);
+       void claim(unsigned int uiParam);
 
        bool canPlaceCard();
 
 
        StoneTiles(unsigned int Pos) {
               Position = Pos;
-              PlayerCards1= Set();
-              PlayerCards2=Set();
-              CombatModeCards=Set();
 
        }
        unsigned int getNbOfPlayableCards(){return NbOfPlayableCards;}

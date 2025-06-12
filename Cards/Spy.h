@@ -10,7 +10,6 @@
 class Spy : public EliteTroopsCards {
 public:
     void getEvent();
-
 };
 
 

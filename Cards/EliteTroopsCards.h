@@ -10,6 +10,8 @@ using namespace std;
 class EliteTroopsCards : public ClanCards, public TacticalCards{
     string Name;
     string getName(){return Name;}
+public:
+
 
 };
 

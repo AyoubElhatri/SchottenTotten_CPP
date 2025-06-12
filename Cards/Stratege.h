@@ -10,6 +10,7 @@
 class Stratege : public RusesCards{
     public:
         void getEvent();
+
 };
 
 

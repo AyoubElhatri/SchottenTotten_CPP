@@ -184,15 +184,13 @@ CMakeFiles/SchottenTotten_CPP.dir/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_memory_defs.h \
  C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h \
  C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Colors.h \
- C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
- C:/Users/atoum/CLionProjects/SchottenTotten_CPP/StoneTiles/StoneTiles.h \
- C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
- C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
- C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
  C:/Users/atoum/CLionProjects/SchottenTotten_CPP/CombinationType.h \
  C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/ClanCards.h \
  C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h \
  C:\Users\atoum\CLionProjects\SchottenTotten_CPP\StoneTiles/StoneTiles.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
  C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Player/Human.h \
  C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/StoneTiles/StoneTiles.h \
  C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Cards/ClanCards.h

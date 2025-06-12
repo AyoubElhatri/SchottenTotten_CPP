@@ -18,14 +18,14 @@ using namespace std;
 
 class TacticalCardsFactory {
     static TacticalCards* createTacticalCard(const string& Card) {
-        if (Card=='Joker') return new Joker();
-        else if (Card=='Banshee') return new Banshee();
-        else if (Card=='MudFight') return new MudFight();
-        else if (Card=='Traitor') return new Traitor();
-        else if (Card=='Spy') return new Spy();
-        else if (Card=='ShieldBear') return new ShieldBear();
-        else if (Card=='HeadsHunter') return new HeadsHunter();
-        else if (Card=='BlindMan') return new Blindman();
+        if (Card=="Joker") return new Joker();
+        else if (Card=="Banshee") return new Banshee();
+        else if (Card=="MudFight") return new MudFight();
+        else if (Card=="Traitor") return new Traitor();
+        else if (Card=="Spy") return new Spy();
+        else if (Card=="ShieldBear") return new ShieldBear();
+        else if (Card=="HeadsHunter") return new HeadsHunter();
+        else if (Card=="BlindMan") return new Blindman();
 
             else return nullptr;
 

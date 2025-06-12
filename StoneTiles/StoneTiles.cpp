@@ -14,7 +14,7 @@
 
     return playerTotal > opponentTotal;
 }*/
-
+/*
 void StoneTiles::claim(Player* player) {
     if (!isAlreadyClaimed())
         return;
@@ -31,14 +31,14 @@ void StoneTiles::claim(Player* player) {
         StoneTileIsClaimed = true;
     }
 
-}
+}*/
 
 void StoneTiles::addCardToPlayer(unsigned int playerId, std::unique_ptr<Cards> cards) {
     if (playerId == 1) {
-        PlayerCards1.addCard(cards);
+        PlayerCards1.addCard(move(cards));
     }
     else if (playerId == 2) {
-    PlayerCards2.addCard(cards);}
+    PlayerCards2.addCard(move(cards));}
     else {
         throw std::invalid_argument("Invalid player ID");
     }

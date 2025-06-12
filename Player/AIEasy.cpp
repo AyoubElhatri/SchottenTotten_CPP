@@ -16,15 +16,15 @@ void AIEasy::playTurn(std::vector<std::unique_ptr<Cards>>& playerCards, GameBoar
     std::unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
 
     // Poser la carte sur le plateau (tu peux adapter cette méthode)
-    bool success = gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
-
-    if (success) {
+    gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
+//bool sucess = gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
+    /*if (success) {
         // Retirer la carte du vecteur (puisque std::move a laissé un nullptr)
         playerCards.erase(playerCards.begin() + cardIndex);
     } else {
         // Remettre la carte dans le vecteur si échec
         playerCards[cardIndex] = std::move(selectedCard);
-    }
+    }*/
 }
 
 int AIEasy::chooseCardIndex(const std::vector<std::unique_ptr<Cards>>& cards) {

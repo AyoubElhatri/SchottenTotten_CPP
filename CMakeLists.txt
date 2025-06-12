@@ -7,6 +7,8 @@ add_executable(SchottenTotten_CPP main.cpp
 Cards/Cards.h
 Cards/ClanCards.cpp
 Cards/ClanCards.h
+        Collections/Set.cpp
+        Collections/Set.h
 Colors.h
 Cards/ShieldBear.h
 Cards/Joker.h
@@ -28,9 +30,14 @@ StoneTiles/StoneTiles.h
         TacticalCardsFactory.h
         Cards/Stratege.cpp
         Cards/Stratege.h
-        Collections/Set.cpp
-        Collections/Set.h
-        Player/.
+        Player/Player.h
+        Player/Player.cpp
+        Player/Human.h
+        Player/Human.cpp
+        PLayer/AI.h
+        Player/AI.cpp
+        Player/AIEasy.cpp
+        Player/AIEasy.h
         Cards/Joker.cpp
         GameBoard.h
         GameBoard.cpp

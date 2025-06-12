@@ -10,6 +10,8 @@ using namespace std;
 class CombatModeCards : public TacticalCards{
    private:
     shared_ptr<StoneTiles> sharedTiles;
+public:
+    void getEvent() override{std::cout<<"";};
 };
 
 #endif //COMBATMODECARDS_H
