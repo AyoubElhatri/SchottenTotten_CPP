@@ -3,7 +3,7 @@
 //
 
 #include "DisplayConsole.h"
-#include "Display.h"
+#include "DisplayManager.h"
 #include <iostream>
 
 string DisplayConsole::takeInput() {
@@ -12,13 +12,7 @@ string DisplayConsole::takeInput() {
     return output;
 }
 
-Display * DisplayConsole::getInstance() {
-    if (DisplayInstance==nullptr) {
-        DisplayInstance= new DisplayConsole();
 
-    }
-    return DisplayInstance;
-}
 
 void DisplayConsole::output(string message) {
     cout << message << endl;

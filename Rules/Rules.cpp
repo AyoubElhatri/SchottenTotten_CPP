@@ -10,7 +10,7 @@ Rules::Rules() : numberOfStoneTiles(9), numberOfAlignedTilesToWin(3), numberOfUn
 
 Rules& Rules::getInstance() {
     if (!instance) {
-        throw runtime_error("Rules has not been built yet. Call buildInstance() first.");
+        instance=new Rules();
     }
     return *instance;
 }

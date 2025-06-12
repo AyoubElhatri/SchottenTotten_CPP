@@ -10,7 +10,7 @@ class GameBoard{
         Set RemainingClanCards;
         Set RemainingTacticalCards;
         Set DiscardedCards;
-        GameBoard() {};
+        GameBoard() ;
         static GameBoard* instanceGameBoard;
         GameBoard(const GameBoard&) = delete;
         GameBoard& operator=(const GameBoard&) = delete;
@@ -21,5 +21,5 @@ class GameBoard{
 
 };
 
-Ga
+
 #endif //GAMEBOARD_H
