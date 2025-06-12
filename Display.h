@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 12/06/2025.
-//
+/*
 
 #ifndef DISPLAY_H
 #define DISPLAY_H
@@ -17,4 +15,4 @@ public:
 };
 
 
-#endif //DISPLAY_H
+#endif /*

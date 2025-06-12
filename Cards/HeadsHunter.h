@@ -1,7 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
-
+/*
 #ifndef HEADSHUNTER_H
 #define HEADSHUNTER_H
 #include "RusesCards.h"
@@ -12,4 +9,4 @@ class HeadsHunter : public RusesCards {
 
 };
 
-#endif //HEADSHUNTER_H
+#endif */

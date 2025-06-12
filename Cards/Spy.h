@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+/*
 
 #ifndef SPY_H
 #define SPY_H
@@ -14,4 +12,4 @@ public:
 
 
 
-#endif //SPY_H
+#endif //SPY_H*/

@@ -1,7 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
-
+/*
 #ifndef JOKER_H
 #define JOKER_H
 #include "EliteTroopsCards.h"
@@ -12,4 +9,4 @@ public:
 };
 
 
-#endif //JOKER_H
+#endif //JOKER_H*/

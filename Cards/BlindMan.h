@@ -1,7 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
-
+/*
 #ifndef BLINDMAN_H
 #define BLINDMAN_H
 #include "CombatModeCards.h"
@@ -13,4 +10,4 @@ public:
 
 };
 
-#endif //BLINDMAN_H
+#endif //BLINDMAN_H*/

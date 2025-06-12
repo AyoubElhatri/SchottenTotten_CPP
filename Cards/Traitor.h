@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+/*
 
 #ifndef TRAITOR_H
 #define TRAITOR_H
@@ -12,4 +10,4 @@ public:
 
 };
 
-#endif //TRAITOR_H
+#endif */

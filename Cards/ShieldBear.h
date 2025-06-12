@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+/*
 
 #ifndef SHIELDBEAR_H
 #define SHIELDBEAR_H
@@ -12,4 +10,4 @@ class ShieldBear : public EliteTroopsCards {
 };
 
 
-#endif //SHIELDBEAR_H
+#endif //SHIELDBEAR_H*/

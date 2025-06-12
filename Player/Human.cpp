@@ -9,7 +9,9 @@ void Human::playCard(std::unique_ptr<Cards> /*unused*/) {
 
     std::cout << "Your hand:" << std::endl;
     for (unsigned int i = 0; i < getPlayerDeck().getSize(); ++i) {
-        std::cout << i << ": [Card]" << std::endl; // Remplace [Card] par une description réelle si tu veux
+        // Supposons que Cards ait une méthode toString()
+        // std::cout << i << ": " << getPlayerDeck().getCardbyIndex(i)->toString() << std::endl;
+        std::cout << i << ": [Card]" << std::endl;
     }
 
     unsigned int cardIndex;
@@ -29,12 +31,20 @@ void Human::playCard(std::unique_ptr<Cards> /*unused*/) {
 
     GameBoard& gameBoard = GameBoard::getInstance();
 
+    // Vérification supplémentaire
+    if (tileIndex < 0 || tileIndex >= gameBoard.getBoardSize()) {
+        std::cout << "Invalid tile index." << std::endl;
+        // Remet la carte dans la main du joueur
+        getPlayerDeck().addCard(std::move(selectedCard));
+        return;
+    }
+
     try {
         gameBoard.placeCardOnTile(tileIndex, *selectedCard, getPlayerID());
         std::cout << "Card placed on tile " << tileIndex << "." << std::endl;
     } catch (const std::exception& e) {
         std::cout << "Error placing card: " << e.what() << std::endl;
-        // On remet la carte dans la main du joueur en déplaçant la possession
+        // Remet la carte dans la main du joueur
         getPlayerDeck().addCard(std::move(selectedCard));
     }
 }

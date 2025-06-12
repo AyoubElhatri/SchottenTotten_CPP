@@ -1,17 +1,34 @@
 #include "Set.h"
 #include <map>
 #include <set>
+
+Set::Set(Set&& IndexSet) {
+    SetOfCards = std::move(IndexSet.SetOfCards);
+}
+
 unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
-    if (IndexParam>=getSize()) {
-        cout<<"Cexception";
+    if (IndexParam >= getSize()) {
+        std::cerr << "Exception: Index hors limite dans getCardbyIndex\n";
+        return nullptr;
     }
-    unique_ptr<Cards> IndexCard= std::move(SetOfCards[IndexParam]);
-    SetOfCards.erase(SetOfCards.begin()+IndexParam);
+    unique_ptr<Cards> IndexCard = std::move(SetOfCards[IndexParam]);
+    SetOfCards.erase(SetOfCards.begin() + IndexParam);
     return std::move(IndexCard);
 }
+
+const Cards* Set::getCardAt(unsigned int IndexParam) const {
+    if (IndexParam >= getSize()) {
+        std::cerr << "Exception: Index hors limite dans getCardAt\n";
+        return nullptr;
+    }
+    return SetOfCards[IndexParam].get();
+}
+
 void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
-    unique_ptr<Cards> NewCard=getCardbyIndex(IndexOfCard);
-    IndexSet.addCard(std::move(NewCard));
+    unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
+    if (NewCard) {
+        IndexSet.addCard(std::move(NewCard));
+    }
 }
 
 CombinationType Set::evaluateCombination() const {
@@ -23,8 +40,7 @@ CombinationType Set::evaluateCombination() const {
     for (const auto& card : SetOfCards) {
         const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
         if (clanCard) {
-        values.push_back(clanCard->getNumber()); //je ne sais pas comment faire ??
-        //colors.insert(colorToString(clanCard->getColor())); // ..???
+            values.push_back(clanCard->getNumber());
             colors.insert(clanCard->getColor());
         }
     }
@@ -41,5 +57,3 @@ CombinationType Set::evaluateCombination() const {
 
     return CombinationType::Sum;
 }
-
-

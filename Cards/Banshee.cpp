@@ -1,4 +1,4 @@
-#include "Banshee.h"
+/*#include "Banshee.h"
 #include "../GameBoard.h"
 #include <iostream>
 
@@ -56,4 +56,4 @@ void Banshee::getEvent() {
     } catch (const std::exception& e) {
         std::cout << "Erreur : " << e.what() << std::endl;
     }
-}
+}*/

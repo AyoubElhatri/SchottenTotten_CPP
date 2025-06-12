@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+/*
 
 #ifndef TACTICALCARDSFACTORY_H
 #define TACTICALCARDSFACTORY_H
@@ -34,4 +32,4 @@ class TacticalCardsFactory {
 
 
 
-#endif //TACTICALCARDSFACTORY_H
+#endif //TACTICALCARDSFACTORY_H*/

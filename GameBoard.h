@@ -9,12 +9,14 @@ using namespace std;
 
 class GameBoard {
 private:
+    mutable std::vector<std::shared_ptr<StoneTiles>> unclaimedBorders;
     static unique_ptr<GameBoard> instance;
     vector<std::shared_ptr<StoneTiles>> sharedTiles;
     Set RemainingClanCards;
     Set RemainingTacticalCards;
     Set DiscardedCards;
     unsigned int currentPlayerId = 1;
+
     GameBoard();
     GameBoard(const GameBoard&) = delete;
     GameBoard& operator=(const GameBoard&) = delete;

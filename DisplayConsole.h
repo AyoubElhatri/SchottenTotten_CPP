@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+/*
 
 #ifndef DISPLAYCONSOLE_H
 #define DISPLAYCONSOLE_H
@@ -21,4 +19,4 @@ public:
 
 
 
-#endif //DISPLAYCONSOLE_H
+#endif */

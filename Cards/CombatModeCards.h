@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 31/05/2025.
-//
+/*
 
 #ifndef COMBATMODECARDS_H
 #define COMBATMODECARDS_H
@@ -14,4 +12,4 @@ public:
     void getEvent() override{std::cout<<"";};
 };
 
-#endif //COMBATMODECARDS_H
+#endif //COMBATMODECARDS_H*/

@@ -2,10 +2,12 @@
 #define AIEASY_H
 
 #include <memory>
+
+#include "AI.h"
 #include "../GameBoard.h"
 #include "../Player/Player.h"
 
-class AIEasy {
+class AIEasy : public AI {
 
 private:
     int m_playerID;

@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 31/05/2025.
-//
+/*
 
 #ifndef ELITETROOPSCARDS_H
 #define ELITETROOPSCARDS_H
@@ -16,4 +14,4 @@ public:
 };
 
 
-#endif //ELITETROOPSCARDS_H
+#endif H*/

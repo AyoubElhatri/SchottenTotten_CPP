@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+/*
 
 #include "DisplayConsole.h"
 #include "DisplayManager.h"
@@ -16,4 +14,4 @@ string DisplayConsole::takeInput() {
 
 void DisplayConsole::output(string message) {
     cout << message << endl;
-}
+}*/

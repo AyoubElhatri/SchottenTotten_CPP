@@ -4,39 +4,35 @@
 #include "../Collections/Set.h"
 using namespace std;
 class StoneTiles {
-       private:
-       unsigned int Position;
-       unsigned int NbOfPlayableCards;//il faut verifier
-       Set PlayerCards1;
-       Set PlayerCards2;
-       Set CombatModeCards;
-       unsigned int claimedBy;
-       bool StoneTileIsClaimed;
-       public:
-       unsigned int getPosition() const{return Position;}
-       bool isAlreadyClaimed() const {return StoneTileIsClaimed;}
-       //bool isClaimable(Player* player) const ;
-       void claim(unsigned int uiParam);
+private:
+    unsigned int Position;
+    unsigned int NbOfPlayableCards;
+    Set PlayerCards1;
+    Set PlayerCards2;
+    Set CombatModeCards;
+    unsigned int claimedBy;
+    bool StoneTileIsClaimed;
 
-       bool canPlaceCard();
+public:
+    StoneTiles(unsigned int Pos)
+        : Position(Pos), NbOfPlayableCards(0), claimedBy(0), StoneTileIsClaimed(false) {}
 
+    unsigned int getPosition() const { return Position; }
+    bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
 
-       StoneTiles(unsigned int Pos) {
-              Position = Pos;
+    void claim(unsigned int uiParam);
 
-       }
-       unsigned int getNbOfPlayableCards(){return NbOfPlayableCards;}
-       void setNbOfPlayableCards(unsigned int nbOfPlayableCards){NbOfPlayableCards=nbOfPlayableCards;}
-       void setPosition(unsigned int Pos){Position=Pos;}
-       void addCardToPlayer(unsigned int playerId, std::unique_ptr<Cards> cards);
-       bool canPlaceCard() const;
-       std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
+    bool canPlaceCard() const;
 
-       Set& getPlayerCards1() { return PlayerCards1; }
-       Set& getPlayerCards2() { return PlayerCards2; }
+    unsigned int getNbOfPlayableCards() const { return NbOfPlayableCards; }
+    void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
+    void setPosition(unsigned int Pos) { Position = Pos; }
 
+    void addCardToPlayer(unsigned int playerId, std::unique_ptr<Cards> cards);
+    std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
+
+    Set& getPlayerCards1() { return PlayerCards1; }
+    Set& getPlayerCards2() { return PlayerCards2; }
 };
-
-
 
 #endif //STONETILES_H
