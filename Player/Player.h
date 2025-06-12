@@ -19,6 +19,7 @@ class Player{
 
           unsigned int getPlayerID() const {return playerID;}
           Set& getPlayerDeck() {return playerDeck;}
+          const Set& getPlayerDeck() const {return playerDeck;}
           vector<shared_ptr<StoneTiles>> getStoneTiles();
           unsigned int getTacticalCardsCounter() const {return tacticalCardsCounter;}
 

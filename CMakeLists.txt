@@ -34,4 +34,5 @@ StoneTiles/StoneTiles.h
         Cards/Joker.cpp
         GameBoard.h
         GameBoard.cpp
-        Cards/Traitor.cpp)
+        Cards/Traitor.cpp
+        Cards/Banshee.cpp)

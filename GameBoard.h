@@ -14,18 +14,21 @@ private:
     Set RemainingClanCards;
     Set RemainingTacticalCards;
     Set DiscardedCards;
-
+    unsigned int currentPlayerId = 1;
     GameBoard();
     GameBoard(const GameBoard&) = delete;
     GameBoard& operator=(const GameBoard&) = delete;
 
 public:
     static GameBoard& getInstance();
+    unsigned int getCurrentPlayerId() const {return currentPlayerId;}
+    void setCurrentPlayerId(unsigned int playerId) { currentPlayerId = playerId; }
 
     const vector<shared_ptr<StoneTiles>>& getSharedTiles() const;
     const Set& getRemainingClanCards() const;
     const Set& getRemainingTacticalCards() const;
     const Set& getDiscardedCards() const;
+    Set& getDiscardedCards() {return DiscardedCards;}
 
     void discardCard(const Cards& card);
 

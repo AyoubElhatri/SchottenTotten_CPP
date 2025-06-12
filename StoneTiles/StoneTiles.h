@@ -36,6 +36,9 @@ class StoneTiles {
        bool canPlaceCard() const;
        std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
+       Set& getPlayerCards1() { return PlayerCards1; }
+       Set& getPlayerCards2() { return PlayerCards2; }
+
 };
 
 

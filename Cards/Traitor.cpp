@@ -1,18 +1,16 @@
 #include "Traitor.h"
 #include "../GameBoard.h"
-#include"../Player/Player.h"
 #include <iostream>
 
 void Traitor::getEvent() {
     GameBoard& gameBoard = GameBoard::getInstance();
-    unsigned int currentPlayerId = getPlayerID(); //
+    unsigned int currentPlayerId = gameBoard.getCurrentPlayerId();
     unsigned int opponentId = (currentPlayerId == 1) ? 2 : 1;
 
     std::cout << "[Traitor] Activation de l'effet Traître." << std::endl;
 
     std::vector<std::shared_ptr<StoneTiles>> unclaimedBorders;
 
-    // Récupérer toutes les bornes non revendiquées
     for (auto& tile : gameBoard.getSharedTiles()) {
         if (!tile->isAlreadyClaimed()) {
             unclaimedBorders.push_back(tile);
@@ -24,9 +22,9 @@ void Traitor::getEvent() {
         return;
     }
 
-    // Récupérer les cartes adverses posées sur bornes non revendiquées
-    std::vector<std::tuple<unsigned int, unsigned int>> adversaryCards; // (bornePos, cardIndex)
+    std::vector<std::tuple<unsigned int, unsigned int>> adversaryCards;
     unsigned int index = 0;
+
     std::cout << "Cartes adverses disponibles :" << std::endl;
     for (auto& tile : unclaimedBorders) {
         unsigned int pos = tile->getPosition();
@@ -43,7 +41,6 @@ void Traitor::getEvent() {
         return;
     }
 
-    // Choix utilisateur
     unsigned int choice;
     std::cout << "Choisissez la carte à voler : ";
     std::cin >> choice;
@@ -54,7 +51,6 @@ void Traitor::getEvent() {
 
     auto [fromPos, cardIndex] = adversaryCards[choice];
 
-    // Afficher les bornes non revendiquées disponibles
     std::cout << "Bornes valides pour placer la carte : " << std::endl;
     for (unsigned int i = 0; i < unclaimedBorders.size(); ++i) {
         std::cout << i << ") Borne " << unclaimedBorders[i]->getPosition() << std::endl;
@@ -71,7 +67,6 @@ void Traitor::getEvent() {
 
     unsigned int toPos = unclaimedBorders[toChoice]->getPosition();
 
-    // Retirer la carte et la réinsérer sur une borne
     try {
         std::shared_ptr<StoneTiles> fromTile = gameBoard.findTileByPosition(fromPos);
         std::shared_ptr<StoneTiles> toTile = gameBoard.findTileByPosition(toPos);
