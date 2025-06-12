@@ -128,6 +128,30 @@ SchottenTotten_CPP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/build
 .PHONY : SchottenTotten_CPP/fast
 
+Cards/Banshee.obj: Cards/Banshee.cpp.obj
+.PHONY : Cards/Banshee.obj
+
+# target to build an object file
+Cards/Banshee.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.obj
+.PHONY : Cards/Banshee.cpp.obj
+
+Cards/Banshee.i: Cards/Banshee.cpp.i
+.PHONY : Cards/Banshee.i
+
+# target to preprocess a source file
+Cards/Banshee.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.i
+.PHONY : Cards/Banshee.cpp.i
+
+Cards/Banshee.s: Cards/Banshee.cpp.s
+.PHONY : Cards/Banshee.s
+
+# target to generate assembly for a file
+Cards/Banshee.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.s
+.PHONY : Cards/Banshee.cpp.s
+
 Cards/ClanCards.obj: Cards/ClanCards.cpp.obj
 .PHONY : Cards/ClanCards.obj
 
@@ -200,6 +224,30 @@ Cards/Stratege.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.s
 .PHONY : Cards/Stratege.cpp.s
 
+Cards/Traitor.obj: Cards/Traitor.cpp.obj
+.PHONY : Cards/Traitor.obj
+
+# target to build an object file
+Cards/Traitor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Traitor.cpp.obj
+.PHONY : Cards/Traitor.cpp.obj
+
+Cards/Traitor.i: Cards/Traitor.cpp.i
+.PHONY : Cards/Traitor.i
+
+# target to preprocess a source file
+Cards/Traitor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Traitor.cpp.i
+.PHONY : Cards/Traitor.cpp.i
+
+Cards/Traitor.s: Cards/Traitor.cpp.s
+.PHONY : Cards/Traitor.s
+
+# target to generate assembly for a file
+Cards/Traitor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/Cards/Traitor.cpp.s
+.PHONY : Cards/Traitor.cpp.s
+
 Collections/Set.obj: Collections/Set.cpp.obj
 .PHONY : Collections/Set.obj
 
@@ -247,6 +295,30 @@ DisplayConsole.s: DisplayConsole.cpp.s
 DisplayConsole.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.s
 .PHONY : DisplayConsole.cpp.s
+
+GameBoard.obj: GameBoard.cpp.obj
+.PHONY : GameBoard.obj
+
+# target to build an object file
+GameBoard.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.obj
+.PHONY : GameBoard.cpp.obj
+
+GameBoard.i: GameBoard.cpp.i
+.PHONY : GameBoard.i
+
+# target to preprocess a source file
+GameBoard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.i
+.PHONY : GameBoard.cpp.i
+
+GameBoard.s: GameBoard.cpp.s
+.PHONY : GameBoard.s
+
+# target to generate assembly for a file
+GameBoard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/GameBoard.cpp.s
+.PHONY : GameBoard.cpp.s
 
 Rules/Rules.obj: Rules/Rules.cpp.obj
 .PHONY : Rules/Rules.obj
@@ -353,6 +425,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... SchottenTotten_CPP
+	@echo ... Cards/Banshee.obj
+	@echo ... Cards/Banshee.i
+	@echo ... Cards/Banshee.s
 	@echo ... Cards/ClanCards.obj
 	@echo ... Cards/ClanCards.i
 	@echo ... Cards/ClanCards.s
@@ -362,12 +437,18 @@ help:
 	@echo ... Cards/Stratege.obj
 	@echo ... Cards/Stratege.i
 	@echo ... Cards/Stratege.s
+	@echo ... Cards/Traitor.obj
+	@echo ... Cards/Traitor.i
+	@echo ... Cards/Traitor.s
 	@echo ... Collections/Set.obj
 	@echo ... Collections/Set.i
 	@echo ... Collections/Set.s
 	@echo ... DisplayConsole.obj
 	@echo ... DisplayConsole.i
 	@echo ... DisplayConsole.s
+	@echo ... GameBoard.obj
+	@echo ... GameBoard.i
+	@echo ... GameBoard.s
 	@echo ... Rules/Rules.obj
 	@echo ... Rules/Rules.i
 	@echo ... Rules/Rules.s

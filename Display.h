@@ -8,8 +8,7 @@
 using namespace std;
 
 class Display {
-    private:
-        Display();
+    Display();
 protected:
         Display * DisplayInstance=nullptr;
     public:

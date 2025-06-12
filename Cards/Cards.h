@@ -1,6 +1,7 @@
 #ifndef CARDS_H
 #define CARDS_H
-
+#include "../Colors.h"
+#include <memory>
 
 
 class Cards {
@@ -8,7 +9,8 @@ class Cards {
     virtual ~Cards() = default;
 
     virtual unsigned int getNumber() const = 0;
-        virtual std::string getColor() const = 0;
+        virtual Colors getColor() const = 0;
+        virtual std::unique_ptr<Cards> clone() const = 0;
         virtual void getEvent()=0;
 };
 

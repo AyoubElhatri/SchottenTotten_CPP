@@ -7,7 +7,8 @@
 
 
 void Joker::getEvent() {
-    Display *display =display.getInstance();
+    Display *display;
+    display=display->getInstance();
 
 
 }

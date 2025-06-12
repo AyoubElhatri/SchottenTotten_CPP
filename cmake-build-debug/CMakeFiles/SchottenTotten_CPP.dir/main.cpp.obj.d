@@ -144,4 +144,55 @@ CMakeFiles/SchottenTotten_CPP.dir/main.cpp.obj: \
  C:/msys64/mingw64/include/c++/14.2.0/bits/basic_ios.tcc \
  C:/msys64/mingw64/include/c++/14.2.0/bits/ostream.tcc \
  C:/msys64/mingw64/include/c++/14.2.0/istream \
- C:/msys64/mingw64/include/c++/14.2.0/bits/istream.tcc
+ C:/msys64/mingw64/include/c++/14.2.0/bits/istream.tcc \
+ C:\Users\atoum\CLionProjects\SchottenTotten_CPP\GameBoard.h \
+ C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Collections/Set.h \
+ C:/msys64/mingw64/include/c++/14.2.0/vector \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_uninitialized.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_vector.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_bvector.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/vector.tcc \
+ C:/msys64/mingw64/include/c++/14.2.0/algorithm \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_algo.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/algorithmfwd.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_heap.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/uniform_int_dist.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_tempbuf.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_algo.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_algobase.h \
+ C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
+ C:/msys64/mingw64/include/c++/14.2.0/pstl/execution_defs.h \
+ C:/msys64/mingw64/include/c++/14.2.0/memory \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/stl_raw_storage_iter.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/align.h \
+ C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+ C:/msys64/mingw64/include/stdint.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/unique_ptr.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr_base.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/allocated_ptr.h \
+ C:/msys64/mingw64/include/c++/14.2.0/ext/aligned_buffer.h \
+ C:/msys64/mingw64/include/c++/14.2.0/ext/concurrence.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/shared_ptr_atomic.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/atomic_base.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/atomic_lockfree_defines.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/atomic_wait.h \
+ C:/msys64/mingw64/include/c++/14.2.0/cstdint \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/std_mutex.h \
+ C:/msys64/mingw64/include/c++/14.2.0/backward/auto_ptr.h \
+ C:/msys64/mingw64/include/c++/14.2.0/bits/ranges_uninitialized.h \
+ C:/msys64/mingw64/include/c++/14.2.0/pstl/glue_memory_defs.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Colors.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/StoneTiles/StoneTiles.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Collections/Set.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/CombinationType.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/ClanCards.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Cards/Cards.h \
+ C:\Users\atoum\CLionProjects\SchottenTotten_CPP\StoneTiles/StoneTiles.h \
+ C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Player/Human.h \
+ C:/Users/atoum/CLionProjects/SchottenTotten_CPP/Player/Player.h \
+ C:\Users\atoum\CLionProjects\SchottenTotten_CPP\Cards/ClanCards.h
