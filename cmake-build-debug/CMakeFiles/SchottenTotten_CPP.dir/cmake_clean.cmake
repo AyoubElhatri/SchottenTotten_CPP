@@ -1,8 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.obj"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.obj.d"
+  "CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.obj"
+  "CMakeFiles/SchottenTotten_CPP.dir/Cards/Joker.cpp.obj.d"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.obj.d"
+  "CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.obj"
+  "CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.obj.d"
   "CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj"
   "CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.obj.d"
   "CMakeFiles/SchottenTotten_CPP.dir/Rules/Rules.cpp.obj"
