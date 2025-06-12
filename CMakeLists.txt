@@ -21,7 +21,7 @@ Rules/Rules.cpp
 Rules/Rules.h
 StoneTiles/StoneTiles.cpp
 StoneTiles/StoneTiles.h
-        DisplayManager.h
+        Display.h
         DisplayConsole.cpp
         DisplayConsole.h
         TacticalCardsFactory.cpp
@@ -37,3 +37,8 @@ StoneTiles/StoneTiles.h
         Display.h
         DisplayManager.h
         DisplayManager.cpp)
+        Cards/Joker.cpp
+        GameBoard.h
+        GameBoard.cpp
+        Cards/Traitor.cpp
+        Cards/Banshee.cpp)

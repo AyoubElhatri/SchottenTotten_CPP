@@ -1,12 +1,17 @@
 #include "Rules.h"
-#include <memory>
-#include <unordered_map>
 
+// Définit la variable statique
+unique_ptr<Rules> Rules::instance = nullptr;
 
+Rules::Rules()
+    : numberOfStoneTiles(9), numberOfAlignedTilesToWin(3), numberOfUnalignedTilesToWin(5) {}
 
-Rules::Rules() : numberOfStoneTiles(9), numberOfAlignedTilesToWin(3), numberOfUnalignedTilesToWin(5) {}
-
-
+Rules::Rules(const Builder& builder)
+    : numberOfStoneTiles(builder.rules->numberOfStoneTiles),
+      numberOfAlignedTilesToWin(builder.rules->numberOfAlignedTilesToWin),
+      numberOfUnalignedTilesToWin(builder.rules->numberOfUnalignedTilesToWin),
+      clanCardsByColor(builder.rules->clanCardsByColor),
+      tacticalCards(builder.rules->tacticalCards) {}
 
 Rules& Rules::getInstance() {
     if (!instance) {
@@ -14,7 +19,6 @@ Rules& Rules::getInstance() {
     }
     return *instance;
 }
-
 
 void Rules::buildInstance(const Builder& builder) {
     instance = make_unique<Rules>(builder);

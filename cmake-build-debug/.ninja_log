@@ -3,9 +3,6 @@
 7	63	1748945108028258068	CMakeFiles/SchottenTotten_CPP.dir/Cards/Stratege.cpp.o	ab0ae00e2e76eb25
 12	1194	1748945101321844224	CMakeFiles/SchottenTotten_CPP.dir/main.cpp.o	dd011517605559ff
 12	236	1748945101322112353	CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.o	4ea8bad4fdd5c9c0
-11	75	1748945108031793624	CMakeFiles/SchottenTotten_CPP.dir/Player/AI.cpp.o	a435b8f7e439beb2
+10	1714	1749669836644732934	CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.o	9b8f6668b944f16e
+2	82	1749672745759641443	build.ninja	47785f8b24eb8dea
 9	797	1748945108029890469	CMakeFiles/SchottenTotten_CPP.dir/Collections/Set.cpp.o	ad12650489d13ba8
-75	134	1748945108095710982	CMakeFiles/SchottenTotten_CPP.dir/Player/Human.cpp.o	8dafcc509189a722
-13	1200	1748945101322562819	CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.o	9b8f6668b944f16e
-2	82	1748946253548476315	build.ninja	47785f8b24eb8dea
-63	122	1748945108084139505	CMakeFiles/SchottenTotten_CPP.dir/Player/AIEasy.cpp.o	90cad1f2c3c4484a
