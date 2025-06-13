@@ -6,7 +6,9 @@
 
 class MudFight : public CombatModeCards {
     public:
-        void getEvent();
+    MudFight() : CombatModeCards() {};
+        void getEvent(){cout << "MudFight" << endl;}
+
 
 };
 

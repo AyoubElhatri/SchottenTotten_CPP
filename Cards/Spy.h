@@ -7,7 +7,9 @@
 
 class Spy : public EliteTroopsCards {
 public:
-    void getEvent();
+    Spy();
+    void getEvent(){cout << "Spy" << endl;}
+
 };
 
 

@@ -5,6 +5,7 @@
 
 class RusesCards : public TacticalCards {
     public:
+        RusesCards();
         void getEvent();
 
 };

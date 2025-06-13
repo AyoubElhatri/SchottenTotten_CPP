@@ -7,6 +7,7 @@
 
 class Banshee : public RusesCards {
     public:
+        Banshee();
         void getEvent();
 };
 

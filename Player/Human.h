@@ -3,7 +3,7 @@
 
 #include "../Player/Player.h"
 #include <memory>
-/*
+
 class Human : public Player {
 public:
     Human(unsigned int playerId, Set&& playerDecks)

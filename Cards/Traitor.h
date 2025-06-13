@@ -6,7 +6,8 @@
 
 class Traitor : public RusesCards {
 public:
-    void getEvent();
+    Traitor() {}
+    void getEvent(){cout << "ouii1" << endl;}
 
 };
 

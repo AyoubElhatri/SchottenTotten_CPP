@@ -6,7 +6,8 @@
 class Joker : public EliteTroopsCards {
 public:
     Joker() : EliteTroopsCards() {};
-    void getEvent();
+    void getEvent(){cout << "Joker" << endl;}
+
 };
 
 

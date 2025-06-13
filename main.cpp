@@ -98,9 +98,19 @@ int main() {
     unique_ptr<ClanCards> cardssss=std::make_unique<ClanCards>(26, Colors::Red);
 
 
-    Rules(Rules::Builder());
+    //Rules(Rules::Builder());
+Rules::Builder builder;
+builder.setNumberOfStoneTiles(9)
+       .setNumberOfAlignedTilesToWin(3)
+       .setNumberOfUnalignedTilesToWin(5)
+       .addClanCardColor(Colors::Red, 6)
+       .addTacticalCard("Shield", 2);
 
-    cout<<Rules::getInstance()->getNumberOfStoneTiles()<<endl;
+// Appel de buildInstance avec le builder
+Rules::buildInstance(builder);
+
+// Utilisation de Rules ensuite via getInstance()
+cout << Rules::getInstance()->getNumberOfStoneTiles() << endl;
 
     return 0;
 }

@@ -5,7 +5,9 @@
 
 class Blindman : public CombatModeCards {
 public:
-    void getEvent();
+    Blindman() : CombatModeCards() {};
+    void getEvent() {  cout << "Blindman" << endl;}
+
 
 
 };
