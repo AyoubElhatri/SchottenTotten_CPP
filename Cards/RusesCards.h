@@ -1,4 +1,4 @@
-/*
+
 #ifndef RUSESCARDS_H
 #define RUSESCARDS_H
 #include "TacticalCards.h"

@@ -33,19 +33,19 @@ void StoneTiles::claim(Player* player) {
 
 }*/
 
-void StoneTiles::addCardToPlayer(unsigned int playerId, std::unique_ptr<Cards> cards) {
+void StoneTiles::addCardToPlayer(unsigned int playerId,unsigned int indexCard,Set provenanceOfTheCard) {
     if (playerId == 1) {
-        PlayerCards1.addCard(std::move(cards));
+        PlayerCards1.moveCard(indexCard, provenanceOfTheCard);
     }
     else if (playerId == 2) {
-    PlayerCards2.addCard(std::move(cards));}
+    PlayerCards2.moveCard(indexCard, provenanceOfTheCard);}
     else {
         throw std::invalid_argument("Invalid player ID");
     }
 }
 
 bool StoneTiles::canPlaceCard() const {
-    return !this->isAlreadyClaimed() ;
+    return !isAlreadyClaimed() ;
 }
 
 std::unique_ptr<Cards> StoneTiles::removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex) {

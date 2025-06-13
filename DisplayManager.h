@@ -1,23 +1,16 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
-
-#ifndef DISPLAY_H
-#define DISPLAY_H
+#ifndef DISPLAY_MANAGER_H
+#define DISPLAY_MANAGER_H
 #include <string>
-class Display;
-using namespace std;
-#include "Display.h"
 #include <memory>
+#include "Display.h" // Inclure la définition complète de Display
+
 class DisplayManager {
     private:
         DisplayManager();
     public:
-        static  unique_ptr<Display>DisplayInstance;
+        static std::unique_ptr<Display> DisplayInstance;
         template <class TDisplay> static void createInstance();
-        static Display *getInstance();
-
+        static Display* getInstance();
 };
-unique_ptr<Display> DisplayManager::DisplayInstance = nullptr;
 
-#endif //DISPLAY_H
+#endif

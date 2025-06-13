@@ -11,7 +11,7 @@
 
 using namespace std;
 
-#define maxOfCards 3
+#define maxOfCards 3 // A RETIRER
 
 class Set {
 private:
@@ -37,7 +37,8 @@ public:
 
     void moveCard(unsigned int IndexOfCard, Set& IndexSet);
 
-    bool isComplete() const { return SetOfCards.size() == maxOfCards; }
+
+   bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
 
     CombinationType evaluateCombination() const;
 };

@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef STRATEGE_H
 #define STRATEGE_H

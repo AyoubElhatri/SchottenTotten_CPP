@@ -28,7 +28,7 @@ public:
     void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
     void setPosition(unsigned int Pos) { Position = Pos; }
 
-    void addCardToPlayer(unsigned int playerId, std::unique_ptr<Cards> cards);
+    void addCardToPlayer(unsigned int playerId, unsigned int indexCard,Set provenanceOfTheCard);
     std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
     Set& getPlayerCards1() { return PlayerCards1; }

@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef TACTICALCARDS_H
 #define TACTICALCARDS_H
@@ -12,12 +12,12 @@ class TacticalCards : public Cards {
     unsigned int getNumber() const override{return -1;}
     Colors getColor() const override; // je sais pas
     void getEvent() override{std::cout<<"";};
-    std::unique_ptr<Cards> clone() const override {
+    /*std::unique_ptr<Cards> clone() const override {
         return std::make_unique<TacticalCards>(*this);
-    };
+    };*/
 };
 
 
 
 
-#endif */
+#endif

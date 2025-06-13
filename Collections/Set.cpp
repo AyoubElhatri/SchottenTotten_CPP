@@ -31,6 +31,11 @@ void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
     }
 }
 
+
+
+
+
+
 CombinationType Set::evaluateCombination() const {
     if (!isComplete()) return CombinationType::None;
 

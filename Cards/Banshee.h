@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef BANSHEE_H
 #define BANSHEE_H
@@ -11,4 +11,4 @@ class Banshee : public RusesCards {
 };
 
 
-#endif //BANSHEE_H*/
+#endif //BANSHEE_H

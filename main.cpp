@@ -3,14 +3,17 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-
+#include "DisplayManager.h"
+#include "Display.h"
+#include "DisplayConsole.h"
 #include "GameBoard.h"
 #include "Player/Human.h"
 #include "Player/AIEasy.h"
 #include "Cards/ClanCards.h"
-
+#include "Collections/Set.h"
+#include "Rules/Rules.h"
 // Affiche le plateau et les cartes posées par chaque joueur sur chaque tuile
-void printBoard(const GameBoard& board) {
+/*void printBoard(const GameBoard& board) {
     const auto& tiles = board.getSharedTiles();
     std::cout << "\n--- Plateau de jeu ---\n";
     for (size_t i = 0; i < tiles.size(); ++i) {
@@ -40,8 +43,9 @@ void printBoard(const GameBoard& board) {
     }
     std::cout << "---------------------\n";
 }
-
+*/
 int main() {
+    /*
     std::srand(std::time(nullptr));  // Initialiser le générateur aléatoire
 
     GameBoard& gameBoard = GameBoard::getInstance();
@@ -87,6 +91,16 @@ int main() {
             gameOver = true;
         }
     }
+*/
+
+    Set remainingClanCards;
+    Set DiscardedCards;
+    unique_ptr<ClanCards> cardssss=std::make_unique<ClanCards>(26, Colors::Red);
+
+
+    Rules(Rules::Builder());
+
+    cout<<Rules::getInstance()->getNumberOfStoneTiles()<<endl;
 
     return 0;
 }

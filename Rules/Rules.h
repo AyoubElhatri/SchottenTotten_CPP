@@ -5,6 +5,8 @@
 #include <memory>
 #include <string>
 
+#include "../Colors.h"
+
 using namespace std;
 
 class Rules {
@@ -15,7 +17,7 @@ private:
     unsigned int numberOfAlignedTilesToWin;
     unsigned int numberOfUnalignedTilesToWin;
 
-    unordered_map<string, unsigned int> clanCardsByColor;
+    unordered_map<Colors, unsigned int> clanCardsByColor;
     unordered_map<string, unsigned int> tacticalCards;
 
     Rules();  // constructeur privé par défaut
@@ -29,7 +31,7 @@ public:
         unsigned int numberOfAlignedTilesToWin = 3;
         unsigned int numberOfUnalignedTilesToWin = 5;
 
-        unordered_map<string, unsigned int> clanCardsByColor;
+        unordered_map<Colors, unsigned int> clanCardsByColor;
         unordered_map<string, unsigned int> tacticalCards;
 
     public:
@@ -39,7 +41,7 @@ public:
         Builder& setNumberOfAlignedTilesToWin(unsigned int n) { numberOfAlignedTilesToWin = n; return *this; }
         Builder& setNumberOfUnalignedTilesToWin(unsigned int n) { numberOfUnalignedTilesToWin = n; return *this; }
 
-        Builder& addClanCardColor(const string& color, unsigned int count) {
+        Builder& addClanCardColor(const Colors& color, unsigned int count) {
             clanCardsByColor[color] = count;
             return *this;
         }
@@ -59,6 +61,8 @@ public:
     unsigned int getNumberOfStoneTiles() const { return numberOfStoneTiles; }
     unsigned int getNumberOfAlignedTilesToWin() const { return numberOfAlignedTilesToWin; }
     unsigned int getNumberOfUnalignedTilesToWin() const { return numberOfUnalignedTilesToWin; }
+    unordered_map<Colors, unsigned int> getClanCardsByColor() const { return clanCardsByColor; }
+    unordered_map<string, unsigned int> getTacticalCards() const { return tacticalCards; }
 };
 
 #endif // RULES_H

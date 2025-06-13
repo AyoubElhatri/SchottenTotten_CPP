@@ -1,7 +1,7 @@
 #include"Human.h"
 #include"../GameBoard.h"
-
-void Human::playCard(std::unique_ptr<Cards> /*unused*/) {
+/*
+void Human::playCard(std::unique_ptr<Cards> /*unused*//*) {
     if (getPlayerDeck().getSize() == 0) {
         std::cout << "You have no cards to play." << std::endl;
         return;
@@ -47,4 +47,4 @@ void Human::playCard(std::unique_ptr<Cards> /*unused*/) {
         // Remet la carte dans la main du joueur
         getPlayerDeck().addCard(std::move(selectedCard));
     }
-}
+}*/

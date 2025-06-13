@@ -1,4 +1,4 @@
-/*
+
 #ifndef HEADSHUNTER_H
 #define HEADSHUNTER_H
 #include "RusesCards.h"
@@ -9,4 +9,4 @@ class HeadsHunter : public RusesCards {
 
 };
 
-#endif */
+#endif
