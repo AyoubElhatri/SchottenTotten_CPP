@@ -1,9 +1,5 @@
-/*
-
 #include "DisplayConsole.h"
-#include "DisplayManager.h"
 #include <iostream>
-
 string DisplayConsole::takeInput() {
     string output;
     cin>>output;
@@ -14,4 +10,4 @@ string DisplayConsole::takeInput() {
 
 void DisplayConsole::output(string message) {
     cout << message << endl;
-}*/
+}

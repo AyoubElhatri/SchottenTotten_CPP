@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef ELITETROOPSCARDS_H
 #define ELITETROOPSCARDS_H
@@ -6,12 +6,18 @@
 #include "TacticalCards.h"
 using namespace std;
 class EliteTroopsCards : public ClanCards, public TacticalCards{
+private:
     string Name;
-    string getName(){return Name;}
 public:
+    string getName(){return Name;}
+    EliteTroopsCards(): ClanCards() {
+        Name = "Elite Troops";
+    } ;
+
+
 
 
 };
 
 
-#endif H*/
+#endif

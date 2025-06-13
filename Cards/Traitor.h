@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef TRAITOR_H
 #define TRAITOR_H
@@ -10,4 +10,4 @@ public:
 
 };
 
-#endif */
+#endif 

@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "../Collections/Set.h"
 #include "../GameBoard.h"
-
+/*
 Player::Player(unsigned int playerId, Set&& playerDecks)
     : playerID(playerId), playerDeck(std::move(playerDecks)) {}
 
@@ -14,6 +14,7 @@ void Player::drawClanCards(unsigned int count) {
         }
     }
 }
+*/
 
 /*void Player::drawTacticalCards(unsigned int count) {
     // À implémenter si tu veux gérer les cartes tactiques

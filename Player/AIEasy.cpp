@@ -1,7 +1,7 @@
 #include "AIEasy.h"
 #include <cstdlib>  // rand()
 #include <ctime>    // time()
-
+/*
 AIEasy::AIEasy(int playerID) : m_playerID(playerID) {}
 
 void AIEasy::playTurn(std::vector<std::unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
@@ -31,4 +31,4 @@ int AIEasy::chooseTileIndex(const GameBoard& gameBoard) {
         if (gameBoard.isTileFree(index)) return index;
     }
     return -1;
-}
+}*/

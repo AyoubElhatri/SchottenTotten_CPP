@@ -5,7 +5,7 @@
 #include <vector>
 #include "../Collections/Set.h"
 #include "../StoneTiles/StoneTiles.h"
-
+/*
 class Player {
 private:
     unsigned int playerID;
@@ -34,5 +34,5 @@ public:
 
     void incrementTacticalCardCounter() { tacticalCardsCounter++; }
 };
-
+*/
 #endif // PLAYER_H

@@ -1,4 +1,4 @@
-/*
+
 #ifndef BLINDMAN_H
 #define BLINDMAN_H
 #include "CombatModeCards.h"

@@ -1,18 +1,34 @@
 #include "GameBoard.h"
 #include <stdexcept>
 #include <utility> // pour std::move
-
+#include "Rules/Rules.h"
+#include "TacticalCardsFactory.h"
 // Initialisation du singleton
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
 // Constructeur privé
 GameBoard::GameBoard() {
-    // Initialisation de 9 tuiles partagées
-    for (int i = 0; i < 9; ++i) {
+    // Initialisation de 9 tuiles partagée
+    for (int i = 0; i < Rules::getInstance()->getNumberOfStoneTiles(); ++i) {
         sharedTiles.push_back(std::make_shared<StoneTiles>(i));
     }
-}
+    unordered_map<Colors, unsigned int> ClanCardsByColor = Rules::getInstance()->getClanCardsByColor();
+    for (const auto& [color, count] : ClanCardsByColor) {
+        for (unsigned int i = 1; i <= count; ++i) {
+            std::make_unique<ClanCards>(i, color);
+        }
+    }
 
+    unordered_map<string, unsigned int> TacticalCards = Rules::getInstance()->getTacticalCards();
+    for (const auto& [name, count] : TacticalCards) {
+        for (unsigned int i = 0; i < count; ++i) {
+            RemainingTacticalCards.addCard(TacticalCardsFactory::createTacticalCard(name));
+        }
+    }
+
+
+}
+/*
 // Récupération de l’instance singleton
 GameBoard& GameBoard::getInstance() {
     if (!instance) {
@@ -56,6 +72,7 @@ void GameBoard::discardCard(const Cards& card) {
 }
 
 // Poser une carte sur une tuile
+
 void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) {
     if (tileIndex < 0 || tileIndex >= static_cast<int>(sharedTiles.size())) {
         throw std::out_of_range("Invalid tile index");
@@ -90,6 +107,8 @@ const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getUnclaimedBorders()
 }
 
 // Déplacer une carte entre deux tuiles pour un joueur
+
+/*
 void GameBoard::moveCardBetweenBorders(unsigned int fromBorderPos, unsigned int toBorderPos, unsigned int playerId, unsigned int cardIndex) {
     auto fromTile = findTileByPosition(fromBorderPos);
     auto toTile = findTileByPosition(toBorderPos);
@@ -103,5 +122,5 @@ void GameBoard::moveCardBetweenBorders(unsigned int fromBorderPos, unsigned int 
         throw std::runtime_error("Carte introuvable sur la tuile source");
     }
 
-    toTile->addCardToPlayer(playerId, std::move(card));
-}
+    toTile->addCardToPlayer(playerId, std::move(card), fromTile->getPlayerCards1()); // Utiliser la provenance de la carte
+}*/

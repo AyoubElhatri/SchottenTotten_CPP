@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef DISPLAYCONSOLE_H
 #define DISPLAYCONSOLE_H
@@ -9,9 +9,9 @@ using namespace std;
 
 
 class DisplayConsole : public Display {
-private:
-     DisplayConsole();
 public:
+     DisplayConsole();
+
      virtual string takeInput();
      virtual void output(string message);
 
@@ -19,4 +19,4 @@ public:
 
 
 
-#endif */
+#endif

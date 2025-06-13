@@ -1,4 +1,4 @@
-/*
+
 
 #ifndef MUDFIGHT_H
 #define MUDFIGHT_H
@@ -10,4 +10,4 @@ class MudFight : public CombatModeCards {
 
 };
 
-#endif /*
+#endif

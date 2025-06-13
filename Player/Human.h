@@ -1,9 +1,9 @@
-#ifndef HUMAN_H
+/*#ifndef HUMAN_H
 #define HUMAN_H
 
 #include "../Player/Player.h"
 #include <memory>
-
+/*
 class Human : public Player {
 public:
     Human(unsigned int playerId, Set&& playerDecks)
@@ -12,3 +12,5 @@ public:
 };
 
 #endif // HUMAN_H
+
+*/

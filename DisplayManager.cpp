@@ -1,7 +1,5 @@
-/*
 
 #include "DisplayManager.h"
-#include "Display.h"
 
 #include <stdexcept>
 using namespace std;
@@ -17,4 +15,5 @@ Display *DisplayManager::getInstance() {
 
 template <class TDisplay> static void createInstance() {
     DisplayManager::DisplayInstance = make_unique<TDisplay>();
-};*/
+};
+unique_ptr<Display> DisplayManager::DisplayInstance = nullptr;

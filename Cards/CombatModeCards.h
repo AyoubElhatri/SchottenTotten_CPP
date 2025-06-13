@@ -1,4 +1,3 @@
-/*
 
 #ifndef COMBATMODECARDS_H
 #define COMBATMODECARDS_H
