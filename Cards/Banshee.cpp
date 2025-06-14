@@ -57,3 +57,12 @@ void Banshee::getEvent() {
         std::cout << "Erreur : " << e.what() << std::endl;
     }
 }*/
+
+#include "Banshee.h"
+#include <iostream>
+
+Banshee::Banshee() {}
+
+void Banshee::getEvent() {
+    std::cout << "La Banshee crie !" << std::endl;
+}

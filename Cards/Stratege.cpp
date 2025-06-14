@@ -105,3 +105,14 @@ void Stratege::getEvent() {
         std::cout << "Erreur : " << e.what() << std::endl;
     }
 }*/
+
+#include "Stratege.h"
+#include<iostream>
+using namespace std;
+
+Stratege::Stratege() {};
+void Stratege::getEvent() {
+    cout << "ouii" << endl;
+}
+
+

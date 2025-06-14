@@ -46,4 +46,10 @@ StoneTiles/StoneTiles.h
         GameBoard.h
         GameBoard.cpp
         Cards/Traitor.cpp
-        Cards/Banshee.cpp)
+        Cards/Banshee.cpp
+Cards/tacticalCards.cpp
+Cards/RusesCards.cpp
+Cards/Recruiter.h
+Cards/Recruiter.cpp
+Cards/HeadsHunter.cpp
+Cards/Spy.cpp)
