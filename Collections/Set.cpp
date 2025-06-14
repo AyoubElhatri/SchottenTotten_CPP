@@ -2,7 +2,7 @@
 #include <map>
 #include <random>
 #include <set>
-
+#include "../DisplayManager.h"
 Set::Set(Set&& IndexSet) {
     SetOfCards = std::move(IndexSet.SetOfCards);
 }
@@ -46,7 +46,7 @@ unsigned int Set::getIndexOfCard(string CardName) const {
 
 
 
-// A REFAIRE
+// A REFAIRE IL FAUT PEUT ETRE UNE CLASSE CHECK COMBINATION
 CombinationType Set::evaluateCombination() const {
    // METTRE CETTE MECANIQUE AILLEUR
    // if (!isComplete()) return CombinationType::None;
@@ -84,7 +84,6 @@ void Set::mixSet() {
 
 void Set::printSet() const {
     for (const auto& card : SetOfCards) {
-        std::cout << card->getName() << " ";
+        DisplayManager::getInstance()->output( card->getName());
     }
-    std::cout << std::endl;
 }
