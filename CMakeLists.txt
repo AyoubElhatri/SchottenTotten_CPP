@@ -34,17 +34,25 @@ StoneTiles/StoneTiles.h
         Player/Player.cpp
         Player/Human.h
         Player/Human.cpp
-        PLayer/AI.h
+        Player/AI.h
         Player/AI.cpp
         Player/AIEasy.cpp
         Player/AIEasy.h
         Cards/Joker.cpp
         GameBoard.cpp
-        Display.h
         DisplayManager.h
         DisplayManager.cpp
         Cards/Joker.cpp
         GameBoard.h
         GameBoard.cpp
         Cards/Traitor.cpp
-        Cards/Banshee.cpp)
+        Cards/Banshee.cpp
+Cards/tacticalCards.cpp
+Cards/RusesCards.cpp
+Cards/Recruiter.h
+Cards/Recruiter.cpp
+Cards/HeadsHunter.cpp
+Cards/Spy.cpp
+Logic/GameLogic.h
+Logic/GameLogic.cpp
+        Cards/ShieldBear.cpp)

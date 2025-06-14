@@ -1,30 +1,64 @@
 #include "Set.h"
 #include <map>
+#include <random>
 #include <set>
-unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
-    if (IndexParam>=getSize()) {
-        cout<<"Cexception";
-    }
-    unique_ptr<Cards> IndexCard= move(SetOfCards[IndexParam]);
-    SetOfCards.erase(SetOfCards.begin()+IndexParam);
-    return move(IndexCard);
-}
-void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
-    unique_ptr<Cards> NewCard=getCardbyIndex(IndexOfCard);
-    IndexSet.addCard(move(NewCard));
+#include "../DisplayManager.h"
+Set::Set(Set&& IndexSet) {
+    SetOfCards = std::move(IndexSet.SetOfCards);
 }
 
+unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
+    if (IndexParam >= getSize()) {
+        std::cerr << "Exception: Index hors limite dans getCardbyIndex\n";
+        return nullptr;
+    }
+    unique_ptr<Cards> IndexCard = std::move(SetOfCards[IndexParam]);
+    SetOfCards.erase(SetOfCards.begin() + IndexParam);
+    return std::move(IndexCard);
+}
+
+const Cards* Set::getCardAt(unsigned int IndexParam) const {
+    if (IndexParam >= getSize()) {
+        std::cerr << "Exception: Index hors limite dans getCardAt\n";
+        return nullptr;
+    }
+    return SetOfCards[IndexParam].get();
+}
+
+void Set::moveCard(string Cardname, Set& IndexSet) {
+    unsigned int IndexOfCard=getIndexOfCard(Cardname);
+    unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
+    if (NewCard) {
+        IndexSet.addCard(std::move(NewCard));
+    }
+}
+
+
+unsigned int Set::getIndexOfCard(string CardName) const {
+    for (unsigned int i = 0; i < SetOfCards.size(); ++i) {
+        if (SetOfCards[i]->getName() == CardName) {
+            return i;
+        }
+    }
+    throw std::invalid_argument("Card not foud");
+}
+
+
+
+
+// A REFAIRE IL FAUT PEUT ETRE UNE CLASSE CHECK COMBINATION
 CombinationType Set::evaluateCombination() const {
-    if (!isComplete()) return CombinationType::None;
+   // METTRE CETTE MECANIQUE AILLEUR
+   // if (!isComplete()) return CombinationType::None;
 
     vector<int> values;
     set<Colors> colors;
 
+// a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
         const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
         if (clanCard) {
-        values.push_back(clanCard->getNumber()); //je ne sais pas comment faire ??
-        //colors.insert(colorToString(clanCard->getColor())); // ..???
+            values.push_back(clanCard->getNumber());
             colors.insert(clanCard->getColor());
         }
     }
@@ -42,4 +76,14 @@ CombinationType Set::evaluateCombination() const {
     return CombinationType::Sum;
 }
 
+void Set::mixSet() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::shuffle(SetOfCards.begin(), SetOfCards.end(), gen);
+}
 
+void Set::printSet() const {
+    for (const auto& card : SetOfCards) {
+        DisplayManager::getInstance()->output( card->getName());
+    }
+}

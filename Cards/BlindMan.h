@@ -1,6 +1,3 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
 
 #ifndef BLINDMAN_H
 #define BLINDMAN_H
@@ -8,9 +5,10 @@
 
 class Blindman : public CombatModeCards {
 public:
-    void getEvent();
+    Blindman() {cardName = "Blindman"; }
+    void getEvent(StoneTiles* stoneTiles){};
 
 
 };
 
-#endif //BLINDMAN_H
+#endif //BLINDMAN_H*/

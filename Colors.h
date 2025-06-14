@@ -6,6 +6,7 @@
 #define COLORS_H
 
 enum class Colors {
+    Yellow,
     Red,
     Blue,
     Green,

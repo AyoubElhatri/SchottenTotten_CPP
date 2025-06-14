@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+
 
 #ifndef MUDFIGHT_H
 #define MUDFIGHT_H
@@ -8,8 +6,9 @@
 
 class MudFight : public CombatModeCards {
     public:
-        void getEvent();
+        MudFight(){cardName= "Mud Fight";};
+    void getEvent(StoneTiles* stoneTiles){};
 
 };
 
-#endif //MUDFIGHT_H
+#endif

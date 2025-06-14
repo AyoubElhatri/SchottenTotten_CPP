@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+
 
 #ifndef DISPLAYCONSOLE_H
 #define DISPLAYCONSOLE_H
@@ -11,9 +9,9 @@ using namespace std;
 
 
 class DisplayConsole : public Display {
-private:
-     DisplayConsole();
 public:
+     DisplayConsole() = default;
+
      virtual string takeInput();
      virtual void output(string message);
 
@@ -21,4 +19,4 @@ public:
 
 
 
-#endif //DISPLAYCONSOLE_H
+#endif

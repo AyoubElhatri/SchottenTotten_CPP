@@ -1,4 +1,4 @@
-#include "Stratege.h"
+/*#include "Stratege.h"
 #include "../GameBoard.h"
 #include <iostream>
 #include <vector>
@@ -104,4 +104,9 @@ void Stratege::getEvent() {
     } catch (const std::exception& e) {
         std::cout << "Erreur : " << e.what() << std::endl;
     }
-}
+}*/
+
+#include "Stratege.h"
+#include<iostream>
+using namespace std;
+

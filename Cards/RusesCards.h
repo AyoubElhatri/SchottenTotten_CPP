@@ -1,6 +1,3 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
 
 #ifndef RUSESCARDS_H
 #define RUSESCARDS_H
@@ -8,9 +5,9 @@
 
 class RusesCards : public TacticalCards {
     public:
-        void getEvent();
+    void getEvent(StoneTiles* stoneTiles){};
 
 };
 
 
-#endif //RUSESCARDS_H
+#endif //RUSESCARDS_H*/

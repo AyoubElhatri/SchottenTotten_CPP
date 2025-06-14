@@ -1,35 +1,24 @@
 #include "AIEasy.h"
-#include <cstdlib>  // pour rand()
-#include <ctime>    // pour time()
+#include <cstdlib>  // rand()
+#include <ctime>    // time()
+AIEasy::AIEasy(int playerID) : m_playerID(playerID) {}
 
-#include "AI.h"
-#include "../GameBoard.h"
-#include "../Player/Player.h"
-
-void AIEasy::playTurn(std::vector<std::unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
+void AIEasy::playTurn(vector<unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
     int cardIndex = chooseCardIndex(playerCards);
     int tileIndex = chooseTileIndex(gameBoard);
 
     if (cardIndex == -1 || tileIndex == -1) return;
+    unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
 
-    // Récupérer la carte choisie (transfert de propriété)
-    std::unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
-
-    // Poser la carte sur le plateau (tu peux adapter cette méthode)
+    // placeCardOnTile retourne void, donc on ne stocke pas de booléen ici
     gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
-//bool sucess = gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
-    /*if (success) {
-        // Retirer la carte du vecteur (puisque std::move a laissé un nullptr)
-        playerCards.erase(playerCards.begin() + cardIndex);
-    } else {
-        // Remettre la carte dans le vecteur si échec
-        playerCards[cardIndex] = std::move(selectedCard);
-    }*/
+
+    // On supprime la carte du vecteur car elle est jouée
+    playerCards.erase(playerCards.begin() + cardIndex);
 }
 
-int AIEasy::chooseCardIndex(const std::vector<std::unique_ptr<Cards>>& cards) {
-    if (cards.empty())
-        return -1;
+int AIEasy::chooseCardIndex(const vector<unique_ptr<Cards>>& cards) {
+    if (cards.empty()) return -1;
     return rand() % cards.size();
 }
 

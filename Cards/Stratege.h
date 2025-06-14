@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 03/06/2025.
-//
+
 
 #ifndef STRATEGE_H
 #define STRATEGE_H
@@ -9,10 +7,10 @@
 
 class Stratege : public RusesCards{
     public:
-        void getEvent();
-
+        Stratege(){cardName= "Stratege";};
+    void getEvent(StoneTiles* stoneTiles){};
 };
 
 
 
-#endif //STRATEGE_H
+#endif //STRATEGE_H*/

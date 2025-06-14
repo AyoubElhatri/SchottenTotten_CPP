@@ -1,6 +1,4 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
+
 
 #ifndef SPY_H
 #define SPY_H
@@ -9,9 +7,13 @@
 
 class Spy : public EliteTroopsCards {
 public:
-    void getEvent();
+    Spy() {
+        TacticalCards::cardName= "Spy";
+        setNumber(7);
+    };
+    void getEvent(StoneTiles* stoneTiles);
 };
 
 
 
-#endif //SPY_H
+#endif //SPY_H*/

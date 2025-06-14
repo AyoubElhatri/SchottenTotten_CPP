@@ -1,15 +1,14 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
 
 #ifndef JOKER_H
 #define JOKER_H
 #include "EliteTroopsCards.h"
 #include "../Display.h"
+#include "Cards.h"
 class Joker : public EliteTroopsCards {
 public:
-    void getEvent();
+    Joker() {TacticalCards::cardName = "Joker";};
+    void getEvent(StoneTiles* stoneTiles);
 };
 
 
-#endif //JOKER_H
+#endif //JOKER_H*/

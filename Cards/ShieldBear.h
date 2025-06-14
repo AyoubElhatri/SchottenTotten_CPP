@@ -1,15 +1,14 @@
-//
-// Created by Utilisateur on 02/06/2025.
-//
 
 #ifndef SHIELDBEAR_H
 #define SHIELDBEAR_H
 #include "EliteTroopsCards.h"
+class StoneTiles;
 
 class ShieldBear : public EliteTroopsCards {
     public:
-        void getEvent(StoneTiles* stoneTiles);
+    ShieldBear(){TacticalCards::cardName= "Shield Bear";};
+    void getEvent(StoneTiles* stoneTiles){};
 };
 
 
-#endif //SHIELDBEAR_H
+#endif //SHIELDBEAR_H*/

@@ -1,6 +1,3 @@
-//
-// Created by Utilisateur on 31/05/2025.
-//
 
 #ifndef COMBATMODECARDS_H
 #define COMBATMODECARDS_H
@@ -11,7 +8,7 @@ class CombatModeCards : public TacticalCards{
    private:
     shared_ptr<StoneTiles> sharedTiles;
 public:
-    void getEvent() override{std::cout<<"";};
+        void getEvent(StoneTiles* stoneTiles) override{std::cout<<"";};
 };
 
-#endif //COMBATMODECARDS_H
+#endif //COMBATMODECARDS_H*/
