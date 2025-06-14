@@ -6,13 +6,6 @@
 #include "TacticalCards.h"
 using namespace std;
 class EliteTroopsCards : public ClanCards, public TacticalCards{
-private:
-    string Name;
-public:
-    string getName(){return Name;}
-    EliteTroopsCards(): ClanCards() {
-        Name = "Elite Troops";
-    } ;
 
 
 

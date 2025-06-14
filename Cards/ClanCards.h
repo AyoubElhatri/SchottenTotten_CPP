@@ -15,14 +15,14 @@ private:
     Colors color;
 public:
     // Constructeur explicite prenant number et color
-    ClanCards(): number(0), color(Colors::Red) {}
+    ClanCards(): number(0), color(Colors::Red) { cardName = "Clan Card";}
     ClanCards(unsigned int num, Colors col) : number(num), color(col) {}
-    unsigned int getNumber() const override { return number; }
-    Colors getColor() const override { return color; }
+    unsigned int getNumber() const  { return number; }
+    Colors getColor() const  { return color; }
     void setNumber(unsigned int numbers) { number = numbers; }
     void setColor(Colors colors) { color = colors; }
     /*std::unique_ptr<Cards> clone() const override { return std::make_unique<ClanCards>(*this); }*/
-    void getEvent() override { std::cout << ""; }
+       void getEvent(StoneTiles* stoneTiles)override { std::cout << ""; };
 };
 
 #endif // CLANCARDS_H

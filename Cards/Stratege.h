@@ -7,8 +7,8 @@
 
 class Stratege : public RusesCards{
     public:
-        void getEvent();
-
+        Stratege(){cardName= "Stratege";};
+    void getEvent(StoneTiles* stoneTiles){};
 };
 
 

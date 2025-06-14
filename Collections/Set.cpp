@@ -24,7 +24,8 @@ const Cards* Set::getCardAt(unsigned int IndexParam) const {
     return SetOfCards[IndexParam].get();
 }
 
-void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
+void Set::moveCard(string Cardname, Set& IndexSet) {
+    unsigned int IndexOfCard=getIndexOfCard(Cardname);
     unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
     if (NewCard) {
         IndexSet.addCard(std::move(NewCard));
@@ -32,10 +33,19 @@ void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
 }
 
 
+unsigned int Set::getIndexOfCard(string CardName) const {
+    for (unsigned int i = 0; i < SetOfCards.size(); ++i) {
+        if (SetOfCards[i]->getName() == CardName) {
+            return i;
+        }
+    }
+    throw std::invalid_argument("Card not foud");
+}
 
 
 
 
+// A REFAIRE
 CombinationType Set::evaluateCombination() const {
     if (!isComplete()) return CombinationType::None;
 

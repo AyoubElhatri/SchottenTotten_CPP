@@ -5,7 +5,7 @@
 
 class RusesCards : public TacticalCards {
     public:
-        void getEvent();
+    void getEvent(StoneTiles* stoneTiles){};
 
 };
 

@@ -35,8 +35,9 @@ public:
     // Ajoute une carte (transfert de propriété)
     void addCard(unique_ptr<Cards> Card) { SetOfCards.push_back(std::move(Card)); }
 
-    void moveCard(unsigned int IndexOfCard, Set& IndexSet);
+    void moveCard(string Cardname, Set& IndexSet);
 
+    unsigned int getIndexOfCard(string CardName) const;
 
    bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
 

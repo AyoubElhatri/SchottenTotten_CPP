@@ -6,8 +6,9 @@
 
 class Traitor : public RusesCards {
 public:
-    void getEvent();
+    Traitor(){cardName="Traitor";};
+    void getEvent(StoneTiles* stoneTiles){};
 
 };
 
-#endif 
+#endif

@@ -28,7 +28,7 @@ GameBoard::GameBoard() {
 
 
 }
-/*
+
 // Récupération de l’instance singleton
 GameBoard& GameBoard::getInstance() {
     if (!instance) {
@@ -64,10 +64,9 @@ const Set& GameBoard::getRemainingTacticalCards() const {
 const Set& GameBoard::getDiscardedCards() const {
     return DiscardedCards;
 }
-
+/*
 // Ajouter une carte à la défausse
-void GameBoard::discardCard(const Cards& card) {
-    auto copy = card.clone();
+void GameBoard::discardCard(unique_ptr<Cards> Card,) {
     DiscardedCards.addCard(std::move(copy));
 }
 

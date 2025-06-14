@@ -7,7 +7,8 @@
 
 class Banshee : public RusesCards {
     public:
-        void getEvent();
+    Banshee(){cardName = "Banshee";};
+    void getEvent(StoneTiles* stoneTiles){};
 };
 
 

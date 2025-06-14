@@ -3,10 +3,11 @@
 #define JOKER_H
 #include "EliteTroopsCards.h"
 #include "../Display.h"
+#include "Cards.h"
 class Joker : public EliteTroopsCards {
 public:
-    Joker() : EliteTroopsCards() {};
-    void getEvent();
+    Joker() {TacticalCards::cardName = "Joker";};
+    void getEvent(StoneTiles* stoneTiles){};
 };
 
 

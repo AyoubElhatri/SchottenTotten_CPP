@@ -3,6 +3,7 @@
 #include <memory>
 #include "../Collections/Set.h"
 using namespace std;
+#include "../Rules/Rules.h"
 class StoneTiles {
 private:
     unsigned int Position;
@@ -15,7 +16,7 @@ private:
 
 public:
     StoneTiles(unsigned int Pos)
-        : Position(Pos), NbOfPlayableCards(0), claimedBy(0), StoneTileIsClaimed(false) {}
+        : Position(Pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()), claimedBy(0), StoneTileIsClaimed(false) {}
 
     unsigned int getPosition() const { return Position; }
     bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
@@ -28,7 +29,7 @@ public:
     void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
     void setPosition(unsigned int Pos) { Position = Pos; }
 
-    void addCardToPlayer(unsigned int playerId, unsigned int indexCard,Set provenanceOfTheCard);
+    void addCardToPlayer(unsigned int playerId, string Cardname,Set provenanceOfTheCard);
     std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
     Set& getPlayerCards1() { return PlayerCards1; }

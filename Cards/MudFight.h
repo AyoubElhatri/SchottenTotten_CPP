@@ -6,7 +6,8 @@
 
 class MudFight : public CombatModeCards {
     public:
-        void getEvent();
+        MudFight(){cardName= "Mud Fight";};
+    void getEvent(StoneTiles* stoneTiles){};
 
 };
 

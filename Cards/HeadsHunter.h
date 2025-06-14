@@ -5,7 +5,8 @@
 
 class HeadsHunter : public RusesCards {
     public:
-        void getEvent();
+    HeadsHunter() { cardName = "Heads Hunter"; }
+    void getEvent(StoneTiles* stoneTiles){};
 
 };
 

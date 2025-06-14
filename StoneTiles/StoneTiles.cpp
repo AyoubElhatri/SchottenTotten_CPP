@@ -33,12 +33,13 @@ void StoneTiles::claim(Player* player) {
 
 }*/
 
-void StoneTiles::addCardToPlayer(unsigned int playerId,unsigned int indexCard,Set provenanceOfTheCard) {
+void StoneTiles::addCardToPlayer(unsigned int playerId, string Cardname,Set provenanceOfTheCard) {
+
     if (playerId == 1) {
-        PlayerCards1.moveCard(indexCard, provenanceOfTheCard);
+        PlayerCards1.moveCard(Cardname, provenanceOfTheCard);
     }
     else if (playerId == 2) {
-    PlayerCards2.moveCard(indexCard, provenanceOfTheCard);}
+    PlayerCards2.moveCard(Cardname, provenanceOfTheCard);}
     else {
         throw std::invalid_argument("Invalid player ID");
     }
