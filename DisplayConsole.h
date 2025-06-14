@@ -10,7 +10,7 @@ using namespace std;
 
 class DisplayConsole : public Display {
 public:
-     DisplayConsole();
+     DisplayConsole() = default;
 
      virtual string takeInput();
      virtual void output(string message);

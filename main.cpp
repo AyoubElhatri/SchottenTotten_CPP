@@ -110,7 +110,13 @@ builder.setNumberOfStoneTiles(9)
 Rules::buildInstance(builder);
 
 // Utilisation de Rules ensuite via getInstance()
+
+
 cout << Rules::getInstance()->getNumberOfStoneTiles() << endl;
+    DisplayConsole console;
+    console.output("zzz");
+    DisplayManager::createInstance<DisplayConsole>();
+    DisplayManager::getInstance()->output("Hello World!");
 
     return 0;
 }

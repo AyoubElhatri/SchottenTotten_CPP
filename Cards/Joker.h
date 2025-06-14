@@ -7,7 +7,7 @@
 class Joker : public EliteTroopsCards {
 public:
     Joker() {TacticalCards::cardName = "Joker";};
-    void getEvent(StoneTiles* stoneTiles){};
+    void getEvent(StoneTiles* stoneTiles);
 };
 
 

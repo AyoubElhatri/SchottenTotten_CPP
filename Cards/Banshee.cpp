@@ -61,8 +61,4 @@ void Banshee::getEvent() {
 #include "Banshee.h"
 #include <iostream>
 
-Banshee::Banshee() {}
 
-void Banshee::getEvent() {
-    std::cout << "La Banshee crie !" << std::endl;
-}

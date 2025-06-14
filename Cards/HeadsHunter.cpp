@@ -3,5 +3,4 @@
 
 using namespace std;
 
-HeadsHunter::HeadsHunter() {}
 

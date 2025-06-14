@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 using namespace std;
+unique_ptr<Display> DisplayManager::DisplayInstance = nullptr;
 
 Display *DisplayManager::getInstance() {
     if (DisplayInstance) {
@@ -13,7 +14,3 @@ Display *DisplayManager::getInstance() {
     }
 }
 
-template <class TDisplay> static void createInstance() {
-    DisplayManager::DisplayInstance = make_unique<TDisplay>();
-};
-unique_ptr<Display> DisplayManager::DisplayInstance = nullptr;

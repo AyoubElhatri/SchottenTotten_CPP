@@ -110,9 +110,3 @@ void Stratege::getEvent() {
 #include<iostream>
 using namespace std;
 
-Stratege::Stratege() {};
-void Stratege::getEvent() {
-    cout << "ouii" << endl;
-}
-
-

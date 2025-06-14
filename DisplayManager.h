@@ -9,8 +9,13 @@ class DisplayManager {
         DisplayManager();
     public:
         static std::unique_ptr<Display> DisplayInstance;
-        template <class TDisplay> static void createInstance();
-        static Display* getInstance();
+    template <class TDisplay> static void createInstance() {
+        DisplayManager::DisplayInstance = std::make_unique<TDisplay>();
+    };
+    static Display* getInstance();
 };
+
+
+
 
 #endif
