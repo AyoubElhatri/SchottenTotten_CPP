@@ -8,7 +8,7 @@ class StoneTiles;
 
 class Cards {
 protected:
-    string cardName;
+    string cardName="aaaa";
     public:
     virtual ~Cards() = default;
     string getName() const {return cardName;}

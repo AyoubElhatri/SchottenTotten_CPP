@@ -11,7 +11,7 @@
 
 using namespace std;
 
-#define maxOfCards 3 // A RETIRER
+//#define maxOfCards 3 // A RETIRER
 
 class Set {
 private:
@@ -39,9 +39,13 @@ public:
 
     unsigned int getIndexOfCard(string CardName) const;
 
-   bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
+   //bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
 
     CombinationType evaluateCombination() const;
+    void mixSet();
+
+    void printSet() const;
+
 };
 
 #endif // SET_H

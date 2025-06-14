@@ -1,5 +1,6 @@
 #include "Set.h"
 #include <map>
+#include <random>
 #include <set>
 
 Set::Set(Set&& IndexSet) {
@@ -47,11 +48,13 @@ unsigned int Set::getIndexOfCard(string CardName) const {
 
 // A REFAIRE
 CombinationType Set::evaluateCombination() const {
-    if (!isComplete()) return CombinationType::None;
+   // METTRE CETTE MECANIQUE AILLEUR
+   // if (!isComplete()) return CombinationType::None;
 
     vector<int> values;
     set<Colors> colors;
 
+// a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
         const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
         if (clanCard) {
@@ -71,4 +74,17 @@ CombinationType Set::evaluateCombination() const {
     if (isSequence) return CombinationType::Run;
 
     return CombinationType::Sum;
+}
+
+void Set::mixSet() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::shuffle(SetOfCards.begin(), SetOfCards.end(), gen);
+}
+
+void Set::printSet() const {
+    for (const auto& card : SetOfCards) {
+        std::cout << card->getName() << " ";
+    }
+    std::cout << std::endl;
 }

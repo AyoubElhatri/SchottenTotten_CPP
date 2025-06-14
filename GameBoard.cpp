@@ -9,13 +9,14 @@ std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 // Constructeur privé
 GameBoard::GameBoard() {
     // Initialisation de 9 tuiles partagée
+    cout<<"Initialisation du plateau de jeu avec " << Rules::getInstance()->getNumberOfStoneTiles() << " tuiles." << endl;
     for (int i = 0; i < Rules::getInstance()->getNumberOfStoneTiles(); ++i) {
         sharedTiles.push_back(std::make_shared<StoneTiles>(i));
     }
     unordered_map<Colors, unsigned int> ClanCardsByColor = Rules::getInstance()->getClanCardsByColor();
     for (const auto& [color, count] : ClanCardsByColor) {
         for (unsigned int i = 1; i <= count; ++i) {
-            std::make_unique<ClanCards>(i, color);
+            RemainingClanCards.addCard(std::move(std::make_unique<ClanCards>(i, color)));
         }
     }
 
@@ -25,7 +26,8 @@ GameBoard::GameBoard() {
             RemainingTacticalCards.addCard(TacticalCardsFactory::createTacticalCard(name));
         }
     }
-
+    RemainingClanCards.mixSet();
+    RemainingTacticalCards.mixSet();
 
 }
 

@@ -15,8 +15,12 @@ private:
     Colors color;
 public:
     // Constructeur explicite prenant number et color
-    ClanCards(): number(0), color(Colors::Red) { cardName = "Clan Card";}
-    ClanCards(unsigned int num, Colors col) : number(num), color(col) {}
+    ClanCards(): number(0), color(Colors::Red) {
+        }
+
+    ClanCards(unsigned int num, Colors col) : number(num), color(col) {
+    cardName = std::to_string(getNumber()) + "-" + std::to_string(static_cast<int>(getColor()));
+}
     unsigned int getNumber() const  { return number; }
     Colors getColor() const  { return color; }
     void setNumber(unsigned int numbers) { number = numbers; }

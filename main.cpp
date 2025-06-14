@@ -102,24 +102,32 @@ int main() {
 
 
     //Rules(Rules::Builder());
-Rules::Builder builder;
-builder.setNumberOfStoneTiles(9)
-       .setNumberOfAlignedTilesToWin(3)
-       .setNumberOfUnalignedTilesToWin(5)
-       .addClanCardColor(Colors::Red, 6)
-       .addTacticalCard("Shield", 2);
+    Rules::Builder builder;
+    builder.setNumberOfStoneTiles(9)
+           .setNumberOfAlignedTilesToWin(3)
+           .setNumberOfUnalignedTilesToWin(5)
+           .addClanCardColor(Colors::Red, 7)
+           .addTacticalCard("Shield", 2);
 
-// Appel de buildInstance avec le builder
-Rules::buildInstance(builder);
+    // Appel de buildInstance avec le builder
+    Rules::buildInstance(builder);
 
-// Utilisation de Rules ensuite via getInstance()
+    // Utilisation de Rules ensuite via getInstance()
 
 
-cout << Rules::getInstance()->getNumberOfStoneTiles() << endl;
+    cout << Rules::getInstance()->getNumberOfStoneTiles() << endl;
     DisplayConsole console;
     console.output("zzz");
     DisplayManager::createInstance<DisplayConsole>();
     DisplayManager::getInstance()->output("Hello World!");
 
-    return 0;
+    GameBoard &game= GameBoard::getInstance();
+
+    const Set& supraset = game.getRemainingClanCards();
+
+    cout<< "Nombre de cartes restantes : " << supraset.getSize() << endl;
+
+    supraset.printSet();
+
+
 }
