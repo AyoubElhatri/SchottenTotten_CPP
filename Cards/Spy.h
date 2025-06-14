@@ -7,8 +7,11 @@
 
 class Spy : public EliteTroopsCards {
 public:
-    Spy(){TacticalCards::cardName= "Spy";};
-    void getEvent(StoneTiles* stoneTiles){};
+    Spy() {
+        TacticalCards::cardName= "Spy";
+        setNumber(7);
+    };
+    void getEvent(StoneTiles* stoneTiles);
 };
 
 
