@@ -55,4 +55,5 @@ Cards/HeadsHunter.cpp
 Cards/Spy.cpp
 Logic/GameLogic.h
 Logic/GameLogic.cpp
-        Cards/ShieldBear.cpp)
+        Cards/ShieldBear.cpp
+        CustomException/CustomException.h)
