@@ -296,6 +296,30 @@ DisplayConsole.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayConsole.cpp.s
 .PHONY : DisplayConsole.cpp.s
 
+DisplayManager.obj: DisplayManager.cpp.obj
+.PHONY : DisplayManager.obj
+
+# target to build an object file
+DisplayManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayManager.cpp.obj
+.PHONY : DisplayManager.cpp.obj
+
+DisplayManager.i: DisplayManager.cpp.i
+.PHONY : DisplayManager.i
+
+# target to preprocess a source file
+DisplayManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayManager.cpp.i
+.PHONY : DisplayManager.cpp.i
+
+DisplayManager.s: DisplayManager.cpp.s
+.PHONY : DisplayManager.s
+
+# target to generate assembly for a file
+DisplayManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SchottenTotten_CPP.dir\build.make CMakeFiles/SchottenTotten_CPP.dir/DisplayManager.cpp.s
+.PHONY : DisplayManager.cpp.s
+
 GameBoard.obj: GameBoard.cpp.obj
 .PHONY : GameBoard.obj
 
@@ -542,6 +566,9 @@ help:
 	@echo ... DisplayConsole.obj
 	@echo ... DisplayConsole.i
 	@echo ... DisplayConsole.s
+	@echo ... DisplayManager.obj
+	@echo ... DisplayManager.i
+	@echo ... DisplayManager.s
 	@echo ... GameBoard.obj
 	@echo ... GameBoard.i
 	@echo ... GameBoard.s

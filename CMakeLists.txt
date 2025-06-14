@@ -40,10 +40,9 @@ StoneTiles/StoneTiles.h
         Player/AIEasy.h
         Cards/Joker.cpp
         GameBoard.cpp
-        Display.cpp
         Display.h
         DisplayManager.h
-        DisplayManager.cpp)
+        DisplayManager.cpp
         Cards/Joker.cpp
         GameBoard.h
         GameBoard.cpp
