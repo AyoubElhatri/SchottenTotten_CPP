@@ -12,6 +12,9 @@
 #include "Cards/ClanCards.h"
 #include "Collections/Set.h"
 #include "Rules/Rules.h"
+#include "Logic/GameLogic.h"
+
+
 // Affiche le plateau et les cartes posées par chaque joueur sur chaque tuile
 /*void printBoard(const GameBoard& board) {
     const auto& tiles = board.getSharedTiles();

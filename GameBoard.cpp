@@ -64,6 +64,20 @@ const Set& GameBoard::getRemainingTacticalCards() const {
 const Set& GameBoard::getDiscardedCards() const {
     return DiscardedCards;
 }
+
+
+std::unique_ptr<Cards> GameBoard::drawClanCard() {
+    return nullptr;  //exemple temporaire
+}
+
+
+void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) {
+    //temporaire
+}
+
+bool GameBoard::isTileFree(int tileIndex) const {
+    return true; // À adapter
+}
 /*
 // Ajouter une carte à la défausse
 void GameBoard::discardCard(unique_ptr<Cards> Card,) {

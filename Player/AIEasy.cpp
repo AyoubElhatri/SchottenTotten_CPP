@@ -1,16 +1,14 @@
 #include "AIEasy.h"
 #include <cstdlib>  // rand()
 #include <ctime>    // time()
-/*
 AIEasy::AIEasy(int playerID) : m_playerID(playerID) {}
 
-void AIEasy::playTurn(std::vector<std::unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
+void AIEasy::playTurn(vector<unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
     int cardIndex = chooseCardIndex(playerCards);
     int tileIndex = chooseTileIndex(gameBoard);
 
     if (cardIndex == -1 || tileIndex == -1) return;
-
-    std::unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
+    unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
 
     // placeCardOnTile retourne void, donc on ne stocke pas de booléen ici
     gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
@@ -19,7 +17,7 @@ void AIEasy::playTurn(std::vector<std::unique_ptr<Cards>>& playerCards, GameBoar
     playerCards.erase(playerCards.begin() + cardIndex);
 }
 
-int AIEasy::chooseCardIndex(const std::vector<std::unique_ptr<Cards>>& cards) {
+int AIEasy::chooseCardIndex(const vector<unique_ptr<Cards>>& cards) {
     if (cards.empty()) return -1;
     return rand() % cards.size();
 }
@@ -31,4 +29,4 @@ int AIEasy::chooseTileIndex(const GameBoard& gameBoard) {
         if (gameBoard.isTileFree(index)) return index;
     }
     return -1;
-}*/
+}

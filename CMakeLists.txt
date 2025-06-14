@@ -52,4 +52,6 @@ Cards/RusesCards.cpp
 Cards/Recruiter.h
 Cards/Recruiter.cpp
 Cards/HeadsHunter.cpp
-Cards/Spy.cpp)
+Cards/Spy.cpp
+Logic/GameLogic.h
+Logic/GameLogic.cpp)

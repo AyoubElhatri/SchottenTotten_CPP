@@ -1,4 +1,4 @@
-/*#ifndef AIEASY_H
+#ifndef AIEASY_H
 #define AIEASY_H
 
 #include <memory>
@@ -27,4 +27,3 @@ public:
 
 
 #endif //AIEASY_H
-*/
