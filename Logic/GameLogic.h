@@ -3,6 +3,10 @@
 #include <vector>
 #include <memory>
 #include "../Player/Player.h"
+#include "../Logic/GameLogic.h"
+#include"../Rules/Rules.h"
+#include "../GameBoard.h"
+
 
 using namespace std;
 
@@ -29,6 +33,8 @@ class GameLogic {
         unsigned int getTurnNumber() const noexcept {return turnNumber;}
         void setTurnNumber(unsigned int turnNumber) noexcept {this->turnNumber = turnNumber;}
         const vector<unique_ptr<Player>>& getPlayers() const noexcept {return players;}
+
+        bool checkWinner() const  ;
 
 
 

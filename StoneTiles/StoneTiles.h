@@ -19,6 +19,8 @@ public:
         : Position(Pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()), claimedBy(0), StoneTileIsClaimed(false) {}
 
     unsigned int getPosition() const { return Position; }
+    unsigned int getClaimedBy() { return claimedBy; }
+    void setClaimedBy(unsigned int claimedBy){this->claimedBy = claimedBy;}
     bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
 
     void claim(unsigned int uiParam);
@@ -34,6 +36,7 @@ public:
 
     Set& getPlayerCards1() { return PlayerCards1; }
     Set& getPlayerCards2() { return PlayerCards2; }
+
 };
 
 #endif //STONETILES_H

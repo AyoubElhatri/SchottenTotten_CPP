@@ -36,6 +36,23 @@ void GameLogic::startGame() {
     cout << "**********************************  End Game  ********************************** " << endl;
 }
 
+bool GameLogic::checkWinner() const {
+    auto * rules = Rules::getInstance();
+    const auto alignedToWin = rules->getNumberOfAlignedTilesToWin();
+    const auto unalignedToWin = rules->getNumberOfUnalignedTilesToWin();
+
+    GameBoard& board = GameBoard::getInstance();
+    for (int playerId = 0; playerId < 2; playerId++) {
+        int aligned = board.getAlingnedControlledTilesCount(playerId);
+        int total = board.getControlledTilesCount(playerId);
+        if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfStoneTiles()) {
+            std::cout << " Le joueur " << playerId << " a gagné la partie !" << std::endl;
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 

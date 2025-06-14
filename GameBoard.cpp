@@ -80,6 +80,33 @@ void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) 
 bool GameBoard::isTileFree(int tileIndex) const {
     return true; // À adapter
 }
+
+int GameBoard::getControlledTilesCount(int playerId) const {
+    int count = 0;
+    for (const auto& tile : sharedTiles) {
+        if (tile->isAlreadyClaimed() && tile->getClaimedBy() == playerId) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+int GameBoard::getAlingnedControlledTilesCount(int playerId) const {
+    int maxStreak = 0;
+    int currentStreak = 0;
+    for (const auto& tile : sharedTiles) {
+        if (tile->isAlreadyClaimed() && tile->getClaimedBy() == playerId) {
+            currentStreak++;
+            maxStreak = std::max(maxStreak, currentStreak);
+        }
+        else {
+            currentStreak = 0;
+        }
+    }
+    return maxStreak;
+}
+
+
 /*
 // Ajouter une carte à la défausse
 void GameBoard::discardCard(unique_ptr<Cards> Card,) {
