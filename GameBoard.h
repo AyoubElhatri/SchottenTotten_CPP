@@ -42,6 +42,9 @@ public:
     const std::vector<std::shared_ptr<StoneTiles>>& getUnclaimedBorders();
     void moveCardBetweenBorders(unsigned int fromBorderPos, unsigned int toBorderPos, unsigned int playerId, unsigned int cardIndex);
     std::shared_ptr<StoneTiles> findTileByPosition(unsigned int position);
+
+    int getControlledTilesCount(int playerId) const;
+    int getAlingnedControlledTilesCount(int playerId) const;
 };
 
 #endif // GAMEBOARD_H
