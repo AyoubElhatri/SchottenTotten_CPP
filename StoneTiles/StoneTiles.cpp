@@ -1,37 +1,8 @@
 #include "StoneTiles.h"
 #include "../Player/Player.h"
-/*bool StoneTiles::isClaimable(Player* player) const {
-    if (!player) return false;
+#include <memory>
 
-    const Set& playerCards = (player->getPlayerID() == 1) ? PlayerCards1 : PlayerCards2;
-    const Set& opponentCards = (player->getPlayerID() == 1) ? PlayerCards2 : PlayerCards1;
 
-    if (playerCards.getSize() < PlayableCards || opponentCards.getSize() < PlayableCards)
-        return false;
-
-    int playerTotal = playerCards.getTotalValue();
-    int opponentTotal = opponentCards.getTotalValue();
-
-    return playerTotal > opponentTotal;
-}*/
-/*
-void StoneTiles::claim(unsigned int idPlayer) {
-    if (!isAlreadyClaimed())
-        return;
-    if (!PlayerCards1.isComplete() || !PlayerCards2.isComplete())
-        return;
-    auto combo1 = PlayerCards1.evaluateCombination();
-    auto combo2 = PlayerCards2.evaluateCombination();
-    if (combo1 > combo2 && player == PlayerCards1.getOwner()) {
-        claimedBy = unique_ptr<Player>(player);
-        StoneTileIsClaimed = true;
-    }
-    else if (combo2 > combo1 && player == PlayerCards2.getOwner()) {
-        claimedBy = unique_ptr<Player>(player);
-        StoneTileIsClaimed = true;
-    }
-
-}*/
 
 void StoneTiles::addCardToPlayer(unsigned int playerId, string Cardname,Set provenanceOfTheCard) {
 
@@ -64,3 +35,40 @@ std::unique_ptr<Cards> StoneTiles::removeCardFromPlayer(unsigned int playerId, u
         throw std::invalid_argument("ID joueur invalide (doit être 1 ou 2)");
     }
 }
+
+void StoneTiles::claim() {
+    if (StoneTileIsClaimed)
+        return;
+    Rules* rules = Rules::getInstance();
+    unsigned int maxCards = rules->getNumberMaxOfCardsPerTiles();
+    if (PlayerCards1.getSize() > maxCards || PlayerCards2.getSize() > maxCards) {
+        return;
+    }
+    CombinationType combo1 = PlayerCards1.evaluateCombination(*this);
+    CombinationType combo2 = PlayerCards2.evaluateCombination(*this);
+    if (combo1 > combo2) {
+        claimedBy = 1;
+        StoneTileIsClaimed = true;
+        std::cout << Position << "---------Player 1 a gagné la tuile----------"<<endl;
+    }
+    else if (combo2 > combo1) {
+        claimedBy = 2;
+        StoneTileIsClaimed = true;
+        std::cout << Position << "---------Player 1 a gagné la tuile----------"<<endl;
+    }
+    else {
+        if (firstPlayerToFillTheStoneTile != nullptr) {
+            claimedBy = firstPlayerToFillTheStoneTile->getPlayerID();
+            StoneTileIsClaimed = true;
+            std::cout << Position << " --------- Joueur " << claimedBy
+                      << " a gagné la tuile (égalité combo, priorité à celui qui a rempli en premier) ----------"
+                      << std::endl;
+        } else {
+            std::cout <<"Tuile non revendiquée" << endl;
+        }
+    }
+
+
+
+}
+

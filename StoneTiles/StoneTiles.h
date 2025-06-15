@@ -4,6 +4,7 @@
 #include "../Collections/Set.h"
 using namespace std;
 #include "../Rules/Rules.h"
+#include"../Player/Player.h"
 class StoneTiles {
 private:
     unsigned int Position;
@@ -14,6 +15,7 @@ private:
     unsigned int claimedBy;
     bool StoneTileIsClaimed;
     CombinationType comboType;
+    Player* firstPlayerToFillTheStoneTile;
 
 public:
     StoneTiles(unsigned int Pos)
@@ -25,9 +27,15 @@ public:
     bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
     CombinationType getComboType() const { return comboType; }
     void setComboType(CombinationType type) { comboType = type; }
-    void claim(unsigned int uiParam);
+    void claim();
 
     bool canPlaceCard() const;
+    /*StoneTiles(const StoneTiles& other)
+    : Position(other.Position),
+      NbOfPlayableCards(other.NbOfPlayableCards),
+      claimedBy(other.claimedBy),
+      StoneTileIsClaimed(other.StoneTileIsClaimed)
+    {}*/
 
     unsigned int getNbOfPlayableCards() const { return NbOfPlayableCards; }
     void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
