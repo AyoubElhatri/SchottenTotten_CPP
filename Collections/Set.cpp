@@ -56,6 +56,10 @@ CombinationType Set::evaluateCombination(StoneTiles& tiles) const {
     vector<int> values;
     set<Colors> colors;
     unsigned int nbrMaxOfCards= tiles.getNbOfPlayableCards();
+    if (SetOfCards.size() < nbrMaxOfCards) {
+        CustomException Exc01=CustomException(INCOMPLETESET);
+        throw(Exc01);
+    }
 
 // a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
@@ -70,7 +74,7 @@ CombinationType Set::evaluateCombination(StoneTiles& tiles) const {
     bool isSequence = true;
     bool isSet = true;
 
-    for (size_t i = 1; i < nbrMaxOfCards; ++i) {
+    for (unsigned int i = 1; i < values.size(); ++i) {
         if (values[i] != values[i-1] + 1) {
             isSequence = false;
         }
@@ -90,13 +94,25 @@ CombinationType Set::evaluateCombination(StoneTiles& tiles) const {
     if (isSameColor) return CombinationType::Color;
     if (isSequence) return CombinationType::Run;
 
-    return CombinationType::Sum;
+    return Sum;
 }
 
 void Set::mixSet() {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::shuffle(SetOfCards.begin(), SetOfCards.end(), gen);
+}
+
+//Get sum is used to resolve the win conditions when both players play the same combination on the same StoneTile.
+unsigned int Set::getSum() {
+    unsigned int sum=0;
+    for (const auto& card : SetOfCards) {
+        const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
+        if (clanCard) {
+            sum+=clanCard->getNumber();
+        }
+    }
+    return sum;
 }
 
 void Set::printSet() const {
