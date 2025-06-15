@@ -41,7 +41,7 @@ public:
 
    //bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
 
-    CombinationType evaluateCombination(shared_ptr<StoneTiles> tiles) const;
+    CombinationType evaluateCombination(StoneTiles& tiles) const ;
     void mixSet();
 
     void printSet() const;

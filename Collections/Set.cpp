@@ -49,13 +49,13 @@ unsigned int Set::getIndexOfCard(string CardName) const {
 
 
 // A REFAIRE IL FAUT PEUT ETRE UNE CLASSE CHECK COMBINATION
-CombinationType Set::evaluateCombination(shared_ptr<StoneTiles> tiles) const {
+CombinationType Set::evaluateCombination(StoneTiles& tiles) const {
    // METTRE CETTE MECANIQUE AILLEUR
    // if (!isComplete()) return CombinationType::None;
 
     vector<int> values;
     set<Colors> colors;
-    unsigned int nbrMaxOfCards= tiles->getNbOfPlayableCards();
+    unsigned int nbrMaxOfCards= tiles.getNbOfPlayableCards();
 
 // a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
