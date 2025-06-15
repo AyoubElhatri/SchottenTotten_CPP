@@ -3,6 +3,8 @@
 #include <random>
 #include <set>
 #include "../DisplayManager.h"
+#include "../StoneTiles/StoneTiles.h"
+
 Set::Set(Set&& IndexSet) {
     SetOfCards = std::move(IndexSet.SetOfCards);
 }
@@ -47,12 +49,13 @@ unsigned int Set::getIndexOfCard(string CardName) const {
 
 
 // A REFAIRE IL FAUT PEUT ETRE UNE CLASSE CHECK COMBINATION
-CombinationType Set::evaluateCombination() const {
+CombinationType Set::evaluateCombination(shared_ptr<StoneTiles> tiles) const {
    // METTRE CETTE MECANIQUE AILLEUR
    // if (!isComplete()) return CombinationType::None;
 
     vector<int> values;
     set<Colors> colors;
+    unsigned int nbrMaxOfCards= tiles->getNbOfPlayableCards();
 
 // a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
@@ -64,9 +67,23 @@ CombinationType Set::evaluateCombination() const {
     }
     sort(values.begin(), values.end());
 
-    bool isSequence = (values[1] == values[0] + 1) && (values[2] == values[1] + 1);
+    bool isSequence = true;
+    bool isSet = true;
+
+    for (size_t i = 1; i < nbrMaxOfCards; ++i) {
+        if (values[i] != values[i-1] + 1) {
+            isSequence = false;
+        }
+    }
+
+    // Vérifie le set pour toutes les cartes
+    for (size_t i = 1; i < nbrMaxOfCards; ++i) {
+        if (values[i] != values[0]) {
+            isSet = false;
+        }
+    }
+
     bool isSameColor = (colors.size() == 1);
-    bool isSet = (values[0] == values[1]) && (values[1] == values[2]);
 
     if (isSequence && isSameColor) return CombinationType::ColorRun;
     if (isSet) return CombinationType::nOfAKind;
@@ -86,4 +103,15 @@ void Set::printSet() const {
     for (const auto& card : SetOfCards) {
         DisplayManager::getInstance()->output( card->getName());
     }
+}
+
+
+unsigned int Set::getTotalValue() const {
+    unsigned int total = 0;
+    for (const auto& card : SetOfCards) {
+        if (auto clanCard = dynamic_cast<const ClanCards*>(card.get())) {
+            total += clanCard->getNumber();
+        }
+    }
+    return total;
 }

@@ -41,10 +41,11 @@ public:
 
    //bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
 
-    CombinationType evaluateCombination() const;
+    CombinationType evaluateCombination(shared_ptr<StoneTiles> tiles) const;
     void mixSet();
 
     void printSet() const;
+    unsigned int getTotalValue() const ;
 
 };
 

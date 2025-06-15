@@ -3,12 +3,14 @@
 #define COMBATMODECARDS_H
 #include <memory>
 #include "../StoneTiles/StoneTiles.h"
+#include "TacticalCards.h"
+
 using namespace std;
 class CombatModeCards : public TacticalCards{
    private:
     shared_ptr<StoneTiles> sharedTiles;
 public:
-        void getEvent(StoneTiles* stoneTiles) override{std::cout<<"";};
+        virtual void getEvent(StoneTiles* stoneTiles) {std::cout<<"";};
 };
 
 #endif //COMBATMODECARDS_H*/

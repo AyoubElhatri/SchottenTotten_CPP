@@ -1,5 +1,5 @@
 #include "StoneTiles.h"
-
+#include "../Player/Player.h"
 /*bool StoneTiles::isClaimable(Player* player) const {
     if (!player) return false;
 
@@ -15,7 +15,7 @@
     return playerTotal > opponentTotal;
 }*/
 /*
-void StoneTiles::claim(Player* player) {
+void StoneTiles::claim(unsigned int idPlayer) {
     if (!isAlreadyClaimed())
         return;
     if (!PlayerCards1.isComplete() || !PlayerCards2.isComplete())

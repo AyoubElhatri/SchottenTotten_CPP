@@ -13,16 +13,18 @@ private:
     Set CombatModeCards;
     unsigned int claimedBy;
     bool StoneTileIsClaimed;
+    CombinationType comboType;
 
 public:
     StoneTiles(unsigned int Pos)
-        : Position(Pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()), claimedBy(0), StoneTileIsClaimed(false) {}
+        : Position(Pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()), claimedBy(0), StoneTileIsClaimed(false), comboType(CombinationType::None) {}
 
     unsigned int getPosition() const { return Position; }
     unsigned int getClaimedBy() { return claimedBy; }
     void setClaimedBy(unsigned int claimedBy){this->claimedBy = claimedBy;}
     bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
-
+    CombinationType getComboType() const { return comboType; }
+    void setComboType(CombinationType type) { comboType = type; }
     void claim(unsigned int uiParam);
 
     bool canPlaceCard() const;
