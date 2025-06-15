@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.obj"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/Banshee.cpp.obj.d"
+  "CMakeFiles/SchottenTotten_CPP.dir/Cards/BlindMan.cpp.obj"
+  "CMakeFiles/SchottenTotten_CPP.dir/Cards/BlindMan.cpp.obj.d"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.obj"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/ClanCards.cpp.obj.d"
   "CMakeFiles/SchottenTotten_CPP.dir/Cards/HeadsHunter.cpp.obj"
