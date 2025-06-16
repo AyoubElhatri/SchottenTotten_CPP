@@ -5,11 +5,17 @@
 
 
 void StoneTiles::addCardToPlayer(unsigned int playerId, string Cardname,Set provenanceOfTheCard) {
-
+    unsigned int nbrMaxOnStoneTile = getNbOfPlayableCards();
     if (playerId == 1) {
+        if (nbrMaxOnStoneTile == PlayerCards1.getSize()) {
+            throw std::out_of_range("Player 1 already has the maximum number of cards on this tile.");
+        }
         PlayerCards1.moveCard(Cardname, provenanceOfTheCard);
     }
     else if (playerId == 2) {
+    if (nbrMaxOnStoneTile == PlayerCards2.getSize()) {
+        throw std::out_of_range("Player 1 already has the maximum number of cards on this tile.");
+    }
     PlayerCards2.moveCard(Cardname, provenanceOfTheCard);}
     else {
         throw std::invalid_argument("Invalid player ID");
