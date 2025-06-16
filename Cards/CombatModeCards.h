@@ -10,7 +10,7 @@ class CombatModeCards : public TacticalCards{
    private:
     shared_ptr<StoneTiles> sharedTiles;
 public:
-        virtual void getEvent(StoneTiles* stoneTiles) {std::cout<<"";};
+        virtual void getEvent(StoneTiles* stoneTiles) = 0;
 };
 
 #endif //COMBATMODECARDS_H*/

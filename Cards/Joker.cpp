@@ -1,5 +1,3 @@
-
-
 #include "Joker.h"
 #include "../DisplayManager.h"
 #include "../CustomException/CustomException.h"
