@@ -22,9 +22,6 @@ void StoneTiles::addCardToPlayer(unsigned int playerId, string Cardname,Set prov
     }
 }
 
-bool StoneTiles::canPlaceCard() const {
-    return !isAlreadyClaimed() ;
-}
 
 std::unique_ptr<Cards> StoneTiles::removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex) {
     if (playerId == 1) {

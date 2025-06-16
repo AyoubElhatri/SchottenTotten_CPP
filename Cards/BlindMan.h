@@ -5,7 +5,9 @@
 
 class Blindman : public CombatModeCards {
 public:
-    Blindman() {cardName = "Blindman"; }
+    Blindman() {
+        cardName = "Blindman";
+    }
     void getEvent(StoneTiles* stoneTiles);
 
 
