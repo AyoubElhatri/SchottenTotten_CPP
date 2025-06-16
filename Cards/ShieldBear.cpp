@@ -1,7 +1,7 @@
 #include "ShieldBear.h"
 
 void ShieldBear::getEvent(StoneTiles* stoneTiles) {
-    DisplayManager::getInstance()->output("What's the number of the card you want to play?");
+    DisplayManager::getInstance()->output("What's the number of the card you want to play? (Only numbers 1, 2 or 3 are allowed)");
     try {
         unsigned int cardNumber = stoi(DisplayManager::getInstance()->takeInput());
         if (cardNumber!=1 && cardNumber!=2 && cardNumber!=3) {
