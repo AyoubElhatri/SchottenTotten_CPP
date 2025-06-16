@@ -10,6 +10,8 @@ using namespace std;
 
 class AI : public Player {
 public:
+    AI(unsigned int playerId, Set&& deck)
+      : Player(playerId, std::move(deck)) {}
     virtual ~AI() = default;
     virtual void playTurn(vector<unique_ptr<Cards>>& hand, GameBoard& gameBoard) = 0;
 };

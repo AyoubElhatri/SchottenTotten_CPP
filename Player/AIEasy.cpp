@@ -1,7 +1,11 @@
 #include "AIEasy.h"
+#include"Player.h"
 #include <cstdlib>  // rand()
 #include <ctime>    // time()
-AIEasy::AIEasy(int playerID) : m_playerID(playerID),AI::AI(){}
+
+
+AIEasy::AIEasy(unsigned int playerId, Set&& deck)
+    : AI(playerId, std::move(deck)) {}
 
 void AIEasy::playTurn(vector<unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
     int cardIndex = chooseCardIndex(playerCards);

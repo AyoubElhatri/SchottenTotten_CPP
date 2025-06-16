@@ -16,7 +16,7 @@ private:
 
     int chooseTileIndex(const GameBoard& gameBoard);
 public:
-    AIEasy(int playerID);
+    AIEasy(unsigned int playerId, Set&& deck);
     void playTurn(std::vector<std::unique_ptr<Cards>>& playerCards, GameBoard& gameBoard);
 
 

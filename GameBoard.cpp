@@ -7,28 +7,28 @@
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
 // Constructeur privé
-GameBoard::GameBoard() {
+GameBoard::GameBoard(): RemainingClanCards(), RemainingTacticalCards(), DiscardedCards() {
     // Initialisation de 9 tuiles partagée
-    cout<<"Initialisation du plateau de jeu avec " << Rules::getInstance()->getNumberOfStoneTiles() << " tuiles." << endl;
+    cout << "Initialisation du plateau de jeu avec " << Rules::getInstance()->getNumberOfStoneTiles() << " tuiles." <<
+            endl;
     for (int i = 0; i < Rules::getInstance()->getNumberOfStoneTiles(); ++i) {
         sharedTiles.push_back(std::make_shared<StoneTiles>(i));
     }
     unordered_map<Colors, unsigned int> ClanCardsByColor = Rules::getInstance()->getClanCardsByColor();
-    for (const auto& [color, count] : ClanCardsByColor) {
+    for (const auto &[color, count]: ClanCardsByColor) {
         for (unsigned int i = 1; i <= count; ++i) {
             RemainingClanCards.addCard(std::move(std::make_unique<ClanCards>(i, color)));
         }
     }
 
     unordered_map<string, unsigned int> TacticalCards = Rules::getInstance()->getTacticalCards();
-    for (const auto& [name, count] : TacticalCards) {
+    for (const auto &[name, count]: TacticalCards) {
         for (unsigned int i = 0; i < count; ++i) {
             RemainingTacticalCards.addCard(TacticalCardsFactory::createTacticalCard(name));
         }
     }
     RemainingClanCards.mixSet();
     RemainingTacticalCards.mixSet();
-
 }
 
 // Récupération de l’instance singleton
@@ -55,22 +55,18 @@ const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getSharedTiles() cons
 }
 
 // Accès aux paquets restants / défausse
- Set& GameBoard::getRemainingClanCards() const {
+Set& GameBoard::getRemainingClanCards() {
     return RemainingClanCards;
 }
 
-const Set& GameBoard::getRemainingTacticalCards() const {
+Set& GameBoard::getRemainingTacticalCards() {
     return RemainingTacticalCards;
 }
 
-const Set& GameBoard::getDiscardedCards() const {
+Set& GameBoard::getDiscardedCards() {
     return DiscardedCards;
 }
 
-
-std::unique_ptr<Cards> GameBoard::drawClanCard() {
-    return nullptr;  //exemple temporaire
-}
 
 
 void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) {
@@ -149,7 +145,7 @@ const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getUnclaimedBorders()
 }
 
 // Déplacer une carte entre deux tuiles pour un joueur
-
+*/
 /*
 void GameBoard::moveCardBetweenBorders(unsigned int fromBorderPos, unsigned int toBorderPos, unsigned int playerId, unsigned int cardIndex) {
     auto fromTile = findTileByPosition(fromBorderPos);
