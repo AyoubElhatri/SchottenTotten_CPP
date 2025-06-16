@@ -128,10 +128,8 @@ int main() {
     cout<< "Nombre de cartes restantes : " << supraset.getSize() << endl;
 
     supraset.printSet();*/
-    GameBoard* board = &GameBoard::getInstance();
-    for (auto i :board->getSharedTiles()) {
-        cout<<i<<endl;
-    }
+    GameLogic::getInstance().startGame();
+
 
 
 

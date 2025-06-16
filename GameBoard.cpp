@@ -3,14 +3,13 @@
 #include <utility> // pour std::move
 #include "Rules/Rules.h"
 #include "TacticalCardsFactory.h"
-// Initialisation du singleton
+#include "Logic/GameLogic.h"
+
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
-// Constructeur privé
+
 GameBoard::GameBoard(): RemainingClanCards(), RemainingTacticalCards(), DiscardedCards() {
-    // Initialisation de 9 tuiles partagée
-    cout << "Initialisation du plateau de jeu avec " << Rules::getInstance()->getNumberOfStoneTiles() << " tuiles." <<
-            endl;
+
     for (int i = 0; i < Rules::getInstance()->getNumberOfStoneTiles(); ++i) {
         sharedTiles.push_back(std::make_shared<StoneTiles>(i));
     }
@@ -100,6 +99,17 @@ int GameBoard::getAlingnedControlledTilesCount(int playerId) const {
         }
     }
     return maxStreak;
+}
+
+void GameBoard::printBoard() {
+    vector<std::shared_ptr<StoneTiles>> tmp = getSharedTiles();
+    for (const auto& tile : tmp) {
+        tile->printStoneTiles();
+    }
+    /*for (const auto& discard : DiscardedCards) {
+        discard ->printSet();
+    }*/
+
 }
 
 

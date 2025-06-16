@@ -4,7 +4,7 @@
 #include <vector>
 #include <tuple>
 
-void Stratege::getEvent(StoneTiles *stoneTiles) {
+/*void Stratege::getEvent(StoneTiles *stoneTiles) {
     GameBoard& gameBoard = GameBoard::getInstance();
     unsigned int currentPlayerId = gameBoard.getCurrentPlayerId();
 
@@ -99,7 +99,7 @@ void Stratege::getEvent(StoneTiles *stoneTiles) {
     } catch (const std::exception& e) {
         std::cout << "Erreur : " << e.what() << std::endl;
     }
-}
+}*/
 
 #include "Stratege.h"
 #include<iostream>

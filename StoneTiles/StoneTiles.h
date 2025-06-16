@@ -45,8 +45,9 @@ public:
 
     Set& getPlayerCards1() { return PlayerCards1; }
     Set& getPlayerCards2() { return PlayerCards2; }
-
-    void addCardToPlayer(unsigned int player_id, const __remove_reference(unique_ptr<Cards> &) & move);
+    Set& getCombatModeCards() { return CombatModeCards; }
+    void printStoneTiles();
+    //void addCardToPlayer(unsigned int player_id, const __remove_reference(unique_ptr<Cards> &) & move);
 };
 
 #endif //STONETILES_H

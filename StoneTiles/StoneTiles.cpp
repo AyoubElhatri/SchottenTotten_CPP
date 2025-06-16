@@ -105,6 +105,16 @@ void StoneTiles::claim() {
     }
 }
 
+void StoneTiles::printStoneTiles() {
+    DisplayManager::getInstance()->output("StoneTiles" + std::to_string(getPosition()) + "\n" );
+    getPlayerCards1().printSet();
+    getPlayerCards2().printSet();
+    getCombatModeCards().printSet();
+}
+
+
+
+
 
 
 
