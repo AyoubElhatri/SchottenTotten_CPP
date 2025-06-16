@@ -103,17 +103,6 @@ void Set::mixSet() {
     std::shuffle(SetOfCards.begin(), SetOfCards.end(), gen);
 }
 
-//Get sum is used to resolve the win conditions when both players play the same combination on the same StoneTile.
-unsigned int Set::getSum() {
-    unsigned int sum=0;
-    for (const auto& card : SetOfCards) {
-        const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
-        if (clanCard) {
-            sum+=clanCard->getNumber();
-        }
-    }
-    return sum;
-}
 
 void Set::printSet() const {
     for (const auto& card : SetOfCards) {

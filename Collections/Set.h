@@ -48,8 +48,6 @@ public:
     void printSet() const;
     unsigned int getTotalValue() const ;
 
-    unsigned int getSum();
-
 };
 
 #endif // SET_H
