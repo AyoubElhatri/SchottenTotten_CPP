@@ -106,6 +106,16 @@ int GameBoard::getAlingnedControlledTilesCount(int playerId) const {
     return maxStreak;
 }
 
+void GameBoard::initializeTiles() {
+    Rules* rules = Rules::getInstance();
+    unsigned int tileCount = rules->getNumberOfStoneTiles();
+
+    sharedTiles.clear();
+    for (unsigned int i = 0; i < tileCount; ++i) {
+        sharedTiles.push_back(std::make_shared<StoneTiles>(i));
+    }
+}
+
 
 /*
 // Ajouter une carte à la défausse
