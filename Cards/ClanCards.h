@@ -26,7 +26,7 @@ public:
     void setNumber(unsigned int numbers) { number = numbers; }
     void setColor(Colors colors) { color = colors; }
     /*std::unique_ptr<Cards> clone() const override { return std::make_unique<ClanCards>(*this); }*/
-       void getEvent(StoneTiles* stoneTiles)override { std::cout << ""; };
+    void getEvent(StoneTiles* stoneTiles)override { return ;};
 };
 
 #endif // CLANCARDS_H
