@@ -48,11 +48,11 @@ std::shared_ptr<StoneTiles> GameBoard::findTileByPosition(unsigned int position)
     }
     return nullptr;
 }
-
+/*
 // Accès aux tuiles partagées
 const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getSharedTiles() const {
     return sharedTiles;
-}
+}*/
 
 // Accès aux paquets restants / défausse
 const Set& GameBoard::getRemainingClanCards() const {
