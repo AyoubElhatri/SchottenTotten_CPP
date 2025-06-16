@@ -37,6 +37,7 @@ public:
     void addCard(unique_ptr<Cards> Card) { SetOfCards.push_back(std::move(Card)); }
 
     void moveCard(string Cardname, Set& IndexSet);
+    void moveCard(unsigned int IndexCard, Set& IndexSet);
 
     unsigned int getIndexOfCard(string CardName) const;
 
