@@ -2,7 +2,7 @@
 // Created by El hatri ayoub on 14/06/2025.
 //
 
-/*#ifndef RECRUITER_H
+#ifndef RECRUITER_H
 #define RECRUITER_H
 #include <iostream>
 #include <ostream>
@@ -19,4 +19,4 @@ public:
 
 
 
-#endif //RECRUITER_H*/
+#endif //RECRUITER_H

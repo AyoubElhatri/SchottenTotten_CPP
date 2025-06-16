@@ -42,6 +42,8 @@ public:
 
     int getControlledTilesCount(int playerId) const;
     int getAlingnedControlledTilesCount(int playerId) const;
+    void printBoard() ;
+
 };
 
 #endif // GAMEBOARD_H

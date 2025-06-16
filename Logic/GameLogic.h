@@ -25,9 +25,7 @@ class GameLogic {
         GameLogic& operator=(GameLogic&&) = delete;
         ~GameLogic() = default;
         static GameLogic& getInstance();
-
         void addPlayer(std::unique_ptr<Player> player);
-
         void startGame();
         void initializePlayerDecks();
         unsigned int getTurnNumber() const noexcept {return turnNumber;}

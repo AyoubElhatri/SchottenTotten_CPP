@@ -1,4 +1,6 @@
 #include "GameLogic.h"
+
+#include "../DisplayConsole.h"
 #include "../GameBoard.h"
 #include"../Cards/Recruiter.h"
 #include"../DisplayManager.h"
@@ -25,7 +27,12 @@ void GameLogic::initializePlayerDecks() {
 }
 
 void GameLogic::startGame() {
+    DisplayManager::createInstance<DisplayConsole>();
+    DisplayManager::getInstance()->output("******************************** Start Game ********************************\n");
     GameBoard* board = &GameBoard::getInstance();
+    board->printBoard();
+
+
 
 }
 
