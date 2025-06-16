@@ -141,9 +141,8 @@ int main() {
 
     // Initialiser le GameBoard (singleton)
     GameBoard& board = GameBoard::getInstance();
-    board.initializeTiles(); // à créer si elle n'existe pas
 
-    // Créer les deux joueurs
+    board.initializeTiles(); 
     std::unique_ptr<Player> player1 = std::make_unique<Human>(1);
     std::unique_ptr<Player> player2 = std::make_unique<AIEasy>(2);
 
