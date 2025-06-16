@@ -11,8 +11,8 @@ using namespace std;
 
 class Recruiter : public RusesCards {
 public:
-    Recruiter();
-    void getEvent(){ cout << "Recruiter get event" << endl; }
+    Recruiter(){cardName = "Recruiter";};
+    void getEvent();
 };
 
 

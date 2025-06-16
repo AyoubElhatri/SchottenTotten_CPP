@@ -9,5 +9,5 @@ string DisplayConsole::takeInput() {
 
 
 void DisplayConsole::output(string message) {
-    cout << message << endl;
+    cout << message ;
 }
