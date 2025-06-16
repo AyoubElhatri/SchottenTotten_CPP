@@ -55,15 +55,15 @@ const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getSharedTiles() cons
 }
 
 // Accès aux paquets restants / défausse
- const Set& GameBoard::getRemainingClanCards() const  {
+Set& GameBoard::getRemainingClanCards() {
     return RemainingClanCards;
 }
 
-const Set& GameBoard::getRemainingTacticalCards() const {
+Set& GameBoard::getRemainingTacticalCards() {
     return RemainingTacticalCards;
 }
 
-const Set& GameBoard::getDiscardedCards() const {
+Set& GameBoard::getDiscardedCards() {
     return DiscardedCards;
 }
 

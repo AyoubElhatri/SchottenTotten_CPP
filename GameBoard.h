@@ -12,9 +12,9 @@ private:
     mutable std::vector<std::shared_ptr<StoneTiles>> unclaimedBorders;
     static unique_ptr<GameBoard> instance;
     vector<std::shared_ptr<StoneTiles>> sharedTiles;
-    Set& RemainingClanCards;
-    Set& RemainingTacticalCards;
-    Set& DiscardedCards;
+    Set RemainingClanCards;
+    Set RemainingTacticalCards;
+    Set DiscardedCards;
     unsigned int currentPlayerId = 1;
 
     GameBoard();
@@ -27,10 +27,9 @@ public:
     void setCurrentPlayerId(unsigned int playerId) { currentPlayerId = playerId; }
 
     const vector<shared_ptr<StoneTiles>>& getSharedTiles() const;
-     const Set& getRemainingClanCards() const;
-     const Set& getRemainingTacticalCards() const;
-     const Set& getDiscardedCards() const;
-    const Set& getDiscardedCards() {return DiscardedCards;}
+      Set& getRemainingClanCards() ;
+      Set& getRemainingTacticalCards() ;
+      Set& getDiscardedCards() ;
 
     void discardCard(const Cards& card);
 

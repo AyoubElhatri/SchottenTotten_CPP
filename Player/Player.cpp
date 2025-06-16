@@ -5,7 +5,7 @@
 Player::Player(unsigned int playerId, Set&& playerDecks)
     : playerID(playerId), playerDeck(std::move(playerDecks)) {}
 
-/*void Player::drawClanCards(unsigned int count) {
+void Player::drawClanCards(unsigned int count) {
     GameBoard &gameBoard = GameBoard::getInstance();
 
     for (unsigned int i = 0; i < count; i++) {
@@ -24,4 +24,4 @@ void Player::drawTacticalCards(unsigned int count) {
         Set& remainingTacticalCards = gameBoard.getRemainingTacticalCards();
         remainingTacticalCards.moveCard(0, playerDeck);
     }
-}*/
+}
