@@ -1,0 +1,41 @@
+# Ignore CMake build directories
+cmake-build-debug/
+cmake-build-release/
+build/
+Build/
+
+# Ignore CMake-generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+# Ignore Visual Studio/CLion stuff
+*.sln
+*.vcxproj*
+*.idea/
+*.DS_Store
+
+# Ignore compiled object files
+*.o
+*.obj
+*.lo
+*.la
+*.dll
+*.exe
+*.out
+*.so
+*.dylib
+*.a
+*.lib
+*.pch
+
+# Optional: ignore CLion and Xcode specific stuff
+*.iml
+.idea/
+*.xcodeproj
+*.xcworkspace
+
+# Optional: user config
+*.user
