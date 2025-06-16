@@ -34,6 +34,12 @@ void Set::moveCard(string Cardname, Set& IndexSet) {
         IndexSet.addCard(std::move(NewCard));
     }
 }
+void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
+    unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
+    if (NewCard) {
+        IndexSet.addCard(std::move(NewCard));
+    }
+}
 
 
 unsigned int Set::getIndexOfCard(string CardName) const {

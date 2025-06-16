@@ -23,7 +23,7 @@ public:
 
     unsigned int getPosition() const { return Position; }
     unsigned int getClaimedBy() { return claimedBy; }
-    void setClaimedBy(unsigned int claimedBy){this->claimedBy = claimedBy;}
+    void setClaimedBy(unsigned int claimedByParam){claimedBy = claimedByParam;}
     bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
     CombinationType getComboType() const { return comboType; }
     void setComboType(CombinationType type) { comboType = type; }
