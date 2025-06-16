@@ -96,7 +96,7 @@ int main() {
     }
 */
 
-    Set remainingClanCards;
+   /* Set remainingClanCards;
     Set DiscardedCards;
     unique_ptr<ClanCards> cardssss=std::make_unique<ClanCards>(26, Colors::Red);
 
@@ -127,7 +127,33 @@ int main() {
 
     cout<< "Nombre de cartes restantes : " << supraset.getSize() << endl;
 
-    supraset.printSet();
+    supraset.printSet();*/
+    Rules::Builder builder;
+    builder.setNumberOfStoneTiles(9)
+           .setNumberOfAlignedTilesToWin(3)
+           .setNumberOfUnalignedTilesToWin(5)
+           .setNumberMaxOfCardsPerTiles(3)
+           .addClanCardColor(Colors::Red, 9)
+           .addClanCardColor(Colors::Blue, 9)
+           .addClanCardColor(Colors::Green, 9);
+
+    Rules::buildInstance(builder);
+
+    // Initialiser le GameBoard (singleton)
+    GameBoard& board = GameBoard::getInstance();
+    board.initializeTiles(); // à créer si elle n'existe pas
+
+    // Créer les deux joueurs
+    std::unique_ptr<Player> player1 = std::make_unique<Human>(1);
+    std::unique_ptr<Player> player2 = std::make_unique<AIEasy>(2);
+
+    // Ajouter les joueurs à la logique
+    GameLogic& game = GameLogic::getInstance();
+    game.addPlayer(std::move(player1));
+    game.addPlayer(std::move(player2));
+
+    // Lancer la partie
+    game.startGame();
 
 
 }

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class AI {
+class AI : public Player {
 public:
     virtual ~AI() = default;
     virtual void playTurn(vector<unique_ptr<Cards>>& hand, GameBoard& gameBoard) = 0;
