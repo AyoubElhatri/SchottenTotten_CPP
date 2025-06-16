@@ -29,7 +29,6 @@ public:
     void setComboType(CombinationType type) { comboType = type; }
     void claim();
 
-    bool canPlaceCard() const;
     /*StoneTiles(const StoneTiles& other)
     : Position(other.Position),
       NbOfPlayableCards(other.NbOfPlayableCards),
