@@ -32,7 +32,7 @@ public:
     // bool claimStoneTiles(unsigned int position);
 
     void drawClanCards(unsigned int count = 1);
-    //void drawTacticalCards(unsigned int count = 1);  // définir si utilisée
+    void drawTacticalCards(unsigned int count = 1);  // définir si utilisée
 
     void incrementTacticalCardCounter() { tacticalCardsCounter++; }
 };

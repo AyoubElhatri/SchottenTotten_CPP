@@ -27,9 +27,9 @@ public:
     void setCurrentPlayerId(unsigned int playerId) { currentPlayerId = playerId; }
 
     const vector<shared_ptr<StoneTiles>>& getSharedTiles() const;
-    const Set& getRemainingClanCards() const;
-    const Set& getRemainingTacticalCards() const;
-    const Set& getDiscardedCards() const;
+     Set& getRemainingClanCards() const;
+     Set& getRemainingTacticalCards() const;
+     Set& getDiscardedCards() const;
     Set& getDiscardedCards() {return DiscardedCards;}
 
     void discardCard(const Cards& card);
@@ -45,8 +45,6 @@ public:
 
     int getControlledTilesCount(int playerId) const;
     int getAlingnedControlledTilesCount(int playerId) const;
-
-    void initializeTiles();
 };
 
 #endif // GAMEBOARD_H

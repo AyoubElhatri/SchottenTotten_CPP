@@ -48,14 +48,14 @@ std::shared_ptr<StoneTiles> GameBoard::findTileByPosition(unsigned int position)
     }
     return nullptr;
 }
-/*
+
 // Accès aux tuiles partagées
 const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getSharedTiles() const {
     return sharedTiles;
-}*/
+}
 
 // Accès aux paquets restants / défausse
-const Set& GameBoard::getRemainingClanCards() const {
+ Set& GameBoard::getRemainingClanCards() const {
     return RemainingClanCards;
 }
 
@@ -104,16 +104,6 @@ int GameBoard::getAlingnedControlledTilesCount(int playerId) const {
         }
     }
     return maxStreak;
-}
-
-void GameBoard::initializeTiles() {
-    Rules* rules = Rules::getInstance();
-    unsigned int tileCount = rules->getNumberOfStoneTiles();
-
-    sharedTiles.clear();
-    for (unsigned int i = 0; i < tileCount; ++i) {
-        sharedTiles.push_back(std::make_shared<StoneTiles>(i));
-    }
 }
 
 

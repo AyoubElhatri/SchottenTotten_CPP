@@ -9,13 +9,19 @@ void Player::drawClanCards(unsigned int count) {
     GameBoard &gameBoard = GameBoard::getInstance();
 
     for (unsigned int i = 0; i < count; i++) {
-
-
-        }
+        Set& remainingClanCards = gameBoard.getRemainingClanCards();
+        remainingClanCards.moveCard(0, playerDeck);
     }
 
+}
 
 
-/*void Player::drawTacticalCards(unsigned int count) {
-    // À implémenter si tu veux gérer les cartes tactiques
-}*/
+
+void Player::drawTacticalCards(unsigned int count) {
+    GameBoard &gameBoard = GameBoard::getInstance();
+
+    for (unsigned int i = 0; i < count; i++) {
+        Set& remainingTacticalCards = gameBoard.getRemainingTacticalCards();
+        remainingTacticalCards.moveCard(0, playerDeck);
+    }
+}
