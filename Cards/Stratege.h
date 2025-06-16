@@ -8,7 +8,7 @@
 class Stratege : public RusesCards{
     public:
         Stratege(){cardName= "Stratege";};
-    void getEvent(StoneTiles* stoneTiles){};
+    void getEvent(StoneTiles* stoneTiles){ cout <<"Bahii"<<endl;};
 };
 
 

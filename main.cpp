@@ -96,7 +96,7 @@ int main() {
     }
 */
 
-    Set remainingClanCards;
+    /*Set remainingClanCards;
     Set DiscardedCards;
     unique_ptr<ClanCards> cardssss=std::make_unique<ClanCards>(26, Colors::Red);
 
@@ -127,7 +127,11 @@ int main() {
 
     cout<< "Nombre de cartes restantes : " << supraset.getSize() << endl;
 
-    supraset.printSet();
+    supraset.printSet();*/
+    GameBoard* board = &GameBoard::getInstance();
+    for (auto i :board->getSharedTiles()) {
+        cout<<i<<endl;
+    }
 
 
 

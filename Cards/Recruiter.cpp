@@ -1,4 +1,4 @@
-#include "Recruiter.h"
+/*#include "Recruiter.h"
 #include <iostream>
 
 #include "../GameBoard.h"
@@ -17,8 +17,7 @@ void Recruiter::getEvent() {
         DisplayManager::getInstance()->output("RemainingClanCards : \n");
         supraset2.printSet();
         if (supraset1.getSize() != 0) {
-            if (
-            string message = "How many Tactical cards do you want ? (Number between 0 -")";
+            if  (string message = "How many Tactical cards do you want ? (Number between 0 -")";
             DisplayManager::getInstance()->output(message);
 
         }
@@ -30,6 +29,6 @@ void Recruiter::getEvent() {
 
 
 
-}
+}*/
 
 

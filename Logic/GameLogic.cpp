@@ -1,4 +1,8 @@
 #include "GameLogic.h"
+#include "../GameBoard.h"
+#include"../Cards/Recruiter.h"
+#include"../DisplayManager.h"
+
 
 std::unique_ptr<GameLogic> GameLogic::instance = nullptr;
 
@@ -21,19 +25,8 @@ void GameLogic::initializePlayerDecks() {
 }
 
 void GameLogic::startGame() {
-    if (players.size() != 2) {
-        cerr << "Error! You must provide two players." << endl;
-        return;
-    }
-    cout << "**********************************  Starting game  *********************************** " << endl;
-    initializePlayerDecks();
-    turnNumber = 0;
-    while (true) {
-        Player* currentPlayer = players[turnNumber % 2].get();
-        cout<<"" << endl;
-    }
+    GameBoard* board = &GameBoard::getInstance();
 
-    cout << "**********************************  End Game  ********************************** " << endl;
 }
 
 bool GameLogic::checkWinner() const {

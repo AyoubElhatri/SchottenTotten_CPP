@@ -25,7 +25,6 @@ public:
     static GameBoard& getInstance();
     unsigned int getCurrentPlayerId() const {return currentPlayerId;}
     void setCurrentPlayerId(unsigned int playerId) { currentPlayerId = playerId; }
-
     const vector<shared_ptr<StoneTiles>>& getSharedTiles() const;
       Set& getRemainingClanCards() ;
       Set& getRemainingTacticalCards() ;
