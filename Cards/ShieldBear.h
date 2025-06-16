@@ -7,7 +7,7 @@ class StoneTiles;
 class ShieldBear : public EliteTroopsCards {
     public:
     ShieldBear(){TacticalCards::cardName= "Shield Bear";};
-    void getEvent(StoneTiles* stoneTiles){};
+    void getEvent(StoneTiles* stoneTiles);
 };
 
 
