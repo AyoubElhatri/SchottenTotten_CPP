@@ -26,7 +26,6 @@ StoneTiles/StoneTiles.h
         Display.h
         DisplayConsole.cpp
         DisplayConsole.h
-        TacticalCardsFactory.cpp
         TacticalCardsFactory.h
         Cards/Stratege.cpp
         Cards/Stratege.h
@@ -35,7 +34,6 @@ StoneTiles/StoneTiles.h
         Player/Human.h
         Player/Human.cpp
         Player/AI.h
-        Player/AI.cpp
         Player/AIEasy.cpp
         Player/AIEasy.h
         Cards/Joker.cpp

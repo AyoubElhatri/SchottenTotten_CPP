@@ -2,8 +2,8 @@
 #define COMBINATIONTYPE_H
 
 enum CombinationType{
-    ColorRun = 5,
-    nOfAKind = 4,
+    ColorRun = 5,//A run with the cards having the same color.
+    nOfAKind = 4,//
     Color = 3,
     Run = 2,
     Sum = 1,
