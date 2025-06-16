@@ -7,7 +7,7 @@ class RusesCards : public TacticalCards {
     public:
     RusesCards() {
     }
-    void getEvent(StoneTiles* stoneTiles){};
+    void getEvent(StoneTiles* stoneTiles)=0;
 
 };
 

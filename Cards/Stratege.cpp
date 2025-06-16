@@ -1,10 +1,10 @@
-/*#include "Stratege.h"
+#include "Stratege.h"
 #include "../GameBoard.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
 
-void Stratege::getEvent() {
+void Stratege::getEvent(StoneTiles *stoneTiles) {
     GameBoard& gameBoard = GameBoard::getInstance();
     unsigned int currentPlayerId = gameBoard.getCurrentPlayerId();
 
@@ -16,11 +16,6 @@ void Stratege::getEvent() {
         if (!tile->isAlreadyClaimed()) {
             unclaimedBorders.push_back(tile);
         }
-    }
-
-    if (unclaimedBorders.empty()) {
-        std::cout << "Aucune borne non revendiquée disponible." << std::endl;
-        return;
     }
 
     // Lister toutes les cartes du joueur courant sur les bornes non revendiquées
@@ -104,7 +99,7 @@ void Stratege::getEvent() {
     } catch (const std::exception& e) {
         std::cout << "Erreur : " << e.what() << std::endl;
     }
-}*/
+}
 
 #include "Stratege.h"
 #include<iostream>
