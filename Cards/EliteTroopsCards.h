@@ -7,9 +7,6 @@
 using namespace std;
 class EliteTroopsCards : public ClanCards, public TacticalCards{
 
-
-
-
 };
 
 
