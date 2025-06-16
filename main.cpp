@@ -96,7 +96,7 @@ int main() {
     }
 */
 
-   /* Set remainingClanCards;
+    Set remainingClanCards;
     Set DiscardedCards;
     unique_ptr<ClanCards> cardssss=std::make_unique<ClanCards>(26, Colors::Red);
 
@@ -127,17 +127,8 @@ int main() {
 
     cout<< "Nombre de cartes restantes : " << supraset.getSize() << endl;
 
-    supraset.printSet();*/
-    Rules::Builder builder;
-    builder.setNumberOfStoneTiles(9)
-           .setNumberOfAlignedTilesToWin(3)
-           .setNumberOfUnalignedTilesToWin(5)
-           .setNumberMaxOfCardsPerTiles(3)
-           .addClanCardColor(Colors::Red, 9)
-           .addClanCardColor(Colors::Blue, 9)
-           .addClanCardColor(Colors::Green, 9);
+    supraset.printSet();
 
-    Rules::buildInstance(builder);
 
 
 
