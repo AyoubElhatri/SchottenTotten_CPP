@@ -6,11 +6,11 @@
 #define COLORS_H
 
 enum class Colors {
-    Yellow,
-    Red,
-    Blue,
-    Green,
-    Cyan,
+    Yellow=0,
+    Red=1,
+    Blue=2,
+    Green=3,
+    Cyan=4,
 
 };
 
