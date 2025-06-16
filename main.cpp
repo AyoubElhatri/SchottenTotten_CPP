@@ -139,20 +139,6 @@ int main() {
 
     Rules::buildInstance(builder);
 
-    // Initialiser le GameBoard (singleton)
-    GameBoard& board = GameBoard::getInstance();
-
-    board.initializeTiles(); 
-    std::unique_ptr<Player> player1 = std::make_unique<Human>(1);
-    std::unique_ptr<Player> player2 = std::make_unique<AIEasy>(2);
-
-    // Ajouter les joueurs à la logique
-    GameLogic& game = GameLogic::getInstance();
-    game.addPlayer(std::move(player1));
-    game.addPlayer(std::move(player2));
-
-    // Lancer la partie
-    game.startGame();
 
 
 }

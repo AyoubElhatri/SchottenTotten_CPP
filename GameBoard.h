@@ -12,9 +12,9 @@ private:
     mutable std::vector<std::shared_ptr<StoneTiles>> unclaimedBorders;
     static unique_ptr<GameBoard> instance;
     vector<std::shared_ptr<StoneTiles>> sharedTiles;
-    Set RemainingClanCards;
-    Set RemainingTacticalCards;
-    Set DiscardedCards;
+    Set& RemainingClanCards;
+    Set& RemainingTacticalCards;
+    Set& DiscardedCards;
     unsigned int currentPlayerId = 1;
 
     GameBoard();
@@ -27,15 +27,14 @@ public:
     void setCurrentPlayerId(unsigned int playerId) { currentPlayerId = playerId; }
 
     const vector<shared_ptr<StoneTiles>>& getSharedTiles() const;
-     Set& getRemainingClanCards() const;
-     Set& getRemainingTacticalCards() const;
-     Set& getDiscardedCards() const;
-    Set& getDiscardedCards() {return DiscardedCards;}
+     const Set& getRemainingClanCards() const;
+     const Set& getRemainingTacticalCards() const;
+     const Set& getDiscardedCards() const;
+    const Set& getDiscardedCards() {return DiscardedCards;}
 
     void discardCard(const Cards& card);
 
     void placeCardOnTile(int tileIndex, const Cards &card, int playerId);
-    std::unique_ptr<Cards> drawClanCard();
     int getBoardSize() const{return static_cast<int>(sharedTiles.size());}
     bool isTileFree(int index) const;
 
