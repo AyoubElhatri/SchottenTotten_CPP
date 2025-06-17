@@ -12,7 +12,7 @@ class Player {
 private:
     unsigned int playerID;
     Set playerDeck;
-    vector<shared_ptr<StoneTiles>> stoneTiles;
+    //vector<shared_ptr<StoneTiles>> stoneTiles;
     unsigned int tacticalCardsCounter = 0;
 
 public:
@@ -20,7 +20,7 @@ public:
     virtual ~Player() = default;
     unsigned int getPlayerID() const { return playerID; }
     Set& getPlayerDeck() { return playerDeck; }
-    const vector<shared_ptr<StoneTiles>>& getStoneTiles() const { return stoneTiles; }
+    //const vector<shared_ptr<StoneTiles>>& getStoneTiles() const { return stoneTiles; }
     unsigned int getTacticalCardsCounter() const { return tacticalCardsCounter; }
 
     virtual void playCard(unique_ptr<Cards>) = 0;

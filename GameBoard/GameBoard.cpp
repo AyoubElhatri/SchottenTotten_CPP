@@ -77,7 +77,7 @@ void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) 
 }
 // a enlever
 bool GameBoard::isTileFree(int tileIndex) const {
-    return true; // À adapter
+    return !getSharedTiles()[tileIndex]->isAlreadyClaimed();
 }
 
 int GameBoard::getControlledTilesCount(int playerId) const {
