@@ -37,13 +37,6 @@ class GameLogic {
         }
 
 
-
-    void distributeClanCardsToPlayers() {
-          //
-
-        }
-
-
         bool checkWinner() const  ;
 
 
