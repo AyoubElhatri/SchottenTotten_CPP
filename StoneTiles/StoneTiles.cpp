@@ -11,12 +11,12 @@ void StoneTiles::addCardToPlayer(unsigned int playerId, const string& cardName, 
         if (PlayerCards1.getSize() >= nbrMaxOnStoneTile) {
             throw std::out_of_range("Player 1 already has the maximum number of cards on this tile.");
         }
-        moveCardBetweenSets(cardName, provenanceOfTheCard, PlayerCards1);
+        provenanceOfTheCard.moveCard(cardName,PlayerCards1);
     } else if (playerId == 2) {
         if (PlayerCards2.getSize() >= nbrMaxOnStoneTile) {
             throw std::out_of_range("Player 2 already has the maximum number of cards on this tile.");
         }
-        moveCardBetweenSets(cardName, provenanceOfTheCard, PlayerCards2);
+        provenanceOfTheCard.moveCard(cardName,PlayerCards2);
     } else {
         throw std::invalid_argument("Invalid player ID");
     }

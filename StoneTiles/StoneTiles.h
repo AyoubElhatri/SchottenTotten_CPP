@@ -42,11 +42,6 @@ public:
     Set& getCombatModeCards() { return CombatModeCards; }
     void printStoneTiles();
 
-    void moveCardBetweenSets(const std::string& cardName, Set& fromSet, Set& toSet) {
-        unsigned int index = fromSet.getIndexOfCard(cardName);
-        auto card = fromSet.getCardbyIndex(index);
-        toSet.addCard(std::move(card));
-    }
 
 };
 
