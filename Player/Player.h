@@ -25,7 +25,7 @@ public:
 
     virtual void playCard(unique_ptr<Cards>) = 0;
     void drawClanCards(unsigned int count = 1);
-    void drawTacticalCards(unsigned int count = 1);  // définir si utilisée
+    void drawTacticalCards(unsigned int count = 1);
     void incrementTacticalCardCounter() { tacticalCardsCounter++; }
 
 };

@@ -125,7 +125,7 @@ void GameLogic::runGameLoop() {
         auto& tile = board.getSharedTiles()[tileIndex];
 
         try {
-            tile->addCardToPlayer(currentPlayer->getPlayerID(), cardName, playerDeck);
+            tile->addCardOnTilesOfPlayer(currentPlayer->getPlayerID(), cardName, playerDeck);
         } catch (const std::exception& e) {
             DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
             continue;

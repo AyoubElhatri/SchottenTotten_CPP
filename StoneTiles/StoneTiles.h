@@ -36,7 +36,7 @@ public:
     void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
     void setPosition(unsigned int Pos) { Position = Pos; }
 
-    void addCardToPlayer(unsigned int playerId,  const string& Cardname, Set& provenanceOfTheCard);
+    void addCardOnTilesOfPlayer(unsigned int playerId,  const string& Cardname, Set& provenanceOfTheCard);
     std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
     Set& getCombatModeCards() { return CombatModeCards; }

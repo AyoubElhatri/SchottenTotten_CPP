@@ -4,7 +4,7 @@
 #include "../Logic/GameLogic.h"
 
 
-void StoneTiles::addCardToPlayer(unsigned int playerId, const string& cardName, Set& provenanceOfTheCard) {
+void StoneTiles::addCardOnTilesOfPlayer(unsigned int playerId, const string& cardName, Set& provenanceOfTheCard) {
     unsigned int nbrMaxOnStoneTile = getNbOfPlayableCards();
 
     // Vérifier si le joueur a déjà le nombre maximum de cartes
