@@ -15,7 +15,7 @@ void AIEasy::playTurn(vector<unique_ptr<Cards>>& playerCards, GameBoard& gameBoa
     unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
 
     // placeCardOnTile retourne void, donc on ne stocke pas de booléen ici
-    gameBoard.placeCardOnTile(tileIndex, *selectedCard, m_playerID);
+    gameBoard.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, m_playerID);
 
     // On supprime la carte du vecteur car elle est jouée
     playerCards.erase(playerCards.begin() + cardIndex);

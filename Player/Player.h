@@ -22,7 +22,7 @@ public:
     Set& getPlayerDeck() { return playerDeck; }
     //const vector<shared_ptr<StoneTiles>>& getStoneTiles() const { return stoneTiles; }
     unsigned int getTacticalCardsCounter() const { return tacticalCardsCounter; }
-
+    virtual void playTurn() =0;
     virtual void playCard(unique_ptr<Cards>) = 0;
     void drawClanCards(unsigned int count = 1);
     void drawTacticalCards(unsigned int count = 1);

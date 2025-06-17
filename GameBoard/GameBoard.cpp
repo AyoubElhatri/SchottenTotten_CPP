@@ -72,8 +72,18 @@ Set& GameBoard::getDiscardedCards() {
 
 
 // a enlever
-void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) {
-    //temporaire
+void GameBoard::placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards& card, int playerId) {
+    if (tileIndex < 0 || tileIndex >= getBoardSize()) {
+        throw std::out_of_range("Index de tuile invalide");
+    }
+
+    auto& tile = getSharedTiles()[tileIndex];
+    auto& playerDeck = GameLogic::getInstance().getPlayerById(playerId)->getPlayerDeck();
+
+    // Ajout de la carte sur la tuile
+    tile->addCardOnTilesOfPlayer(playerId, card.getName(), playerDeck);
+
+    string message="[DEBUG] Joueur " + to_string(playerId) + " joue la carte : " + card.getName() + " sur la tuile " + to_string(tileIndex);
 }
 // a enlever
 bool GameBoard::isTileFree(int tileIndex) const {

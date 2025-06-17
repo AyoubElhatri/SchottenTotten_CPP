@@ -33,7 +33,7 @@ public:
 
     void discardCard(const Cards& card);
 
-    void placeCardOnTile(int tileIndex, const Cards &card, int playerId);
+    void placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards &card, int playerId);
     int getBoardSize() const{return static_cast<int>(sharedTiles.size());}
     bool isTileFree(int index) const;
 

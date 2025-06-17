@@ -38,6 +38,9 @@ class GameLogic {
         Player* getCurrentPlayer() noexcept {
             return players[getCurrentPlayerIndex()].get();
         }
+        Player* getPlayerById(unsigned int playerId) noexcept {
+            return players[playerId-1].get();
+        }
 
 
         bool checkWinner() const  ;

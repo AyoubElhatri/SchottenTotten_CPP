@@ -40,7 +40,7 @@ void Human::playCard(std::unique_ptr<Cards> unused) {
     }
 
     try {
-        gameBoard.placeCardOnTile(tileIndex, *selectedCard, getPlayerID());
+        gameBoard.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
         cout << "Card placed on tile " << tileIndex << "." << endl;
     } catch (const std::exception& e) {
         cout << "Error placing card: " << e.what() << endl;
