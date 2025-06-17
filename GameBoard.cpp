@@ -4,6 +4,11 @@
 #include "Rules/Rules.h"
 #include "TacticalCardsFactory.h"
 #include "Logic/GameLogic.h"
+#include "DisplayManager.h"
+#include <regex>
+#include <iomanip>
+#include <string>
+#include <algorithm>
 
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
@@ -118,75 +123,104 @@ string GameBoard::formatCard(const Cards *card) {
     return colorCode + "[" + to_string(clanCard->getNumber()) + "]" + RESET;
 }
 
+#include <iomanip>  // Pour std::setw
+
+
+
 void GameBoard::printBoard() {
-    const std::string blue = "\033[1;34m";   // bleu clair gras
+    const std::string blue = "\033[1;34m";
+    const std::string red = "\033[1;31m";
     const std::string reset = "\033[0m";
 
     DisplayManager::getInstance()->output(
-    "   ▄████████  ▄████████    ▄█    █▄     ▄██████▄      ███         ███        ▄████████ ███▄▄▄▄            ███      ▄██████▄      ███         ███        ▄████████ ███▄▄▄▄   \n"
-    "  ███    ███ ███    ███   ███    ███   ███    ███ ▀█████████▄ ▀█████████▄   ███    ███ ███▀▀▀██▄      ▀█████████▄ ███    ███ ▀█████████▄ ▀█████████▄   ███    ███ ███▀▀▀██▄ \n"
-    "  ███    █▀  ███    █▀    ███    ███   ███    ███    ▀███▀▀██    ▀███▀▀██   ███    █▀  ███   ███         ▀███▀▀██ ███    ███    ▀███▀▀██    ▀███▀▀██   ███    █▀  ███   ███ \n"
-    "  ███        ███         ▄███▄▄▄▄███▄▄ ███    ███     ███   ▀     ███   ▀  ▄███▄▄▄     ███   ███          ███   ▀ ███    ███     ███   ▀     ███   ▀  ▄███▄▄▄     ███   ███ \n"
-    "▀███████████ ███        ▀▀███▀▀▀▀███▀  ███    ███     ███         ███     ▀▀███▀▀▀     ███   ███          ███     ███    ███     ███         ███     ▀▀███▀▀▀     ███   ███ \n"
-    "         ███ ███    █▄    ███    ███   ███    ███     ███         ███       ███    █▄  ███   ███          ███     ███    ███     ███         ███       ███    █▄  ███   ███ \n"
-    "   ▄█    ███ ███    ███   ███    ███   ███    ███     ███         ███       ███    ███ ███   ███          ███     ███    ███     ███         ███       ███    ███ ███   ███ \n"
-    " ▄████████▀  ████████▀    ███    █▀     ▀██████▀     ▄████▀      ▄████▀     ██████████  ▀█   █▀          ▄████▀    ▀██████▀     ▄████▀      ▄████▀     ██████████  ▀█   █▀  \n"
-    "\n"
+        "   ▄████████  ▄████████    ▄█    █▄     ▄██████▄      ███         ███        ▄████████ ███▄▄▄▄            ███      ▄██████▄      ███         ███        ▄████████ ███▄▄▄▄   \n"
+        "  ███    ███ ███    ███   ███    ███   ███    ███ ▀█████████▄ ▀█████████▄   ███    ███ ███▀▀▀██▄      ▀█████████▄ ███    ███ ▀█████████▄ ▀█████████▄   ███    ███ ███▀▀▀██▄ \n"
+        "  ███    █▀  ███    █▀    ███    ███   ███    ███    ▀███▀▀██    ▀███▀▀██   ███    █▀  ███   ███         ▀███▀▀██ ███    ███    ▀███▀▀██    ▀███▀▀██   ███    █▀  ███   ███ \n"
+        "  ███        ███         ▄███▄▄▄▄███▄▄ ███    ███     ███   ▀     ███   ▀  ▄███▄▄▄     ███   ███          ███   ▀ ███    ███     ███   ▀     ███   ▀  ▄███▄▄▄     ███   ███ \n"
+        "▀███████████ ███        ▀▀███▀▀▀▀███▀  ███    ███     ███         ███     ▀▀███▀▀▀     ███   ███          ███     ███    ███     ███         ███     ▀▀███▀▀▀     ███   ███ \n"
+        "         ███ ███    █▄    ███    ███   ███    ███     ███         ███       ███    █▄  ███   ███          ███     ███    ███     ███         ███       ███    █▄  ███   ███ \n"
+        "   ▄█    ███ ███    ███   ███    ███   ███    ███     ███         ███       ███    ███ ███   ███          ███     ███    ███     ███         ███       ███    ███ ███   ███ \n"
+        " ▄████████▀  ████████▀    ███    █▀     ▀██████▀     ▄████▀      ▄████▀     ██████████  ▀█   █▀          ▄████▀    ▀██████▀     ▄████▀      ▄████▀     ██████████  ▀█   █▀  \n"
+        "\n"
     );
 
-
     const int tileCount = static_cast<int>(sharedTiles.size());
+    const int cardWidth = 7;
+    const std::string spacer = "   ";
 
-    // Trouver la hauteur max de cartes pour chaque joueur
-    int maxCardsP1 = 0, maxCardsP2 = 0;
+    auto stripAnsi = [](const std::string& s) {
+        static const std::regex ansi_re("\033\\[[0-9;]*m");
+        return std::regex_replace(s, ansi_re, "");
+    };
+
+    auto center = [&](const std::string& s) {
+        std::string clean = stripAnsi(s);
+        int padTotal = std::max(0, cardWidth - static_cast<int>(clean.size()));
+        int padLeft = padTotal / 2;
+        int padRight = padTotal - padLeft;
+        return std::string(padLeft, ' ') + s + std::string(padRight, ' ');
+    };
+
+    // --- Cartes du joueur 1 ---
+    int maxCardsP1 = 0;
     for (const auto& tile : sharedTiles) {
         maxCardsP1 = std::max(maxCardsP1, static_cast<int>(tile->getPlayerCards1().getRawCards().size()));
+    }
+    for (int row = 0; row < maxCardsP1; ++row) {
+        std::string line;
+        for (int i = 0; i < tileCount; ++i) {
+            const auto& cards = sharedTiles[i]->getPlayerCards1().getRawCards();
+            if (row < static_cast<int>(cards.size())) {
+                line += center(formatCard(cards[row]));
+            } else {
+                line += std::string(cardWidth, ' ');
+            }
+            if (i != tileCount - 1) line += spacer;
+        }
+        DisplayManager::getInstance()->output(line + "\n");
+    }
+
+    // --- Affichage ligne de tuiles ---
+    std::string tileLine;
+    for (int i = 0; i < tileCount; ++i) {
+        std::string tileStr;
+        if (sharedTiles[i]->isAlreadyClaimed()) {
+            tileStr = red + "[XXXX]" + reset;
+        } else {
+            tileStr = "-------";
+        }
+        tileLine += center(tileStr);
+        if (i != tileCount - 1) tileLine += spacer;
+    }
+    DisplayManager::getInstance()->output(tileLine + "\n");
+
+    // --- Cartes du joueur 2 ---
+    int maxCardsP2 = 0;
+    for (const auto& tile : sharedTiles) {
         maxCardsP2 = std::max(maxCardsP2, static_cast<int>(tile->getPlayerCards2().getRawCards().size()));
     }
-
-    // Afficher les cartes du joueur 1 (en haut), ligne par ligne
-    for (int row = 0; row < maxCardsP1; ++row) {
-        for (const auto& tile : sharedTiles) {
-            const auto& cards = tile->getPlayerCards1().getRawCards();
-            if (row < static_cast<int>(cards.size())) {
-                DisplayManager::getInstance()->output(formatCard(cards[row]) + "\t");
-            } else {
-                DisplayManager::getInstance()->output("   \t"); // Espace vide si pas de carte
-            }
-        }
-        DisplayManager::getInstance()->output("\n");
-    }
-
-    // Afficher la séparation (ligne de tuiles)
-    for (int i = 0; i < tileCount; ++i) {
-        DisplayManager::getInstance()->output("  -------  ");
-    }
-    DisplayManager::getInstance()->output("\n");
-
-    // Afficher les cartes du joueur 2 (en bas), ligne par ligne
     for (int row = 0; row < maxCardsP2; ++row) {
-        for (const auto& tile : sharedTiles) {
-            const auto& cards = tile->getPlayerCards2().getRawCards();
+        std::string line;
+        for (int i = 0; i < tileCount; ++i) {
+            const auto& cards = sharedTiles[i]->getPlayerCards2().getRawCards();
             if (row < static_cast<int>(cards.size())) {
-                DisplayManager::getInstance()->output(formatCard(cards[row]) + "\t");
+                line += center(formatCard(cards[row]));
             } else {
-                DisplayManager::getInstance()->output("   \t"); // Espace vide si pas de carte
+                line += std::string(cardWidth, ' ');
             }
+            if (i != tileCount - 1) line += spacer;
         }
-        DisplayManager::getInstance()->output("\n");
+        DisplayManager::getInstance()->output(line + "\n");
     }
 
-    DisplayManager::getInstance()->output("\n");
+    // --- Index des tuiles ---
+    std::string indexLine;
+    for (int i = 0; i < tileCount; ++i) {
+        indexLine += center(std::to_string(i));
+        if (i != tileCount - 1) indexLine += spacer;
+    }
+    DisplayManager::getInstance()->output(indexLine + "\n\n");
 }
-
-
-
-
-
-
-
-
-
 /*
 // Ajouter une carte à la défausse
 void GameBoard::discardCard(unique_ptr<Cards> Card,) {

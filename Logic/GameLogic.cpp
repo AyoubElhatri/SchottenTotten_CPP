@@ -73,6 +73,8 @@ void GameLogic::startGame() {
 void GameLogic::runGameLoop() {
     GameBoard& board = GameBoard::getInstance();
 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Nettoyage buffer au départ
+
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
 
@@ -82,7 +84,9 @@ void GameLogic::runGameLoop() {
 
         int cardIndex = -1;
         int tileIndex = -1;
-        DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " + std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + "): ");
+
+        DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " +
+                                              std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + "): ");
         try {
             cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
         } catch (...) {
@@ -95,7 +99,8 @@ void GameLogic::runGameLoop() {
             continue;
         }
 
-        DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " + std::to_string(board.getBoardSize() - 1) + "): ");
+        DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " +
+                                              std::to_string(board.getBoardSize() - 1) + "): ");
         try {
             tileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
         } catch (...) {
@@ -112,13 +117,35 @@ void GameLogic::runGameLoop() {
         std::cout << "[DEBUG] Joueur " << currentPlayer->getPlayerID() << " joue la carte : " << cardName << std::endl;
 
         Set& playerDeck = currentPlayer->getPlayerDeck();
+        auto& tile = board.getSharedTiles()[tileIndex];
 
-        board.getSharedTiles()[tileIndex]->addCardToPlayer(currentPlayer->getPlayerID(), cardName, playerDeck);
-        // Suppression de la carte se fait dans moveCard
+        try {
+            tile->addCardToPlayer(currentPlayer->getPlayerID(), cardName, playerDeck);
+        } catch (const std::exception& e) {
+            DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
+            continue;
+        }
 
+        // Tenter de revendiquer la tuile si possible
+        if (!tile->isAlreadyClaimed()) {
+            tile->claim();
+        }
+
+        // Piocher une seule carte si possible
         if (board.getRemainingClanCards().getSize() > 0) {
             currentPlayer->drawClanCards(1);
         }
+
+        DisplayManager::getInstance()->output("\nAppuyez sur Entrée pour passer le clavier au joueur suivant...");
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.get();
+
+#ifdef _WIN32
+        system("cls");
+#else
+        system("clear");
+#endif
+
         turnNumber++;
     }
 }
