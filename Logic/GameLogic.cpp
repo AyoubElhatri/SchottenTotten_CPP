@@ -11,8 +11,8 @@
 std::unique_ptr<GameLogic> GameLogic::instance = nullptr;
 
 GameLogic ::GameLogic() {
-    Player* player1 = new Human(1, Set());
-    Player* player2 = new Human(2, Set());
+    Player* player1 = new Human(1);
+    Player* player2 = new Human(2);
 
     addPlayer(std::unique_ptr<Player>(player1));
     addPlayer(std::unique_ptr<Player>(player2));
