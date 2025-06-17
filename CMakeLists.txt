@@ -18,8 +18,7 @@ Cards/MudFight.h
 Cards/BlindMan.h
 Cards/Banshee.h
 Cards/Traitor.h
-Cards/HeadsHunter.h
-Rules/Rules.cpp
+        Rules/Rules.cpp
 Rules/Rules.h
 StoneTiles/StoneTiles.cpp
 StoneTiles/StoneTiles.h
@@ -49,8 +48,7 @@ Cards/tacticalCards.cpp
 Cards/RusesCards.cpp
 Cards/Recruiter.h
 Cards/Recruiter.cpp
-Cards/HeadsHunter.cpp
-Cards/Spy.cpp
+        Cards/Spy.cpp
 Logic/GameLogic.h
 Logic/GameLogic.cpp
         Cards/ShieldBear.cpp

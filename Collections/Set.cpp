@@ -28,19 +28,19 @@ const Cards* Set::getCardAt(unsigned int IndexParam) const {
     return SetOfCards[IndexParam].get();
 }
 
-void Set::moveCard(string Cardname, Set& IndexSet) {
+void Set::moveCard(string Cardname, Set& toSet) {
 
     unsigned int IndexOfCard = getIndexOfCard(Cardname);
 
     unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
     if (NewCard) {
-        IndexSet.addCard(std::move(NewCard));
+        toSet.addCard(std::move(NewCard));
     }
 }
-void Set::moveCard(unsigned int IndexOfCard, Set& IndexSet) {
+void Set::moveCard(unsigned int IndexOfCard, Set& toSet) {
     unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
     if (NewCard) {
-        IndexSet.addCard(std::move(NewCard));
+        toSet.addCard(std::move(NewCard));
     }
 }
 

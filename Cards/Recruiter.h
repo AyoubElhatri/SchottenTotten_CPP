@@ -12,7 +12,7 @@ using namespace std;
 class Recruiter : public RusesCards {
 public:
     Recruiter(){cardName = "Recruiter";};
-    void getEvent();
+    void getEvent(StoneTiles* stoneTiles);
 };
 
 

@@ -16,16 +16,18 @@ private:
     unsigned int tacticalCardsCounter = 0;
 
 public:
-    Player(unsigned int playerId, Set&& playerDecks);
+    Player(unsigned int playerId);
     virtual ~Player() = default;
     unsigned int getPlayerID() const { return playerID; }
     Set& getPlayerDeck() { return playerDeck; }
     const vector<shared_ptr<StoneTiles>>& getStoneTiles() const { return stoneTiles; }
     unsigned int getTacticalCardsCounter() const { return tacticalCardsCounter; }
+
     virtual void playCard(unique_ptr<Cards>) = 0;
     void drawClanCards(unsigned int count = 1);
     void drawTacticalCards(unsigned int count = 1);  // définir si utilisée
     void incrementTacticalCardCounter() { tacticalCardsCounter++; }
+
 };
 
 #endif // PLAYER_H

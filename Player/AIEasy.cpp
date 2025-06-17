@@ -4,8 +4,8 @@
 #include <ctime>    // time()
 
 
-AIEasy::AIEasy(unsigned int playerId, Set&& deck)
-    : AI(playerId, std::move(deck)) {}
+AIEasy::AIEasy(unsigned int playerId)
+    : AI(playerId) {}
 
 void AIEasy::playTurn(vector<unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
     int cardIndex = chooseCardIndex(playerCards);

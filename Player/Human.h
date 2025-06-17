@@ -8,7 +8,7 @@ using namespace std;
 
 class Human : public Player {
 public:
-    Human(unsigned int playerId, Set&& playerDecks): Player(playerId, std::move(playerDecks)) {}
+    Human(unsigned int playerId): Player(playerId) {}
     void playCard(unique_ptr<Cards> card) override;
 };
 

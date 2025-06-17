@@ -4,7 +4,7 @@
 #include "../Cards/Joker.h"
 #include "../Cards/Banshee.h"
 #include "../Cards/BlindMan.h"
-#include "../Cards/HeadsHunter.h"
+#include "../Cards/Recruiter.h"
 #include "../Cards/MudFight.h"
 #include "../Cards/ShieldBear.h"
 #include "../Cards/Spy.h"
@@ -22,7 +22,7 @@ public:
         else if (Card=="Traitor") return make_unique<Traitor>();
         else if (Card=="Spy") return make_unique<Spy>();
         else if (Card=="ShieldBear") return make_unique<ShieldBear>();
-        else if (Card=="HeadsHunter") return make_unique<HeadsHunter>();
+        else if (Card=="Recruiter") return make_unique<Recruiter>();
         else if (Card=="BlindMan") return make_unique<Blindman>();
         else return nullptr;
 };

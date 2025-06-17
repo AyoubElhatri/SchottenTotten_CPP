@@ -63,7 +63,7 @@ void GameLogic::startGame() {
     initializePlayerDecks();
 
     for (unsigned int i = 0; i < players.size(); ++i) {
-        cout<<"Joueur "<<i<< " :"; players[i]->getPlayerDeck().printSet(); cout <<endl;
+        cout<<"Joueur "<<players[i]->getPlayerID()<< " :"; players[i]->getPlayerDeck().printSet(); cout <<endl;
     }
     cout <<"----------------Aprés la distribution --------------------"<<endl;
     GameBoard::getInstance().getRemainingClanCards().printSet();
@@ -163,7 +163,7 @@ bool GameLogic::checkWinner() const {
     for (int playerId = 0; playerId < 2; playerId++) {
         int aligned = board.getAlingnedControlledTilesCount(playerId);
         int total = board.getControlledTilesCount(playerId);
-        if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfStoneTiles()) {
+        if (aligned >= alignedToWin || total >= unalignedToWin) {
             std::cout << " Le joueur " << playerId << " a gagné la partie !" << std::endl;
             return true;
         }
