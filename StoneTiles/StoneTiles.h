@@ -5,21 +5,23 @@
 using namespace std;
 #include "../Rules/Rules.h"
 #include"../Player/Player.h"
+class GameLogic;
 class StoneTiles {
 private:
     unsigned int Position;
     unsigned int NbOfPlayableCards ;
-    Set PlayerCards1;
-    Set PlayerCards2;
+    unordered_map<unsigned int,std::unique_ptr<Set>> PlayerCards;
+
     Set CombatModeCards;
     unsigned int claimedBy;
     bool StoneTileIsClaimed;
     CombinationType comboType;
     Player* firstPlayerToFillTheStoneTile;
-//Rules::getInstance()->getNumberMaxOfCardsPerTiles()
+
 public:
-    StoneTiles(unsigned int Pos)
-        : Position(Pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()), claimedBy(0), StoneTileIsClaimed(false), comboType(CombinationType::None) {}
+    StoneTiles(unsigned int pos)  ;
+
+
 
     unsigned int getPosition() const { return Position; }
     unsigned int getClaimedBy() { return claimedBy; }
@@ -37,9 +39,14 @@ public:
     void addCardToPlayer(unsigned int playerId,  const string& Cardname, Set& provenanceOfTheCard);
     std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
-    Set& getPlayerCards1() { return PlayerCards1; }
-    Set& getPlayerCards2() { return PlayerCards2; }
     Set& getCombatModeCards() { return CombatModeCards; }
+    unordered_map<unsigned int, std::unique_ptr<Set>>& getPlayerCards() { 
+    return PlayerCards; 
+}
+    Set& getPlayerCardsOnTilesByPlayerId(unsigned int playerId) { 
+    return *PlayerCards[playerId]; 
+}
+
     void printStoneTiles();
 
 

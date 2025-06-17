@@ -138,6 +138,7 @@ void GameBoard::printBoard() {
     const std::string red = "\033[1;31m";
     const std::string reset = "\033[0m";
 
+    // Affichage du titre ASCII art
     DisplayManager::getInstance()->output(
         "   ▄████████  ▄████████    ▄█    █▄     ▄██████▄      ███         ███        ▄████████ ███▄▄▄▄            ███      ▄██████▄      ███         ███        ▄████████ ███▄▄▄▄   \n"
         "  ███    ███ ███    ███   ███    ███   ███    ███ ▀█████████▄ ▀█████████▄   ███    ███ ███▀▀▀██▄      ▀█████████▄ ███    ███ ▀█████████▄ ▀█████████▄   ███    ███ ███▀▀▀██▄ \n"
@@ -167,56 +168,45 @@ void GameBoard::printBoard() {
         return std::string(padLeft, ' ') + s + std::string(padRight, ' ');
     };
 
-    // --- Cartes du joueur 1 ---
-    int maxCardsP1 = 0;
-    for (const auto& tile : sharedTiles) {
-        maxCardsP1 = std::max(maxCardsP1, static_cast<int>(tile->getPlayerCards1().getRawCards().size()));
-    }
-    for (int row = 0; row < maxCardsP1; ++row) {
-        std::string line;
-        for (int i = 0; i < tileCount; ++i) {
-            const auto& cards = sharedTiles[i]->getPlayerCards1().getRawCards();
-            if (row < static_cast<int>(cards.size())) {
-                line += center(formatCard(cards[row]));
-            } else {
-                line += std::string(cardWidth, ' ');
-            }
-            if (i != tileCount - 1) line += spacer;
+    // --- Pour chaque joueur (1 et 2) ---
+    for (unsigned int playerId = 1; playerId <= 2; ++playerId) {
+        // Trouver le nombre maximum de cartes pour ce joueur
+        int maxCards = 0;
+        for (const auto& tile : sharedTiles) {
+            const auto& playerCards = tile->getPlayerCardsOnTilesByPlayerId(playerId).getRawCards();
+            maxCards = std::max(maxCards, static_cast<int>(playerCards.size()));
         }
-        DisplayManager::getInstance()->output(line + "\n");
-    }
 
-    // --- Affichage ligne de tuiles ---
-    std::string tileLine;
-    for (int i = 0; i < tileCount; ++i) {
-        std::string tileStr;
-        if (sharedTiles[i]->isAlreadyClaimed()) {
-            tileStr = red + "[XXXX]" + reset;
-        } else {
-            tileStr = "-------";
-        }
-        tileLine += center(tileStr);
-        if (i != tileCount - 1) tileLine += spacer;
-    }
-    DisplayManager::getInstance()->output(tileLine + "\n");
-
-    // --- Cartes du joueur 2 ---
-    int maxCardsP2 = 0;
-    for (const auto& tile : sharedTiles) {
-        maxCardsP2 = std::max(maxCardsP2, static_cast<int>(tile->getPlayerCards2().getRawCards().size()));
-    }
-    for (int row = 0; row < maxCardsP2; ++row) {
-        std::string line;
-        for (int i = 0; i < tileCount; ++i) {
-            const auto& cards = sharedTiles[i]->getPlayerCards2().getRawCards();
-            if (row < static_cast<int>(cards.size())) {
-                line += center(formatCard(cards[row]));
-            } else {
-                line += std::string(cardWidth, ' ');
+        // Afficher les cartes pour ce joueur
+        for (int row = 0; row < maxCards; ++row) {
+            std::string line;
+            for (int i = 0; i < tileCount; ++i) {
+                const auto& cards = sharedTiles[i]->getPlayerCardsOnTilesByPlayerId(playerId).getRawCards();
+                if (row < static_cast<int>(cards.size())) {
+                    line += center(formatCard(cards[row]));
+                } else {
+                    line += std::string(cardWidth, ' ');
+                }
+                if (i != tileCount - 1) line += spacer;
             }
-            if (i != tileCount - 1) line += spacer;
+            DisplayManager::getInstance()->output(line + "\n");
         }
-        DisplayManager::getInstance()->output(line + "\n");
+
+        // Après le joueur 1, afficher la ligne de séparation des tuiles
+        if (playerId == 1) {
+            std::string tileLine;
+            for (int i = 0; i < tileCount; ++i) {
+                std::string tileStr;
+                if (sharedTiles[i]->isAlreadyClaimed()) {
+                    tileStr = red + "[XXXX]" + reset;
+                } else {
+                    tileStr = "-------";
+                }
+                tileLine += center(tileStr);
+                if (i != tileCount - 1) tileLine += spacer;
+            }
+            DisplayManager::getInstance()->output(tileLine + "\n");
+        }
     }
 
     // --- Index des tuiles ---
@@ -270,19 +260,48 @@ const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getUnclaimedBorders()
 
 // Déplacer une carte entre deux tuiles pour un joueur
 */
+
 /*
 void GameBoard::moveCardBetweenBorders(unsigned int fromBorderPos, unsigned int toBorderPos, unsigned int playerId, unsigned int cardIndex) {
+    // Trouver les tuiles source et destination
     auto fromTile = findTileByPosition(fromBorderPos);
     auto toTile = findTileByPosition(toBorderPos);
+    
+    // Vérifier que les tuiles existent
     if (!fromTile || !toTile) {
         throw std::runtime_error("Position de tuile invalide");
     }
 
-    auto card = fromTile->removeCardFromPlayer(playerId, cardIndex);
+    // Vérifier que les tuiles ne sont pas revendiquées
+    if (fromTile->isAlreadyClaimed() || toTile->isAlreadyClaimed()) {
+        throw std::runtime_error("Une des tuiles est déjà revendiquée");
+    }
 
-    if (!card) {
+    // Récupérer la carte à déplacer
+    const Cards* cardToMove = fromTile->getPlayerCards(playerId).getCardAt(cardIndex);
+    if (!cardToMove) {
         throw std::runtime_error("Carte introuvable sur la tuile source");
     }
 
-    toTile->addCardToPlayer(playerId, std::move(card), fromTile->getPlayerCards1()); // Utiliser la provenance de la carte
-}*/
+    // Vérifier si la tuile de destination a de la place
+    if (toTile->getPlayerCards(playerId).getSize() >= 3) {
+        throw std::runtime_error("La tuile de destination est déjà pleine");
+    }
+
+    // Copier les informations de la carte
+    std::string cardName = cardToMove->getName();
+    
+    // Retirer la carte de la tuile source
+    fromTile->removeCardFromPlayer(playerId, cardIndex);
+
+    // Ajouter la carte à la tuile de destination
+    try {
+        Set& playerDeck = getCurrentPlayer()->getPlayerDeck();
+        toTile->addCardToPlayer(playerId, cardName, playerDeck);
+    } catch (const std::exception& e) {
+        // En cas d'erreur, annuler l'opération
+        fromTile->addCardToPlayer(playerId, cardName, getCurrentPlayer()->getPlayerDeck());
+        throw std::runtime_error("Échec du déplacement de la carte : " + std::string(e.what()));
+    }
+}
+*/

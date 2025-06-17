@@ -7,7 +7,7 @@
 #include "../Logic/GameLogic.h"
 using namespace std;
 
-
+/*
 void Stratege::getEvent(StoneTiles* stoneTiles) {
     GameBoard* board = &GameBoard::getInstance();
     Player* currentPlayer = GameLogic::getInstance().getCurrentPlayer();
@@ -45,7 +45,7 @@ void Stratege::getEvent(StoneTiles* stoneTiles) {
         try {
             cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
             // Vérifier si l'index est valide selon votre structure
-            if (cardIndex >= 0 /* && cardIndex < nombreDeCartesDisponibles */) {
+            if (cardIndex >= 0 /* && cardIndex < nombreDeCartesDisponibles */ /*) {
                 break;
             }
             DisplayManager::getInstance()->output("Index invalide. Réessayez :");
@@ -96,3 +96,5 @@ void Stratege::getEvent(StoneTiles* stoneTiles) {
     DisplayManager::getInstance()->output("\nAppuyez sur Entrée pour continuer...");
     std::cin.get();
 }
+
+*/
