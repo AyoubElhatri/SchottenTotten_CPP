@@ -136,7 +136,9 @@ int main() {
            .setNumberOfAlignedTilesToWin(3)
            .setNumberOfUnalignedTilesToWin(5)
            .addClanCardColor(Colors::Red, 9)
-            .addClanCardColor(Colors::Yellow, 9);
+            .addClanCardColor(Colors::Yellow, 9)
+            .addClanCardColor(Colors::Blue, 9)
+            .addClanCardColor(Colors::Magenta,9);
 
     // Appel de buildInstance avec le builder
     Rules::buildInstance(builder);
