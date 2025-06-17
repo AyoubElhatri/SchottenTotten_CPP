@@ -2,7 +2,7 @@
 #ifndef JOKER_H
 #define JOKER_H
 #include "EliteTroopsCards.h"
-#include "../Display.h"
+#include "../Display/Display.h"
 #include "Cards.h"
 class Joker : public EliteTroopsCards {
 public:

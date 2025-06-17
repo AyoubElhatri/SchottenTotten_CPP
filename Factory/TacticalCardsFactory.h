@@ -1,14 +1,14 @@
 
 #ifndef TACTICALCARDSFACTORY_H
 #define TACTICALCARDSFACTORY_H
-#include "Cards/Joker.h"
-#include "Cards/Banshee.h"
-#include "Cards/BlindMan.h"
-#include "Cards/HeadsHunter.h"
-#include "Cards/MudFight.h"
-#include "Cards/ShieldBear.h"
-#include "Cards/Spy.h"
-#include "Cards/Traitor.h"
+#include "../Cards/Joker.h"
+#include "../Cards/Banshee.h"
+#include "../Cards/BlindMan.h"
+#include "../Cards/HeadsHunter.h"
+#include "../Cards/MudFight.h"
+#include "../Cards/ShieldBear.h"
+#include "../Cards/Spy.h"
+#include "../Cards/Traitor.h"
 #include <string>
 
 using namespace std;

@@ -5,7 +5,7 @@
 #include "../Player/Player.h"
 #include "../Logic/GameLogic.h"
 #include"../Rules/Rules.h"
-#include "../GameBoard.h"
+#include "../GameBoard/GameBoard.h"
 
 
 using namespace std;
@@ -34,6 +34,9 @@ class GameLogic {
         void runGameLoop();
         unsigned int getCurrentPlayerIndex() const noexcept {
             return turnNumber % players.size();
+        }
+        Player* getCurrentPlayer() noexcept {
+            return players[getCurrentPlayerIndex()].get();
         }
 
 

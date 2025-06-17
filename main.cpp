@@ -3,10 +3,10 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include "DisplayManager.h"
-#include "Display.h"
-#include "DisplayConsole.h"
-#include "GameBoard.h"
+#include "Display/DisplayManager.h"
+#include "Display/Display.h"
+#include "Display/DisplayConsole.h"
+#include "GameBoard/GameBoard.h"
 #include "Player/Human.h"
 #include "Player/AIEasy.h"
 #include "Cards/ClanCards.h"
@@ -138,7 +138,9 @@ int main() {
            .addClanCardColor(Colors::Red, 9)
             .addClanCardColor(Colors::Yellow, 9)
             .addClanCardColor(Colors::Blue, 9)
-            .addClanCardColor(Colors::Magenta,9);
+            .addClanCardColor(Colors::Magenta,9)
+           .addTacticalCard("Spy", 2)
+           .addTacticalCard("Joker", 2);
 
     // Appel de buildInstance avec le builder
     Rules::buildInstance(builder);

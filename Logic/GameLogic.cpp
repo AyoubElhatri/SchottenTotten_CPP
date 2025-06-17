@@ -1,9 +1,9 @@
 #include "GameLogic.h"
 
-#include "../DisplayConsole.h"
-#include "../GameBoard.h"
+#include "../Display/DisplayConsole.h"
+#include "../GameBoard/GameBoard.h"
 #include"../Cards/Recruiter.h"
-#include"../DisplayManager.h"
+#include "../Display/DisplayManager.h"
 #include "../Player/Human.h"
 #include"../Player/Player.h"
 
@@ -55,6 +55,11 @@ void GameLogic::startGame() {
     cout <<endl <<"-----------------clan Cards :------------------------"<<endl;
     GameBoard::getInstance().getRemainingClanCards().printSet();
     cout <<endl<<"------------------------------------------------------"<<endl;
+
+    cout <<endl <<"-----------------Tactical Cards :------------------------"<<endl;
+    GameBoard::getInstance().getRemainingTacticalCards().printSet();
+    cout <<endl<<"------------------------------------------------------"<<endl;
+
     initializePlayerDecks();
 
     for (unsigned int i = 0; i < players.size(); ++i) {
@@ -73,7 +78,7 @@ void GameLogic::startGame() {
 void GameLogic::runGameLoop() {
     GameBoard& board = GameBoard::getInstance();
 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Nettoyage buffer au départ
+   // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Nettoyage buffer au départ
 
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
@@ -137,7 +142,7 @@ void GameLogic::runGameLoop() {
         }
 
         DisplayManager::getInstance()->output("\nAppuyez sur Entrée pour passer le clavier au joueur suivant...");
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cin.get();
 
 #ifdef _WIN32

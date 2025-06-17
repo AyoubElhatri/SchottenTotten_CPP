@@ -3,7 +3,6 @@
 #ifndef DISPLAYCONSOLE_H
 #define DISPLAYCONSOLE_H
 #include "Display.h"
-#include "DisplayManager.h"
 using namespace std;
 #include <string>
 

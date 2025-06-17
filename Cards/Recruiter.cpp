@@ -1,7 +1,7 @@
 #include "Recruiter.h"
 #include <iostream>
 
-#include "../GameBoard.h"
+#include "../GameBoard/GameBoard.h"
 
 
 void Recruiter::getEvent() {

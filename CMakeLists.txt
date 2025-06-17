@@ -23,10 +23,10 @@ Rules/Rules.cpp
 Rules/Rules.h
 StoneTiles/StoneTiles.cpp
 StoneTiles/StoneTiles.h
-        Display.h
-        DisplayConsole.cpp
-        DisplayConsole.h
-        TacticalCardsFactory.h
+        Display/Display.h
+        Display/DisplayConsole.cpp
+        Display/DisplayConsole.h
+        Factory/TacticalCardsFactory.h
         Cards/Stratege.cpp
         Cards/Stratege.h
         Player/Player.h
@@ -37,12 +37,12 @@ StoneTiles/StoneTiles.h
         Player/AIEasy.cpp
         Player/AIEasy.h
         Cards/Joker.cpp
-        GameBoard.cpp
-        DisplayManager.h
-        DisplayManager.cpp
+        GameBoard/GameBoard.cpp
+        Display/DisplayManager.h
+        Display/DisplayManager.cpp
         Cards/Joker.cpp
-        GameBoard.h
-        GameBoard.cpp
+        GameBoard/GameBoard.h
+        GameBoard/GameBoard.cpp
         Cards/Traitor.cpp
         Cards/Banshee.cpp
 Cards/tacticalCards.cpp

@@ -1,10 +1,10 @@
 #include "GameBoard.h"
 #include <stdexcept>
 #include <utility> // pour std::move
-#include "Rules/Rules.h"
-#include "TacticalCardsFactory.h"
-#include "Logic/GameLogic.h"
-#include "DisplayManager.h"
+#include "../Rules/Rules.h"
+#include "../Factory/TacticalCardsFactory.h"
+#include "../Logic/GameLogic.h"
+#include "../Display/DisplayManager.h"
 #include <regex>
 #include <iomanip>
 #include <string>

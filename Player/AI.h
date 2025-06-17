@@ -1,7 +1,7 @@
 #ifndef AI_H
 #define AI_H
 
-#include "../GameBoard.h"
+#include "../GameBoard/GameBoard.h"
 #include "../Cards/Cards.h"
 #include <memory>
 #include <vector>

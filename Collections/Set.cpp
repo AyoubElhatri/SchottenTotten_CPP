@@ -2,9 +2,9 @@
 #include <map>
 #include <random>
 #include <set>
-#include "../DisplayManager.h"
+#include "../Display/DisplayManager.h"
 #include "../StoneTiles/StoneTiles.h"
-#include "../GameBoard.h"
+#include "../GameBoard/GameBoard.h"
 
 Set::Set(Set&& IndexSet) {
     SetOfCards = std::move(IndexSet.SetOfCards);

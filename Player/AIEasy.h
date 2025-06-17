@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "AI.h"
-#include "../GameBoard.h"
+#include "../GameBoard/GameBoard.h"
 #include "../Player/Player.h"
 
 class AIEasy : public AI {

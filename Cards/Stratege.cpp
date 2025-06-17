@@ -1,5 +1,5 @@
 #include "Stratege.h"
-#include "../GameBoard.h"
+#include "../GameBoard/GameBoard.h"
 #include <iostream>
 #include <vector>
 #include <tuple>

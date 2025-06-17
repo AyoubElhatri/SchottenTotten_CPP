@@ -3,7 +3,7 @@
 #include "../Colors.h"
 #include <memory>
 using namespace std;
-#include "../DisplayManager.h"
+#include "../Display/DisplayManager.h"
 #include "../CustomException/CustomException.h"
 #include <string>
 class StoneTiles;

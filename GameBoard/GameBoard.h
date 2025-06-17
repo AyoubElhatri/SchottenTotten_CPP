@@ -1,13 +1,13 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
-#include "Collections/Set.h"
-#include "StoneTiles/StoneTiles.h"
+#include "../Collections/Set.h"
+#include "../StoneTiles/StoneTiles.h"
 #include <memory>
 #include <vector>
-#include "Colors.h"
-#include "DisplayConsole.h"
-#include "Cards/ClanCards.h"
+#include "../Colors.h"
+#include "../Display/DisplayConsole.h"
+#include "../Cards/ClanCards.h"
 using namespace std;
 
 class GameBoard {
