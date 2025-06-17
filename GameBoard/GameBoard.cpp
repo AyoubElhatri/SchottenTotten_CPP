@@ -105,22 +105,28 @@ int GameBoard::getAlingnedControlledTilesCount(int playerId) const {
     return maxStreak;
 }
 
-string GameBoard::formatCard(const Cards *card) {
-    const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card);
-    if (!clanCard) return "[?]";
 
-    std::string colorCode;
-    switch (clanCard->getColor()) {
-        case Colors::Red:     colorCode = RED; break;
-        case Colors::Green:   colorCode = GREEN; break;
-        case Colors::Blue:    colorCode = BLUE; break;
-        case Colors::Yellow:  colorCode = YELLOW; break;
-        case Colors::Magenta: colorCode = MAGENTA; break;
-        case Colors::Cyan:    colorCode = CYAN; break;
-        default:              colorCode = RESET;
+
+string GameBoard::formatCard(const Cards *card) {
+    if (auto tacticalCard = dynamic_cast<const TacticalCards*>(card)) {
+        return "[" + tacticalCard->getName() + "]";
     }
 
-    return colorCode + "[" + to_string(clanCard->getNumber()) + "]" + RESET;
+    if (auto clanCard = dynamic_cast<const ClanCards*>(card)) {
+        std::string colorCode;
+        switch (clanCard->getColor()) {
+            case Colors::Red:     colorCode = RED; break;
+            case Colors::Green:   colorCode = GREEN; break;
+            case Colors::Blue:    colorCode = BLUE; break;
+            case Colors::Yellow:  colorCode = YELLOW; break;
+            case Colors::Magenta: colorCode = MAGENTA; break;
+            case Colors::Cyan:    colorCode = CYAN; break;
+            default:              colorCode = RESET;
+        }
+        return colorCode + "[" + to_string(clanCard->getNumber()) + "]" + RESET;
+    }
+
+    return "[?]";
 }
 
 #include <iomanip>  // Pour std::setw

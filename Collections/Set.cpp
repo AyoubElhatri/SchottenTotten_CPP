@@ -129,6 +129,7 @@ void Set::printSet() const {
 }
 
 
+
 unsigned int Set::getTotalValue() const {
     unsigned int total = 0;
     for (const auto& card : SetOfCards) {
