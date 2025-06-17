@@ -112,12 +112,14 @@ void Set::mixSet() {
     std::shuffle(SetOfCards.begin(), SetOfCards.end(), gen);
 }
 
-
-/*void Set::printSet() const {
+/*
+void Set::printSet() const {
     for (const auto& card : SetOfCards) {
-        DisplayManager::getInstance()->output( card->getName());
+        DisplayManager::getInstance()->output( card->getName()+"/");
     }
-}*/
+}
+*/
+
 void Set::printSet() const {
 
     for (const auto& card : SetOfCards) {

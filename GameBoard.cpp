@@ -8,7 +8,7 @@
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
 
-GameBoard::GameBoard(): RemainingClanCards(), RemainingTacticalCards(), DiscardedCards() {
+GameBoard::GameBoard() {
 
     for (int i = 0; i < Rules::getInstance()->getNumberOfStoneTiles(); ++i) {
         sharedTiles.push_back(std::make_shared<StoneTiles>(i));
@@ -19,7 +19,6 @@ GameBoard::GameBoard(): RemainingClanCards(), RemainingTacticalCards(), Discarde
             RemainingClanCards.addCard(std::move(std::make_unique<ClanCards>(i, color)));
         }
     }
-
     unordered_map<string, unsigned int> TacticalCards = Rules::getInstance()->getTacticalCards();
     for (const auto &[name, count]: TacticalCards) {
         for (unsigned int i = 0; i < count; ++i) {

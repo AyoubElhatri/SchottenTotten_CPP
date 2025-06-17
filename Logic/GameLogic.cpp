@@ -10,6 +10,13 @@
 
 std::unique_ptr<GameLogic> GameLogic::instance = nullptr;
 
+GameLogic ::GameLogic() {
+    Player* player1 = new Human(1, Set());
+    Player* player2 = new Human(2, Set());
+
+    addPlayer(std::unique_ptr<Player>(player1));
+    addPlayer(std::unique_ptr<Player>(player2));
+}
 GameLogic &GameLogic::getInstance() {
     if (instance == nullptr) {
         instance = unique_ptr<GameLogic>(new GameLogic());
@@ -22,43 +29,53 @@ void GameLogic::addPlayer(std::unique_ptr<Player> player) {
 }
 
 void GameLogic::initializePlayerDecks() {
-    for (auto& player : players) {
-        player->drawClanCards();
-        // c'est pas que ça y faut ajouter meme le cas des cartes tactiques
+    GameBoard& board = GameBoard::getInstance();
+    Set& deck = board.getRemainingClanCards();
+    unsigned int nbCards = Rules::getInstance()->getNumberMaxOfCardsPerPlayer();
+    cout << "Distributing " << nbCards << " clan cards to each player." << endl;
+    for (unsigned int j=0; j < nbCards; ++j) {
+        for (unsigned int i = 0; i < nbCards; ++i) {
+            if (deck.getSize() < 2) {
+                std::cout << "Not enough cards in the deck to distribute." << std::endl;
+                return;
+            }
+        }
+        for (unsigned int i = 0; i < players.size(); ++i) {
+            players[i]->drawClanCards(1);
+
+        }
     }
+
 }
 
 void GameLogic::startGame() {
     DisplayManager::createInstance<DisplayConsole>();
     DisplayManager::getInstance()->output("******************************** Start Game ********************************\n");
     GameBoard* board = &GameBoard::getInstance();
-    generateAllClanCards();
-    board->getRemainingClanCards().mixSet();
-    Set emptySet1, emptySet2;
-    Player* player1 = new Human(1, Set());
-    Player* player2 = new Human(2, Set());
-    cout <<"-----------------clan Cards :------------------------"<<endl;
+    cout <<endl <<"-----------------clan Cards :------------------------"<<endl;
     GameBoard::getInstance().getRemainingClanCards().printSet();
-    cout <<"------------------------------------------------------"<<endl;
-    distributeClanCardsToPlayers(*player1, *player2);
+    cout <<endl<<"------------------------------------------------------"<<endl;
+    initializePlayerDecks();
 
-    player1->getPlayerDeck().printSet();
-    player2->getPlayerDeck().printSet();
+    for (unsigned int i = 0; i < players.size(); ++i) {
+        cout<<"Joueur "<<i<< " :"; players[i]->getPlayerDeck().printSet(); cout <<endl;
+    }
     cout <<"----------------Aprés la distribution --------------------"<<endl;
     GameBoard::getInstance().getRemainingClanCards().printSet();
 
     //fillTestCards(*board);
-    runGameLoop(player1, player2);
+    runGameLoop();
 
 
 
 
 }
-void GameLogic::runGameLoop(Player* player1, Player* player2) {
+void GameLogic::runGameLoop() {
     GameBoard& board = GameBoard::getInstance();
-    Player* currentPlayer = player1;
 
     while (!checkWinner()) {
+        Player* currentPlayer = players[getCurrentPlayerIndex()].get();
+
         board.printBoard();
         DisplayManager::getInstance()->output("\nIt's Player " + std::to_string(currentPlayer->getPlayerID()) + "'s turn\n");
         currentPlayer->getPlayerDeck().printSet();
@@ -102,7 +119,7 @@ void GameLogic::runGameLoop(Player* player1, Player* player2) {
         if (board.getRemainingClanCards().getSize() > 0) {
             currentPlayer->getPlayerDeck().addCard(board.getRemainingClanCards().getCardbyIndex(0));
         }
-        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+        turnNumber++;
     }
 }
 bool GameLogic::checkWinner() const {

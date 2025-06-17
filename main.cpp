@@ -14,7 +14,6 @@
 #include "Rules/Rules.h"
 #include "Logic/GameLogic.h"
 
-
 // Affiche le plateau et les cartes posées par chaque joueur sur chaque tuile
 /*void printBoard(const GameBoard& board) {
     const auto& tiles = board.getSharedTiles();
@@ -128,10 +127,21 @@ int main() {
     cout<< "Nombre de cartes restantes : " << supraset.getSize() << endl;
 
     supraset.printSet();*/
+
+
+
+
+    Rules::Builder builder;
+    builder.setNumberOfStoneTiles(9)
+           .setNumberOfAlignedTilesToWin(3)
+           .setNumberOfUnalignedTilesToWin(5)
+           .addClanCardColor(Colors::Red, 9)
+            .addClanCardColor(Colors::Yellow, 9);
+
+    // Appel de buildInstance avec le builder
+    Rules::buildInstance(builder);
+
     GameLogic::getInstance().startGame();
-
-
-
 
 
 }
