@@ -4,6 +4,7 @@
 #include <set>
 #include "../DisplayManager.h"
 #include "../StoneTiles/StoneTiles.h"
+#include "../GameBoard.h"
 
 Set::Set(Set&& IndexSet) {
     SetOfCards = std::move(IndexSet.SetOfCards);
@@ -28,7 +29,9 @@ const Cards* Set::getCardAt(unsigned int IndexParam) const {
 }
 
 void Set::moveCard(string Cardname, Set& IndexSet) {
-    unsigned int IndexOfCard=getIndexOfCard(Cardname);
+
+    unsigned int IndexOfCard = getIndexOfCard(Cardname);
+
     unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);
     if (NewCard) {
         IndexSet.addCard(std::move(NewCard));
@@ -48,7 +51,7 @@ unsigned int Set::getIndexOfCard(string CardName) const {
             return i;
         }
     }
-    throw std::invalid_argument("Card not foud");
+    throw std::invalid_argument("Card not found");
 }
 
 
@@ -110,10 +113,17 @@ void Set::mixSet() {
 }
 
 
-void Set::printSet() const {
+/*void Set::printSet() const {
     for (const auto& card : SetOfCards) {
         DisplayManager::getInstance()->output( card->getName());
     }
+}*/
+void Set::printSet() const {
+
+    for (const auto& card : SetOfCards) {
+        DisplayManager::getInstance()->output(GameBoard::getInstance().formatCard(card.get()) + " ");
+    }
+    DisplayManager::getInstance()->output("\n");
 }
 
 
@@ -125,4 +135,12 @@ unsigned int Set::getTotalValue() const {
         }
     }
     return total;
+}
+
+vector<Cards*> Set::getRawCards() const {
+    std::vector<Cards*> rawPointers;
+    for (const auto& card : SetOfCards) {
+        rawPointers.push_back(card.get());
+    }
+    return rawPointers;
 }

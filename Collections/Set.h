@@ -48,6 +48,7 @@ public:
 
     void printSet() const;
     unsigned int getTotalValue() const ;
+    vector<Cards*> getRawCards() const;
 
 };
 

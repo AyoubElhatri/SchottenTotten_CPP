@@ -11,6 +11,7 @@ enum class Colors {
     Blue=2,
     Green=3,
     Cyan=4,
+    Magenta=5
 
 };
 

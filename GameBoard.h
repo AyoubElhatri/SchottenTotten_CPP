@@ -5,6 +5,9 @@
 #include "StoneTiles/StoneTiles.h"
 #include <memory>
 #include <vector>
+#include "Colors.h"
+#include "DisplayConsole.h"
+#include "Cards/ClanCards.h"
 using namespace std;
 
 class GameBoard {
@@ -43,6 +46,8 @@ public:
     int getControlledTilesCount(int playerId) const;
     int getAlingnedControlledTilesCount(int playerId) const;
     void printBoard() ;
+
+    string formatCard(const Cards* card) ;
 
 };
 

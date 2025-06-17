@@ -16,7 +16,7 @@ private:
     unsigned int numberOfStoneTiles;
     unsigned int numberOfAlignedTilesToWin;
     unsigned int numberOfUnalignedTilesToWin;
-    unsigned int numberMaxOfCardsPerTiles;
+    unsigned int numberMaxOfCardsPerTiles = 3;
 
     unordered_map<Colors, unsigned int> clanCardsByColor;
     unordered_map<string, unsigned int> tacticalCards;

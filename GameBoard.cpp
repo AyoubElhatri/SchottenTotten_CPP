@@ -101,14 +101,60 @@ int GameBoard::getAlingnedControlledTilesCount(int playerId) const {
     return maxStreak;
 }
 
+string GameBoard::formatCard(const Cards *card) {
+    const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card);
+    if (!clanCard) return "[?]";
+
+    std::string colorCode;
+    switch (clanCard->getColor()) {
+        case Colors::Red:     colorCode = RED; break;
+        case Colors::Green:   colorCode = GREEN; break;
+        case Colors::Blue:    colorCode = BLUE; break;
+        case Colors::Yellow:  colorCode = YELLOW; break;
+        case Colors::Magenta: colorCode = MAGENTA; break;
+        case Colors::Cyan:    colorCode = CYAN; break;
+        default:              colorCode = RESET;
+    }
+
+    return colorCode + "[" + to_string(clanCard->getNumber()) + "]" + RESET;
+}
+
+
 void GameBoard::printBoard() {
-    vector<std::shared_ptr<StoneTiles>> tmp = getSharedTiles();
+    /*vector<std::shared_ptr<StoneTiles>> tmp = getSharedTiles();
     for (const auto& tile : tmp) {
         tile->printStoneTiles();
-    }
+    }*/
     /*for (const auto& discard : DiscardedCards) {
         discard ->printSet();
     }*/
+    DisplayManager::getInstance()->output("SHCOTTEN TOTTEN GAME BOARD:\n");
+    const int tileCount = static_cast<int>(sharedTiles.size());
+    for (const auto& tile : sharedTiles) {
+        std::string line;
+        for (Cards* card : tile->getPlayerCards1().getRawCards()) {
+            line += formatCard(card) + " ";
+        }
+        DisplayManager::getInstance()->output(line + "\t");
+    }
+    DisplayManager::getInstance()->output("\n");
+    for (int i = 0; i < tileCount; ++i) {
+        DisplayManager::getInstance()->output("  -------  ");
+    }
+    DisplayManager::getInstance()->output("\n");
+    for (const auto& tile : sharedTiles) {
+        std::string line;
+        for (Cards* card : tile->getPlayerCards2().getRawCards()) {
+            line += formatCard(card) + " ";
+        }
+        DisplayManager::getInstance()->output(line + "\t");
+    }
+
+    DisplayManager::getInstance()->output("\n\n");
+
+
+
+
 
 }
 

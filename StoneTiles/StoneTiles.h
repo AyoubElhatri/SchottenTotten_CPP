@@ -8,7 +8,7 @@ using namespace std;
 class StoneTiles {
 private:
     unsigned int Position;
-    unsigned int NbOfPlayableCards;
+    unsigned int NbOfPlayableCards ;
     Set PlayerCards1;
     Set PlayerCards2;
     Set CombatModeCards;
@@ -16,7 +16,7 @@ private:
     bool StoneTileIsClaimed;
     CombinationType comboType;
     Player* firstPlayerToFillTheStoneTile;
-
+//Rules::getInstance()->getNumberMaxOfCardsPerTiles()
 public:
     StoneTiles(unsigned int Pos)
         : Position(Pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()), claimedBy(0), StoneTileIsClaimed(false), comboType(CombinationType::None) {}
@@ -29,25 +29,25 @@ public:
     void setComboType(CombinationType type) { comboType = type; }
     void claim();
 
-    /*StoneTiles(const StoneTiles& other)
-    : Position(other.Position),
-      NbOfPlayableCards(other.NbOfPlayableCards),
-      claimedBy(other.claimedBy),
-      StoneTileIsClaimed(other.StoneTileIsClaimed)
-    {}*/
 
     unsigned int getNbOfPlayableCards() const { return NbOfPlayableCards; }
     void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
     void setPosition(unsigned int Pos) { Position = Pos; }
 
-    void addCardToPlayer(unsigned int playerId, string Cardname,Set provenanceOfTheCard);
+    void addCardToPlayer(unsigned int playerId,  const string& Cardname, Set& provenanceOfTheCard);
     std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
     Set& getPlayerCards1() { return PlayerCards1; }
     Set& getPlayerCards2() { return PlayerCards2; }
     Set& getCombatModeCards() { return CombatModeCards; }
     void printStoneTiles();
-    //void addCardToPlayer(unsigned int player_id, const __remove_reference(unique_ptr<Cards> &) & move);
+
+    void moveCardBetweenSets(const std::string& cardName, Set& fromSet, Set& toSet) {
+        unsigned int index = fromSet.getIndexOfCard(cardName);
+        auto card = fromSet.getCardbyIndex(index);
+        toSet.addCard(std::move(card));
+    }
+
 };
 
 #endif //STONETILES_H
