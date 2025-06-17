@@ -117,7 +117,7 @@ void GameLogic::runGameLoop() {
         // Suppression de la carte se fait dans moveCard
 
         if (board.getRemainingClanCards().getSize() > 0) {
-            currentPlayer->getPlayerDeck().addCard(board.getRemainingClanCards().getCardbyIndex(0));
+            currentPlayer->drawClanCards(1);
         }
         turnNumber++;
     }

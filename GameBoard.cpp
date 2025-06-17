@@ -66,11 +66,11 @@ Set& GameBoard::getDiscardedCards() {
 }
 
 
-
+// a enlever
 void GameBoard::placeCardOnTile(int tileIndex, const Cards& card, int playerId) {
     //temporaire
 }
-
+// a enlever
 bool GameBoard::isTileFree(int tileIndex) const {
     return true; // À adapter
 }
@@ -118,44 +118,59 @@ string GameBoard::formatCard(const Cards *card) {
     return colorCode + "[" + to_string(clanCard->getNumber()) + "]" + RESET;
 }
 
-
 void GameBoard::printBoard() {
-    /*vector<std::shared_ptr<StoneTiles>> tmp = getSharedTiles();
-    for (const auto& tile : tmp) {
-        tile->printStoneTiles();
-    }*/
-    /*for (const auto& discard : DiscardedCards) {
-        discard ->printSet();
-    }*/
-    DisplayManager::getInstance()->output("SHCOTTEN TOTTEN GAME BOARD:\n");
+    DisplayManager::getInstance()->output("SCHOTTEN TOTTEN GAME BOARD:\n");
+
     const int tileCount = static_cast<int>(sharedTiles.size());
+
+    // Trouver la hauteur max de cartes pour chaque joueur
+    int maxCardsP1 = 0, maxCardsP2 = 0;
     for (const auto& tile : sharedTiles) {
-        std::string line;
-        for (Cards* card : tile->getPlayerCards1().getRawCards()) {
-            line += formatCard(card) + " ";
-        }
-        DisplayManager::getInstance()->output(line + "\t");
+        maxCardsP1 = std::max(maxCardsP1, static_cast<int>(tile->getPlayerCards1().getRawCards().size()));
+        maxCardsP2 = std::max(maxCardsP2, static_cast<int>(tile->getPlayerCards2().getRawCards().size()));
     }
-    DisplayManager::getInstance()->output("\n");
+
+    // Afficher les cartes du joueur 1 (en haut), ligne par ligne
+    for (int row = 0; row < maxCardsP1; ++row) {
+        for (const auto& tile : sharedTiles) {
+            const auto& cards = tile->getPlayerCards1().getRawCards();
+            if (row < static_cast<int>(cards.size())) {
+                DisplayManager::getInstance()->output(formatCard(cards[row]) + "\t");
+            } else {
+                DisplayManager::getInstance()->output("   \t"); // Espace vide si pas de carte
+            }
+        }
+        DisplayManager::getInstance()->output("\n");
+    }
+
+    // Afficher la séparation (ligne de tuiles)
     for (int i = 0; i < tileCount; ++i) {
         DisplayManager::getInstance()->output("  -------  ");
     }
     DisplayManager::getInstance()->output("\n");
-    for (const auto& tile : sharedTiles) {
-        std::string line;
-        for (Cards* card : tile->getPlayerCards2().getRawCards()) {
-            line += formatCard(card) + " ";
+
+    // Afficher les cartes du joueur 2 (en bas), ligne par ligne
+    for (int row = 0; row < maxCardsP2; ++row) {
+        for (const auto& tile : sharedTiles) {
+            const auto& cards = tile->getPlayerCards2().getRawCards();
+            if (row < static_cast<int>(cards.size())) {
+                DisplayManager::getInstance()->output(formatCard(cards[row]) + "\t");
+            } else {
+                DisplayManager::getInstance()->output("   \t"); // Espace vide si pas de carte
+            }
         }
-        DisplayManager::getInstance()->output(line + "\t");
+        DisplayManager::getInstance()->output("\n");
     }
 
-    DisplayManager::getInstance()->output("\n\n");
-
-
-
-
-
+    DisplayManager::getInstance()->output("\n");
 }
+
+
+
+
+
+
+
 
 
 /*
