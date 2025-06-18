@@ -226,6 +226,15 @@ void GameBoard::printBoard() {
         if (i != tileCount - 1) indexLine += spacer;
     }
     DisplayManager::getInstance()->output(indexLine + "\n\n");
+    DisplayManager::getInstance()->output("\nBornes revendiquées :");
+    for (size_t i = 0; i < sharedTiles.size(); ++i) {
+        if (sharedTiles[i]->isAlreadyClaimed()) {
+            DisplayManager::getInstance()->output("Borne " + std::to_string(i) +
+                " : Joueur " + std::to_string(sharedTiles[i]->getClaimedBy()));
+        }
+    }
+    DisplayManager::getInstance()->output("\n");
+
 }
 /*
 // Ajouter une carte à la défausse
