@@ -18,6 +18,7 @@ void StoneTiles::addCardOnTilesOfPlayer(unsigned int playerId, const string& car
     provenanceOfTheCard.moveCard(cardName, getPlayerCardsOnTilesByPlayerId(playerId));
 }
 
+
 std::unique_ptr<Cards> StoneTiles::removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex) {
     Set& playerCards = getPlayerCardsOnTilesByPlayerId(playerId);
     

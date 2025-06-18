@@ -157,7 +157,7 @@ int main() {
     // Appel de buildInstance avec le builder
     Rules::buildInstance(builder);
     DisplayManager::createInstance<DisplayConsole>();
-    GameLogic::getInstance().startGame();
+    CGameLogic::getInstance().startGame();
 
 
 }

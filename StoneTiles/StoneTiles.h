@@ -22,7 +22,6 @@ public:
     StoneTiles(unsigned int pos)  ;
 
 
-
     unsigned int getPosition() const { return Position; }
     unsigned int getClaimedBy() { return claimedBy; }
     void setClaimedBy(unsigned int claimedByParam){claimedBy = claimedByParam;}

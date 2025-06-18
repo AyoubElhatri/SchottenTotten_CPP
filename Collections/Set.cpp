@@ -2,6 +2,7 @@
 #include <map>
 #include <random>
 #include <set>
+#include <utility>
 #include "../Display/DisplayManager.h"
 #include "../StoneTiles/StoneTiles.h"
 #include "../GameBoard/GameBoard.h"
@@ -45,7 +46,7 @@ void Set::moveCard(unsigned int IndexOfCard, Set& toSet) {
 }
 
 
-unsigned int Set::getIndexOfCard(string CardName) const {
+unsigned int Set::getIndexOfCard(string CardName) const{
     for (unsigned int i = 0; i < SetOfCards.size(); ++i) {
         if (SetOfCards[i]->getName() == CardName) {
             return i;
