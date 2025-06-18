@@ -19,6 +19,7 @@ private:
     Set RemainingTacticalCards;
     Set DiscardedCards;
 
+
     GameBoard();
     GameBoard(const GameBoard&) = delete;
     GameBoard& operator=(const GameBoard&) = delete;
@@ -46,6 +47,7 @@ public:
     void printBoard() ;
 
     string formatCard(const Cards* card) ;
+    static void deleteInstance();
 
 };
 

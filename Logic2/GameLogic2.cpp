@@ -22,7 +22,9 @@ CGameLogic ::CGameLogic() {
     addPlayer(std::unique_ptr<Player>(player1));
     addPlayer(std::unique_ptr<Player>(player2));
 }
-
+void CGameLogic::deleteInstance() {
+    instance=nullptr;
+}
 void CGameLogic::printBoardalpha2() {
     const std::string blue = "\033[1;34m";
     const std::string red = "\033[1;31m";
@@ -280,6 +282,48 @@ void CGameLogic::PlayerVictory(int i){
     getFreespace(4);
     printStars();
 }
+void CGameLogic::PlayerRounds(){
+    if (Player1Wins>Player2Wins) {
+        string p1="Player "+to_string(1)+" won "+to_string(Player1Wins)+" rounds.";
+        string p2="Player "+to_string(2)+" won "+to_string(Player2Wins)+" rounds.";
+        string p3="Player 1 is the final Winner!";
+        printStars();
+        getFreespace(3);
+        printWithColor(p1,"green");
+        getFreespace(4);
+        printWithColor(p2,"red");
+        getFreespace(4);
+        printWithColor(p3,"green");
+        getFreespace(4);
+        printStars();
+    }
+    else if (Player1Wins<Player2Wins) {
+        string p1="Player "+to_string(2)+" won "+to_string(Player2Wins)+" rounds.";
+        string p2="Player "+to_string(1)+" won "+to_string(Player1Wins)+" rounds.";
+        string p3="Player 2 is the final Winner!";
+        printStars();
+        getFreespace(3);
+        printWithColor(p1,"green");
+        getFreespace(4);
+        printWithColor(p2,"red");
+        getFreespace(4);
+        printWithColor(p3,"green");
+        getFreespace(4);
+        printStars();
+    }
+    else if (Player1Wins=Player2Wins) {
+        string p2="It's a tie! Both players won "+to_string(Player1Wins);
+        string p3="Congratulations to both of the players!";
+        printStars();
+        getFreespace(7);
+        printWithColor(p2,"green");
+        getFreespace(4);
+        printWithColor(p3,"green");
+        getFreespace(4);
+        printStars();
+    }
+}
+
 void CGameLogic::printLoading() {
     string loading="LOADING...";
     printWithColor(loading,"green");
@@ -413,12 +457,12 @@ bool CGameLogic::checkWinner()
     const auto unalignedToWin = rules->getNumberOfUnalignedTilesToWin();
 
     GameBoard& board = GameBoard::getInstance();
-    for (int playerId = 0; playerId < 2; playerId++) {
+    for (int playerId = 1; playerId < 3; playerId++) {
         int aligned = board.getAlingnedControlledTilesCount(playerId);
         int total = board.getControlledTilesCount(playerId);
         if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfStoneTiles()) {
-            std::cout << " Le joueur " << playerId << " a gagné la partie !" << std::endl;
-            if (playerId==0)Player1Wins+=1;
+            std::cout << " Player " << playerId << " won the game !" << std::endl;
+            if (playerId==1)Player1Wins+=1;
             else Player2Wins+=1;
             PlayerVictory(playerId);
             getSleep(4);
@@ -693,8 +737,17 @@ void CGameLogic::getMainConsole() {
         else if (iMenu==4) {
             while (currentRound<maxRounds) {
                 getChoiceRoundLoading(currentRound);
-
+                getSleep(3);
+                clearScreen();
+                startGame();
+                currentRound+=1;
+                CGameLogic::deleteInstance();
+                GameBoard::deleteInstance();
             }
+            PlayerRounds();
+            getSleep(4);
+            iMenu=1;
+            sError.clear();
         }
         c->output(sError+"\n");
     }

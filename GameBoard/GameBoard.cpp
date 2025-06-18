@@ -12,6 +12,10 @@
 #include "../Logic2/GameLogic2.h"
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
+void GameBoard::deleteInstance()
+{
+    instance=nullptr;
+}
 
 GameBoard::GameBoard() {
 

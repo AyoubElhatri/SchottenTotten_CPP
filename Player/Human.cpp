@@ -269,6 +269,7 @@ void Human::playCard() {
         if (canDrawClan) DisplayManager::getInstance()->output("1. Clan Card\n");
         if (canDrawTactical) DisplayManager::getInstance()->output("2. Tactical Card\n");
 
+        DisplayManager::getInstance()->output(">> ");
         string choice = DisplayManager::getInstance()->takeInput();
         if (choice == "1" && canDrawClan) drawClanCards(1);
         else if (choice == "2" && canDrawTactical) drawTacticalCards(1);
