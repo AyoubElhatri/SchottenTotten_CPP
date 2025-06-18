@@ -9,7 +9,7 @@
 #include <iomanip>
 #include <string>
 #include <algorithm>
-
+#include "../Logic2/GameLogic2.h"
 std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
 
@@ -69,8 +69,20 @@ Set& GameBoard::getRemainingTacticalCards() {
 Set& GameBoard::getDiscardedCards() {
     return DiscardedCards;
 }
+void GameBoard::placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards& card, int playerId) {
+    if (tileIndex < 0 || tileIndex >= getBoardSize()) {
+        throw std::invalid_argument("Tile index '"+to_string(tileIndex)+" is out of bounds. Please enter a correct tile index.");
+    }
 
+    auto& tile = getSharedTiles()[tileIndex];
+    auto& playerDeck = CGameLogic::getInstance().getPlayerById(playerId)->getPlayerDeck();
 
+    // Ajout de la carte sur la tuile
+    tile->addCardOnTilesOfPlayer(playerId, card.getName(), playerDeck);
+
+    string message="[DEBUG] Joueur " + to_string(playerId) + " joue la carte : " + card.getName() + " sur la tuile " + to_string(tileIndex);
+}
+/*
 // A MODIFIER SA GRAND MERE
 void GameBoard::placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards& card, int playerId) {
     if (tileIndex < 0 || tileIndex >= getBoardSize()) {
@@ -84,7 +96,7 @@ void GameBoard::placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards& card
     tile->addCardOnTilesOfPlayer(playerId, card.getName(), playerDeck);
 
     string message="[DEBUG] Joueur " + to_string(playerId) + " joue la carte : " + card.getName() + " sur la tuile " + to_string(tileIndex);
-}
+}*/
 // a enlever
 bool GameBoard::isTileFree(int tileIndex) const {
     return !getSharedTiles()[tileIndex]->isAlreadyClaimed();

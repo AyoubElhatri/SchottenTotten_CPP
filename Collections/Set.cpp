@@ -30,7 +30,6 @@ unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
 }
 
 void Set::moveCard(string Cardname, Set& toSet) {
-
     unsigned int IndexOfCard = getIndexOfCard(Cardname);
 
     unique_ptr<Cards> NewCard = getCardbyIndex(IndexOfCard);

@@ -52,14 +52,14 @@ void CGameLogic::printBoardalpha2() {
             for (int i = 0; i < tileCount; ++i) {
                 const auto& cards = sharedTiles[i]->getPlayerCardsOnTilesByPlayerId(playerId).getRawCards();
                 if (row < static_cast<int>(cards.size())) {
-                    line+="  "+GameBoard::getInstance().formatCard(cards[row])+"     ";
+                    line+=" "+GameBoard::getInstance().formatCard(cards[row])+"     ";
                 } else {
                     line+="          ";
                 }
-                printClean(line);
-                line=" ";
-            }
 
+            }
+            printClean(line);
+            line=" ";
         }
 
         // Après le joueur 1, afficher la ligne de séparation des tuiles
@@ -290,7 +290,6 @@ void CGameLogic::startGame() {
 }
 void CGameLogic::runGameLoop() {
     clearScreen();
-    GameBoard& board = GameBoard::getInstance();
 
 
     while (!checkWinner()) {

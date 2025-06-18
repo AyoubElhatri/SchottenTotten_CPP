@@ -99,7 +99,6 @@ void Human::playCard() {
             throw std::invalid_argument("Tile number '"+strtile3+"' is already claimed, cannot play the card on this tile.");
 
         }
-
         board.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
     }
     if (board.getSharedTiles()[tileIndex]->getPlayerCardsOnTilesByPlayerId(getPlayerID()).getSize()==board.getSharedTiles()[tileIndex]->getNbOfPlayableCards() && board.getSharedTiles()[tileIndex]->getFirstPlayerToFillTheStoneTile()==nullptr) {
@@ -113,12 +112,12 @@ void Human::playCard() {
     if (canDrawClan || canDrawTactical) {
         string ask="\nChoose the type of card you wanna draw: ";
         DisplayManager::getInstance()->output(ask);
-        if (canDrawClan) DisplayManager::getInstance()->output("1. Carte Clan\n");
-        if (canDrawTactical) DisplayManager::getInstance()->output(string(ask.size()-1,' ')+"2. Carte Tactique");
+        if (canDrawClan) DisplayManager::getInstance()->output("1. Clan Card\n");
+        if (canDrawTactical) DisplayManager::getInstance()->output(string(ask.size()-1,' ')+"2. Tactical Card");
         
         string choice="";
         do {
-            DisplayManager::getInstance()->output("Your choice (1 or 2): ");
+            DisplayManager::getInstance()->output("\nYour choice (1 or 2): >> ");
             choice = DisplayManager::getInstance()->takeInput();
             
             if (choice == "1" && canDrawClan) {
