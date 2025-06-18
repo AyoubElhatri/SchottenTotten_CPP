@@ -144,9 +144,9 @@ int main() {
            .addTacticalCard("Traitor", 1)
            .addTacticalCard("Banshee", 1)
            .addTacticalCard("Recruiter", 1)
-            .addTacticalCard("Mud Fight", 1)
-            .addTacticalCard("shield bear", 1)
-            .addTacticalCard("Blind Man", 1)
+            .addTacticalCard("MudFight", 1)
+            .addTacticalCard("ShieldBear", 1)
+            .addTacticalCard("BlindMan", 1)
            .setNumberMaxOfCardsPerPlayer(6)
            .setNumberMaxOfCardsPerTiles(3);
 
