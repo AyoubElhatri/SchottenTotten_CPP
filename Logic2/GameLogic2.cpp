@@ -87,7 +87,7 @@ void CGameLogic::printBoardalpha2() {
     }
     printOption(tilec);
     getFreespace(4);
-    string info="ST[*]: Stone Tile n°* ";
+    string info="ST[*]: Stone Tile n=* ";
     printInLast(info);
     printStars();
 
@@ -153,7 +153,7 @@ void CGameLogic::printBoardalpha() {
 void CGameLogic::printInLast(string Text)
 {
     int space=100-Text.size();
-    string toprint="#"+string(space-1,' ')+Text+"#\n";
+    string toprint="#"+string(space-2,' ')+Text+"#\n";
     DisplayManager::getInstance()->output(toprint);
 }
 
@@ -289,8 +289,9 @@ void CGameLogic::startGame() {
 
 }
 void CGameLogic::runGameLoop() {
-    GameBoard& board = GameBoard::getInstance();
     clearScreen();
+    GameBoard& board = GameBoard::getInstance();
+
 
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
@@ -303,7 +304,6 @@ void CGameLogic::runGameLoop() {
             DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
             continue;
         }
-
         turnNumber++;
         clearScreen();
     }
