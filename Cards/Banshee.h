@@ -10,7 +10,7 @@ class Banshee : public RusesCards {
     Banshee()  {
         cardName = "Banshee";
     };
-    void getEvent(StoneTiles* stoneTiles){ cout <<"bahii"<<endl;};
+    void getEvent(StoneTiles* stoneTiles);
 
 };
 
