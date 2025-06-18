@@ -36,6 +36,7 @@ public:
     // Ajoute une carte (transfert de propriété)
     void addCard(unique_ptr<Cards> Card) { SetOfCards.push_back(std::move(Card)); }
 
+    string getStringSet();
     void moveCard(string Cardname, Set& toSet);
     void moveCard(unsigned int IndexCard, Set& toSet);
 

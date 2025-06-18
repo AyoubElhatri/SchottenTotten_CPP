@@ -123,6 +123,15 @@ void Set::printSet() const {
     }
 }
 */
+string Set::getStringSet()
+{
+    string TextSet;
+    for (const auto& card : SetOfCards) {
+        TextSet+=GameBoard::getInstance().formatCard(card.get()) + " ";
+    }
+    return TextSet;
+
+}
 
 void Set::printSet() const {
 
