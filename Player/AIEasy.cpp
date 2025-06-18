@@ -1,36 +1,61 @@
 #include "AIEasy.h"
-#include"Player.h"
-#include <cstdlib>  // rand()
-#include <ctime>    // time()
+#include "../GameBoard/GameBoard.h"
+#include "../Display/DisplayManager.h"
+#include <cstdlib>
 
+void AIEasy::playCard() {
+    GameBoard& board = GameBoard::getInstance();
+    Set& deck = getPlayerDeck();
 
-AIEasy::AIEasy(unsigned int playerId)
-    : AI(playerId) {}
+    if (deck.getSize() == 0) return;
 
-void AIEasy::playTurn(vector<unique_ptr<Cards>>& playerCards, GameBoard& gameBoard) {
-    int cardIndex = chooseCardIndex(playerCards);
-    int tileIndex = chooseTileIndex(gameBoard);
+    int cardIndex = rand() % deck.getSize();
+    Cards* selectedCard = deck.getCardAt(cardIndex);
 
-    if (cardIndex == -1 || tileIndex == -1) return;
-    unique_ptr<Cards> selectedCard = std::move(playerCards[cardIndex]);
-
-    // placeCardOnTile retourne void, donc on ne stocke pas de booléen ici
-    gameBoard.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, m_playerID);
-
-    // On supprime la carte du vecteur car elle est jouée
-    playerCards.erase(playerCards.begin() + cardIndex);
-}
-
-int AIEasy::chooseCardIndex(const vector<unique_ptr<Cards>>& cards) {
-    if (cards.empty()) return -1;
-    return rand() % cards.size();
-}
-
-int AIEasy::chooseTileIndex(const GameBoard& gameBoard) {
-    int boardSize = gameBoard.getBoardSize();
-    for (int tries = 0; tries < boardSize * 2; ++tries) {
-        int index = rand() % boardSize;
-        if (gameBoard.isTileFree(index)) return index;
+    // Choisir une tuile non revendiquée (la première disponible aléatoirement)
+    int tileIndex = rand() % board.getBoardSize();
+    for (int offset = 0; offset < board.getBoardSize(); ++offset) {
+        int index = (tileIndex + offset) % board.getBoardSize();
+        if (!board.getSharedTiles()[index]->isAlreadyClaimed()) {
+            tileIndex = index;
+            break;
+        }
     }
-    return -1;
+
+    // Poser la carte
+    board.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
+
+    auto& tile = board.getSharedTiles()[tileIndex];
+    if (tile->getPlayerCardsOnTilesByPlayerId(getPlayerID()).getSize() == tile->getNbOfPlayableCards()
+        && tile->getFirstPlayerToFillTheStoneTile() == nullptr) {
+        tile->setFirstPlayerToFillTheStoneTile(this);
+        }
+
+    // Piocher une carte : seulement Clan
+    if (board.getRemainingClanCards().getSize() > 0) {
+        drawClanCards();
+    }
+}
+
+void AIEasy::playTurn() {
+    DisplayManager::getInstance()->output("Tour de l'IA (joueur " + std::to_string(getPlayerID()) + ")\n");
+
+    GameBoard& board = GameBoard::getInstance();
+    int boardSize = board.getBoardSize();
+
+    // 20% de chance de revendiquer une tuile
+    if (rand() % 100 < 20) {
+        for (int i = 0; i < boardSize; ++i) {
+            auto& tile = board.getSharedTiles()[i];
+            if (!tile->isAlreadyClaimed()) {
+                tile->claim(getPlayerID());
+                if (tile->isAlreadyClaimed()) {
+                    DisplayManager::getInstance()->output("L'IA a revendiqué la tuile " + std::to_string(i) + "\n");
+                    return;
+                }
+            }
+        }
+    }
+
+    playCard();
 }
