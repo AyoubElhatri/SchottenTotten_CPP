@@ -102,12 +102,45 @@ void CGameLogic::printBoardalpha2() {
     string tilec="";
     for (size_t i = 0; i < sharedTiles.size(); ++i) {
         if (sharedTiles[i]->isAlreadyClaimed()) {
-            tilec+=(" Borne " + std::to_string(i) +
-                " : Joueur " + std::to_string(sharedTiles[i]->getClaimedBy()));
+            tilec+=(" StoneTile " + std::to_string(i) +
+                " : Player " + std::to_string(sharedTiles[i]->getClaimedBy()));
         }
 
     }
-    printOption(tilec);
+    if (tilec.size()>=98)
+    {
+        size_t pos=tilec.rfind('B',98);
+        string tilec1=tilec.substr(0,pos);
+        string tilec2=tilec.substr(pos);
+        printOption(tilec1);
+        printOption(tilec2);
+
+    }
+    else
+    {
+        printOption(tilec);
+    }
+    getFreespace();
+    string dc="Discarded Cards: ";
+    int iter=GameBoard::getInstance().getDiscardedCards().getSize();
+    if (iter!=0)
+    {
+        for (int j=0;j<iter;j++)
+        {
+            dc +=GameBoard::getInstance().formatCard(GameBoard::getInstance().getDiscardedCards().getRawCards()[j])+" ";
+
+        }
+        if (dc.size()>=98)
+        {
+            size_t pos1=dc.rfind(' ',96);
+            string dc1=dc.substr(0,pos1);
+            string dc2=dc.substr(pos1);
+            printClean(dc1);
+            printClean(dc2);
+        }
+         else{   printClean(dc);
+        }
+    }
     getFreespace(4);
     string info="ST[*]: Stone Tile n=* ";
     printInLast(info);
@@ -234,9 +267,9 @@ void CGameLogic::initializePlayerDecks() {
 
 }
 void CGameLogic::PlayerVictory(int i){
-    string p1="Player "+to_string(i+1)+" wins this round.";
+    string p1="Player "+to_string(i)+" wins this round.";
     string p2;
-    if(i==0) p2="Player 2 loses this round.";
+    if(i==1) p2="Player 2 loses this round.";
     else p2="Player 1 loses this round.";
     printStars();
     getFreespace(7);
