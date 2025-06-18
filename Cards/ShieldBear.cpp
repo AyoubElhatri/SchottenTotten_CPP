@@ -16,7 +16,7 @@ void ShieldBear::getEvent(StoneTiles* stoneTiles) {
     DisplayManager::getInstance()->output("What's the color of the ShieldBearer you want to play?");
     try {
         string strcolorInput = DisplayManager::getInstance()->takeInput();
-        int colorInput=getColor(strcolorInput);
+        int colorInput=makeColor(strcolorInput);
         Colors cardColor = static_cast<Colors>(colorInput);
         setColor(cardColor);
     }

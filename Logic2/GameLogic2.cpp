@@ -65,15 +65,37 @@ void CGameLogic::printBoardalpha2() {
         // Après le joueur 1, afficher la ligne de séparation des tuiles
         if (playerId == 1) {
             std::string tileStr;
+            string combat="";
+            int which=-1;
             for (int i = 0; i < tileCount; ++i) {
 
                 if (sharedTiles[i]->isAlreadyClaimed()) {
-                    tileStr = red + "[XXXX]" + reset;
-                } else {
+                    tileStr = red + "[XXXX]" + reset+"   ";
+                } else if (sharedTiles[i]->getCombatModeCards().getSize()!=0) {
+                    if (sharedTiles[i]->getCombatModeCards().getSize()==1)
+                    {
+                        tileStr+=sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+" ";
+                    }
+                    else if (sharedTiles[i]->getCombatModeCards().getSize()>1)
+                    {
+                        combat=string(tileStr.size(),' ')+sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+" ";
+                        printOption(combat);
+                        which=i;
+                        tileStr+="         ";
+                    }
+                }
+                else{
                     tileStr+="--ST"+to_string(i)+"--   ";
                 }
             }
+
             printClean(tileStr);
+            if (which!=-1)
+            {
+                combat=combat.substr(0,combat.size()-6);
+                combat+=sharedTiles[which]->getCombatModeCards().getCardAt(0)->getName()+" ";
+                printOption(combat);
+            }
         }
     }
     string claimed="Claimed Tiles: ";
@@ -211,6 +233,19 @@ void CGameLogic::initializePlayerDecks() {
     }
 
 }
+void CGameLogic::PlayerVictory(int i){
+    string p1="Player "+to_string(i+1)+" wins this round.";
+    string p2;
+    if(i==0) p2="Player 2 loses this round.";
+    else p2="Player 1 loses this round.";
+    printStars();
+    getFreespace(7);
+    printWithColor(p1,"green");
+    getFreespace(4);
+    printWithColor(p2,"red");
+    getFreespace(4);
+    printStars();
+}
 void CGameLogic::printLoading() {
     string loading="LOADING...";
     printWithColor(loading,"green");
@@ -307,6 +342,7 @@ void CGameLogic::runGameLoop() {
         turnNumber++;
 
     }
+
 }
 void CGameLogic::printStars()
 {   Display *c=DisplayManager::getInstance();
@@ -314,7 +350,8 @@ void CGameLogic::printStars()
     c->output(stars);
 }
 
-bool CGameLogic::checkWinner() const {
+bool CGameLogic::checkWinner()
+{
     auto * rules = Rules::getInstance();
     const auto alignedToWin = rules->getNumberOfAlignedTilesToWin();
     const auto unalignedToWin = rules->getNumberOfUnalignedTilesToWin();
@@ -325,6 +362,10 @@ bool CGameLogic::checkWinner() const {
         int total = board.getControlledTilesCount(playerId);
         if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfStoneTiles()) {
             std::cout << " Le joueur " << playerId << " a gagné la partie !" << std::endl;
+            if (playerId==0)Player1Wins+=1;
+            else Player2Wins+=1;
+            PlayerVictory(playerId);
+            getSleep(4);
             return true;
         }
     }
@@ -519,8 +560,8 @@ void CGameLogic::getMainConsole() {
     int currentRound=0;
     int maxRounds=1;
     int iMenu=(-1);
-    int Player1Wins=0;
-    int Player2Wins=0;
+    Player1Wins=0;
+    Player2Wins=0;
     string sError;
     Display *c=DisplayManager::getInstance();
     while (iMenu!=0) {

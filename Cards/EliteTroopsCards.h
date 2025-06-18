@@ -7,9 +7,9 @@
 using namespace std;
 class EliteTroopsCards : public ClanCards, public TacticalCards{
 public:
-    virtual int getColor(string color);
+    virtual int makeColor(string color);
 };
-inline int EliteTroopsCards::getColor(string color="red")
+inline int EliteTroopsCards::makeColor(string color="red")
 {
     if (color=="Yellow"||color=="yellow")
     {

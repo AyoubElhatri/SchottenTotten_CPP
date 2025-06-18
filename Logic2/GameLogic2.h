@@ -30,6 +30,8 @@ class CGameLogic {
         vector<unique_ptr<Player>> players;
         static unique_ptr<CGameLogic> instance ;
         CGameLogic();
+    int Player1Wins=0;
+    int Player2Wins=0;
     void printOption(string option);
     void printWithColor(string option, string color);
     void getFreespace(int i=1);
@@ -45,6 +47,7 @@ class CGameLogic {
     void printBoardalpha();
     void printBoardalpha2();
     void printInLast(string Text);
+    void PlayerVictory(int i);
     public :
         CGameLogic(const CGameLogic&) = delete;
         CGameLogic(CGameLogic&&) = delete;
@@ -77,7 +80,7 @@ class CGameLogic {
         }
 
 
-        bool checkWinner() const  ;
+        bool checkWinner();
 
 
 
