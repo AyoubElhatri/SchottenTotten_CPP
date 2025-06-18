@@ -6,7 +6,6 @@
 void Human::playCard() {
     GameBoard& board = GameBoard::getInstance();
     
-    board.printBoard();
     DisplayManager::getInstance()->output("\nIt's Player " + std::to_string(this->getPlayerID()) + "'s turn\n");
     getPlayerDeck().printSet();
 

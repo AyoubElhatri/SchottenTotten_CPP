@@ -82,7 +82,7 @@ void GameLogic::runGameLoop() {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
 
         board.printBoard();
-        
+
         try {
             currentPlayer->playTurn();
         } catch (const std::exception& e) {
@@ -92,8 +92,7 @@ void GameLogic::runGameLoop() {
 
         turnNumber++;
         
-        DisplayManager::getInstance()->output("\nAppuyez sur Entrée pour passer le clavier au joueur suivant...");
-        std::cin.get();
+
 
 #ifdef _WIN32
         system("cls");
