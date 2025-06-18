@@ -10,6 +10,7 @@
 #include"../Display/DisplayManager.h"
 #include "../Player/Human.h"
 #include"../Player/Player.h"
+#include "../Player/AIEasy.h"
 
 
 std::unique_ptr<CGameLogic> CGameLogic::instance = nullptr;
@@ -17,7 +18,7 @@ std::unique_ptr<CGameLogic> CGameLogic::instance = nullptr;
 CGameLogic ::CGameLogic() {
     turnNumber= 0;
     Player* player1 = new Human(1);
-    Player* player2 = new Human(2);
+    Player* player2 = new AIEasy(2);
 
     addPlayer(std::unique_ptr<Player>(player1));
     addPlayer(std::unique_ptr<Player>(player2));
