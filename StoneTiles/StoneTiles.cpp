@@ -37,6 +37,17 @@ void StoneTiles::claim(unsigned int playerId) {
     auto& cards2 = getPlayerCardsOnTilesByPlayerId(player2id);
 
 
+    if ((cards1.getSize()== maxCards && cards2.getSize() != maxCards) || (cards1.getSize()!= maxCards && cards2.getSize() == maxCards)) {
+        //revendication anticipé
+        //revendication anticipé
+        //revendication anticipé
+        //revendication anticipé
+        //revendication anticipé
+        //revendication anticipé
+
+
+    }
+
     // Vérifier si le joueur a déjà le nombre maximum de cartes
     if (cards1.getSize()== maxCards && cards2.getSize() == maxCards) {
         if (comboType == CombinationType::Sum) {
@@ -80,7 +91,6 @@ void StoneTiles::claim(unsigned int playerId) {
     }
     else {
 
-        //revendication anticipé
     }
 }
 
