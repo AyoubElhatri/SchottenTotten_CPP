@@ -87,7 +87,7 @@ void CGameLogic::printBoardalpha2() {
     }
     printOption(tilec);
     getFreespace(4);
-    string info="ST[*]: Stone Tile n°* ";
+    string info="ST[*]: Stone Tile n=* ";
     printInLast(info);
     printStars();
 
@@ -153,7 +153,7 @@ void CGameLogic::printBoardalpha() {
 void CGameLogic::printInLast(string Text)
 {
     int space=100-Text.size();
-    string toprint="#"+string(space-1,' ')+Text+"#\n";
+    string toprint="#"+string(space-2,' ')+Text+"#\n";
     DisplayManager::getInstance()->output(toprint);
 }
 
@@ -237,6 +237,7 @@ void CGameLogic::printClean(string text)
 
 
 void CGameLogic::startGame() {
+    clearScreen();
     printStars();
     string Cards="Clan cards:";
     fillWithDashes(Cards);
@@ -279,7 +280,6 @@ void CGameLogic::startGame() {
     printStars();
     getSleep(4);
     //fillTestCards(*board);
-    clearScreen();
     runGameLoop();
 
 
@@ -289,6 +289,7 @@ void CGameLogic::startGame() {
 
 }
 void CGameLogic::runGameLoop() {
+    clearScreen();
     GameBoard& board = GameBoard::getInstance();
 
 
@@ -303,7 +304,6 @@ void CGameLogic::runGameLoop() {
             DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
             continue;
         }
-
         turnNumber++;
         clearScreen();
     }
@@ -509,7 +509,7 @@ void CGameLogic::getChoiceInfo()
 void CGameLogic::getSleep(int timeToSleep)
 {
 #ifdef _WIN32
-    Sleep(timeToSleep * 1000);  // Convert to milliseconds
+    this_thread::sleep_for(chrono::seconds(timeToSleep));  // Convert to milliseconds
 #else
     usleep(timeToSleep*1000000);         // Already in seconds
 #endif
