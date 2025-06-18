@@ -129,7 +129,7 @@
 
 #include "Banshee.h"
 #include "../GameBoard/GameBoard.h"
-#include "../Logic/GameLogic.h"
+#include "../Logic2/GameLogic2.h"
 #include "../Display/DisplayManager.h"
 #include "../Player/Player.h"
 #include "../Cards/Cards.h"
@@ -139,8 +139,8 @@
 
 void Banshee::getEvent(StoneTiles* /* unused */) {
     GameBoard& board = GameBoard::getInstance();
-    auto& players = GameLogic::getInstance().getPlayers();
-    Player* currentPlayer = players[GameLogic::getInstance().getCurrentPlayerIndex()].get();
+    auto& players = CGameLogic::getInstance().getPlayers();
+    Player* currentPlayer = players[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
     unsigned int currentPlayerId = currentPlayer->getPlayerID();
     unsigned int opponentId = (currentPlayerId == 1) ? 2 : 1;
 

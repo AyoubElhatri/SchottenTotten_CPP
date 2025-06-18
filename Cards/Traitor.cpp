@@ -1,6 +1,6 @@
 #include "Traitor.h"
 #include "../GameBoard/GameBoard.h"
-#include "../Logic/GameLogic.h"
+#include "../Logic2/GameLogic2.h"
 #include "../Rules/Rules.h"
 #include "../Player/Player.h"
 #include "../Cards/ClanCards.h"
@@ -10,9 +10,9 @@
 
 void Traitor::getEvent(StoneTiles* ) {
     GameBoard& board = GameBoard::getInstance();
-    Player* currentPlayer = GameLogic::getInstance().getPlayers()[GameLogic::getInstance().getCurrentPlayerIndex()].get();
+    Player* currentPlayer = CGameLogic::getInstance().getPlayers()[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
     unsigned int currentPlayerId = currentPlayer->getPlayerID();
-    unsigned int opponentId = (currentPlayerId == 1) ? 2 : 1;
+    unsigned int opponentId = 3-currentPlayerId;
 
     // Étape 1 : Récupérer les tuiles non revendiquées avec cartes de l'adversaire
     std::vector<std::shared_ptr<StoneTiles>> eligibleTiles;

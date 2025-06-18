@@ -2,13 +2,13 @@
 #include <iostream>
 
 #include "../GameBoard/GameBoard.h"
-#include "../Logic/GameLogic.h"
+#include "../Logic2/GameLogic2.h"
 
 
 void Recruiter::getEvent(StoneTiles* stoneTiles) {
     int cardsToDraw = 3;
     GameBoard* board = &GameBoard::getInstance();
-    Player* currentPlayer = GameLogic::getInstance().getCurrentPlayer();
+    Player* currentPlayer = CGameLogic::getInstance().getCurrentPlayer();
 
     // Phase 1 : Piocher 3 cartes
     while (cardsToDraw > 0) {
