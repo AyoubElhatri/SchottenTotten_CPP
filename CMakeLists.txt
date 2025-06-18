@@ -36,10 +36,8 @@ StoneTiles/StoneTiles.h
         Player/AIEasy.cpp
         Player/AIEasy.h
         Cards/Joker.cpp
-        GameBoard/GameBoard.cpp
         Display/DisplayManager.h
         Display/DisplayManager.cpp
-        Cards/Joker.cpp
         GameBoard/GameBoard.h
         GameBoard/GameBoard.cpp
         Cards/Traitor.cpp

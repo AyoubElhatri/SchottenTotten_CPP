@@ -41,26 +41,44 @@ void Recruiter::getEvent(StoneTiles* stoneTiles) {
     DisplayManager::getInstance()->output("\nVotre main actuelle :");
     currentPlayer->getPlayerDeck().printSet();
 
-    while (cardsToReturn > 0) {
-        DisplayManager::getInstance()->output("Choisissez une carte à remettre sous la pioche (" + 
-            std::to_string(cardsToReturn) + " restantes)");
-        DisplayManager::getInstance()->output("Entrez l'index de la carte (0-" + 
-            std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + ") :");
-        
-        unsigned int cardIndex = stoi(DisplayManager::getInstance()->takeInput());
-        
-        if (cardIndex < currentPlayer->getPlayerDeck().getSize()) {
-            const Cards* selectedCard = currentPlayer->getPlayerDeck().getCardAt(cardIndex);
-            
-            if (dynamic_cast<const TacticalCards*>(selectedCard)) {
-                currentPlayer->getPlayerDeck().moveCard(cardIndex,GameBoard::getInstance().getRemainingClanCards());
-            } else {
-                currentPlayer->getPlayerDeck().moveCard(cardIndex,GameBoard::getInstance().getRemainingTacticalCards());
+
+while (cardsToReturn > 0) {
+    DisplayManager::getInstance()->output("\nVotre main actuelle :");
+    currentPlayer->getPlayerDeck().printSet();
+
+    DisplayManager::getInstance()->output("Choisissez une carte à remettre sous la pioche (" +
+        std::to_string(cardsToReturn) + " restantes)");
+    DisplayManager::getInstance()->output("Entrez l'index de la carte (0-" +
+        std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + ") :");
+
+    unsigned int cardIndex = stoi(DisplayManager::getInstance()->takeInput());
+    DisplayManager::getInstance()->output("Accès à la carte à l'index : " + std::to_string(cardIndex));
+
+    unsigned int deckSize = currentPlayer->getPlayerDeck().getSize();
+
+    if (cardIndex < deckSize) {
+        // Faire une copie intelligente du pointeur de type AVANT déplacement
+        bool isTactical = false;
+        {
+            const Cards* tempCard = currentPlayer->getPlayerDeck().getCardAt(cardIndex);
+            if (!tempCard) {
+                DisplayManager::getInstance()->output("Carte invalide !");
+                return;
             }
-            
-            cardsToReturn--;
-        } else {
-            DisplayManager::getInstance()->output("Index invalide, veuillez réessayer.");
+            isTactical = dynamic_cast<const TacticalCards*>(tempCard) != nullptr;
         }
+
+        // Puis déplacer la carte (maintenant que le type est connu)
+        if (isTactical) {
+            currentPlayer->getPlayerDeck().moveCard(cardIndex, GameBoard::getInstance().getRemainingTacticalCards());
+        } else {
+            currentPlayer->getPlayerDeck().moveCard(cardIndex, GameBoard::getInstance().getRemainingClanCards());
+        }
+
+
+        cardsToReturn--;
+    } else {
+        DisplayManager::getInstance()->output("Index invalide, veuillez réessayer.");
     }
+}
 }

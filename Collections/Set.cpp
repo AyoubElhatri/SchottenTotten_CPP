@@ -18,7 +18,7 @@ unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
     }
     unique_ptr<Cards> IndexCard = std::move(SetOfCards[IndexParam]);
     SetOfCards.erase(SetOfCards.begin() + IndexParam);
-    return std::move(IndexCard);
+    return IndexCard;
 }
 
  Cards* Set::getCardAt(unsigned int IndexParam)  {
