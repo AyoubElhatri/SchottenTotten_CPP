@@ -136,11 +136,22 @@ int main() {
            .setNumberOfAlignedTilesToWin(3)
            .setNumberOfUnalignedTilesToWin(5)
            .addClanCardColor(Colors::Red, 9)
-            .addClanCardColor(Colors::Yellow, 9)
-            .addClanCardColor(Colors::Blue, 9)
-            .addClanCardColor(Colors::Magenta,9)
-           .addTacticalCard("Spy", 2)
-           .addTacticalCard("Joker", 2);
+           .addClanCardColor(Colors::Yellow, 9)
+           .addClanCardColor(Colors::Blue, 9)
+           .addClanCardColor(Colors::Magenta, 9)
+           .addTacticalCard("Spy", 1)
+           .addTacticalCard("Joker", 2)
+           .addTacticalCard("Traitor", 1)
+           .addTacticalCard("Banshee", 1)
+           .addTacticalCard("Recruiter", 1)
+            .addTacticalCard("Mud Fight", 1)
+            .addTacticalCard("shield bear", 1)
+            .addTacticalCard("Blind Man", 1)
+           .setNumberMaxOfCardsPerPlayer(6)
+           .setNumberMaxOfCardsPerTiles(3);
+
+
+
 
     // Appel de buildInstance avec le builder
     Rules::buildInstance(builder);
