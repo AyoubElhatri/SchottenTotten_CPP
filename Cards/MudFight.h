@@ -4,7 +4,7 @@
 
 class MudFight : public CombatModeCards {
     public:
-        MudFight(){cardName= "Mud Fight";};
+        MudFight(){cardName= "MudFight";};
     void getEvent(StoneTiles* stoneTiles) {
     stoneTiles->setNbOfPlayableCards(stoneTiles->getNbOfPlayableCards() + 1);
 }
