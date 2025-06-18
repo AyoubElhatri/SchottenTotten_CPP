@@ -20,7 +20,7 @@ unique_ptr<Cards> Set::getCardbyIndex(unsigned int IndexParam) {
     return std::move(IndexCard);
 }
 
-const Cards* Set::getCardAt(unsigned int IndexParam) const {
+ Cards* Set::getCardAt(unsigned int IndexParam)  {
     if (IndexParam >= getSize()) {
         std::cerr << "Exception: Index hors limite dans getCardAt\n";
         return nullptr;

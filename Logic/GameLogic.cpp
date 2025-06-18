@@ -78,71 +78,21 @@ void GameLogic::startGame() {
 void GameLogic::runGameLoop() {
     GameBoard& board = GameBoard::getInstance();
 
-   // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Nettoyage buffer au départ
-
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
 
         board.printBoard();
-        DisplayManager::getInstance()->output("\nIt's Player " + std::to_string(currentPlayer->getPlayerID()) + "'s turn\n");
-        currentPlayer->getPlayerDeck().printSet();
-
-        int cardIndex = -1;
-        int tileIndex = -1;
-
-        DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " +
-                                              std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + "): ");
+        
         try {
-            cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
-        } catch (...) {
-            DisplayManager::getInstance()->output("Invalid input. Try again.\n");
-            continue;
-        }
-
-        if (cardIndex < 0 || cardIndex >= (int)currentPlayer->getPlayerDeck().getSize()) {
-            DisplayManager::getInstance()->output("Invalid card index.\n");
-            continue;
-        }
-
-        DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " +
-                                              std::to_string(board.getBoardSize() - 1) + "): ");
-        try {
-            tileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
-        } catch (...) {
-            DisplayManager::getInstance()->output("Invalid input. Try again.\n");
-            continue;
-        }
-
-        if (tileIndex < 0 || tileIndex >= board.getBoardSize()) {
-            DisplayManager::getInstance()->output("Invalid tile index.\n");
-            continue;
-        }
-
-        std::string cardName = currentPlayer->getPlayerDeck().getCardAt(cardIndex)->getName();
-        std::cout << "[DEBUG] Joueur " << currentPlayer->getPlayerID() << " joue la carte : " << cardName << std::endl;
-
-        Set& playerDeck = currentPlayer->getPlayerDeck();
-        auto& tile = board.getSharedTiles()[tileIndex];
-
-        try {
-            tile->addCardOnTilesOfPlayer(currentPlayer->getPlayerID(), cardName, playerDeck);
+            currentPlayer->playTurn();
         } catch (const std::exception& e) {
             DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
             continue;
         }
 
-        // Tenter de revendiquer la tuile si possible
-        if (!tile->isAlreadyClaimed()) {
-            tile->claim();
-        }
-
-        // Piocher une seule carte si possible
-        if (board.getRemainingClanCards().getSize() > 0) {
-            currentPlayer->drawClanCards(1);
-        }
-
+        turnNumber++;
+        
         DisplayManager::getInstance()->output("\nAppuyez sur Entrée pour passer le clavier au joueur suivant...");
-        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cin.get();
 
 #ifdef _WIN32
@@ -150,8 +100,6 @@ void GameLogic::runGameLoop() {
 #else
         system("clear");
 #endif
-
-        turnNumber++;
     }
 }
 bool GameLogic::checkWinner() const {
@@ -170,9 +118,3 @@ bool GameLogic::checkWinner() const {
     }
     return false;
 }
-
-
-
-
-
-

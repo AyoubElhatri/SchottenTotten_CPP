@@ -71,7 +71,7 @@ Set& GameBoard::getDiscardedCards() {
 }
 
 
-// a enlever
+// A MODIFIER SA GRAND MERE
 void GameBoard::placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards& card, int playerId) {
     if (tileIndex < 0 || tileIndex >= getBoardSize()) {
         throw std::out_of_range("Index de tuile invalide");

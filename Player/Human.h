@@ -9,7 +9,8 @@ using namespace std;
 class Human : public Player {
 public:
     Human(unsigned int playerId): Player(playerId) {}
-    void playCard(unique_ptr<Cards> card) override;
+    void playCard() override ;
+    void playTurn() override ;
 };
 
 #endif // HUMAN_H
