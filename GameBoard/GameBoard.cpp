@@ -14,7 +14,7 @@ std::unique_ptr<GameBoard> GameBoard::instance = nullptr;
 
 void GameBoard::deleteInstance()
 {
-    instance=nullptr;
+    instance.reset();
 }
 
 GameBoard::GameBoard() {

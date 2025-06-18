@@ -8,6 +8,7 @@
 #include "../GameBoard/GameBoard.h"
 #include"../Cards/Recruiter.h"
 #include"../Display/DisplayManager.h"
+#include "../Logic/GameLogic.h"
 #include "../Player/Human.h"
 #include"../Player/Player.h"
 #include "../Player/AIEasy.h"
@@ -24,7 +25,7 @@ CGameLogic ::CGameLogic() {
     addPlayer(std::unique_ptr<Player>(player2));
 }
 void CGameLogic::deleteInstance() {
-    instance=nullptr;
+    instance.reset();
 }
 void CGameLogic::printBoardalpha2() {
     const std::string blue = "\033[1;34m";
@@ -226,6 +227,7 @@ CGameLogic &CGameLogic::getInstance() {
     }
     return *instance;
 }
+
 void CGameLogic::clearScreen() {
 #ifdef _WIN32
     system("cls");
@@ -248,7 +250,23 @@ unsigned int getUTF8size(string message){
 void CGameLogic::addPlayer(std::unique_ptr<Player> player) {
     players.push_back(std::move(player));
 }
-
+void CGameLogic::removeLastPlayer()
+{
+    players.pop_back();
+}
+void CGameLogic::addPlayer(unsigned int i)
+{
+    if (i==0)
+    {
+        Player* player2 = new AIEasy(2);
+        addPlayer(std::unique_ptr<Player>(player2));
+    }
+    else if (i==1)
+    {
+        Player* player2= new Human(2);
+        addPlayer(std::unique_ptr<Player>(player2));
+    }
+}
 void CGameLogic::initializePlayerDecks() {
     GameBoard& board = GameBoard::getInstance();
     Set& deck = board.getRemainingClanCards();
@@ -312,7 +330,7 @@ void CGameLogic::PlayerRounds(){
         getFreespace(4);
         printStars();
     }
-    else if (Player1Wins=Player2Wins) {
+    else if (Player1Wins==Player2Wins) {
         string p2="It's a tie! Both players won "+to_string(Player1Wins);
         string p3="Congratulations to both of the players!";
         printStars();
@@ -648,6 +666,26 @@ void CGameLogic::getChoiceInfo()
     getFreespace(2);
     printStars();
 }
+void CGameLogic::getChoicePlayer()
+{
+    string info="Versus who do you wish to play. Please make a choice:";
+    string license="Enter 1 to play against AI.";
+    string supervision="Enter 2 to play against Human.";
+    string moreinfo="Enter 0 to quit the game.";
+    printStars();
+    getFreespace(2);
+    printOption(info);
+    getFreespace(2);
+    printOption(license);
+    getFreespace(2);
+    printOption(supervision);
+    getFreespace(2);
+    printOption(moreinfo);
+    getFreespace(2);
+    getReturn();
+    getFreespace(2);
+    printStars();
+}
 void CGameLogic::getSleep(int timeToSleep)
 {
 #ifdef _WIN32
@@ -664,6 +702,7 @@ void CGameLogic::getMainConsole() {
     Player1Wins=0;
     Player2Wins=0;
     string sError;
+
     Display *c=DisplayManager::getInstance();
     while (iMenu!=0) {
         clearScreen();
@@ -682,7 +721,7 @@ void CGameLogic::getMainConsole() {
                 sError.clear();
             }
             else if (inputString=="1") {
-                iMenu=2;
+                iMenu=5;
                 sError.clear();
             }
             else if (inputString=="2") {
@@ -691,6 +730,41 @@ void CGameLogic::getMainConsole() {
             }
             else {
                 sError="Error, option '"+inputString+"' does not exist. Please choose a valid option.";
+            }
+        }
+        else if (iMenu==5)
+        {
+            removeLastPlayer();
+            getChoicePlayer();
+            c->output(">> ");
+            cin>>inputString;
+            if (inputString=="0") {
+                iMenu=0;
+                sError.clear();
+            }
+            else if (inputString=="-1") {
+                iMenu=1;
+                sError.clear();
+            }
+            else {
+                try {
+                    int playerop=stoi(inputString);
+                    if (playerop==2)
+                    {
+                        players.push_back(unique_ptr<Player>(new Human(2)));
+                    }
+                    else if (playerop==1)
+                    {
+                        players.push_back(unique_ptr<Player>(new AIEasy(2)));
+                    }else{
+                        throw(invalid_argument("Invalid input"));
+                    }
+                    sError.clear();
+                    iMenu=2;
+                }catch (...) {
+                    sError="Invalid, input '"+inputString+"'. Please enter a valid option.";
+                }
+
             }
         }
         else if (iMenu==2) {

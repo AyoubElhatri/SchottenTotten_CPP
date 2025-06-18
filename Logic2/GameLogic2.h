@@ -29,7 +29,7 @@ class CGameLogic {
         unsigned int turnNumber;
         vector<unique_ptr<Player>> players;
         static unique_ptr<CGameLogic> instance ;
-        CGameLogic();
+    CGameLogic();
 
 
 
@@ -58,9 +58,12 @@ class CGameLogic {
         CGameLogic(CGameLogic&&) = delete;
         CGameLogic& operator=(const CGameLogic&) = delete;
         CGameLogic& operator=(CGameLogic&&) = delete;
+
         ~CGameLogic() = default;
         static CGameLogic& getInstance();
         void addPlayer(std::unique_ptr<Player> player);
+        void removeLastPlayer();
+        void addPlayer(unsigned int i);
         void startGame();
         void initializePlayerDecks();
         unsigned int getTurnNumber() const noexcept {return turnNumber;}
@@ -72,7 +75,8 @@ class CGameLogic {
     void getChoiceMain();
     void getChoiceStart();
     void getChoiceInfo();
-    void getMainConsole();
+        void getChoicePlayer();
+        void getMainConsole();
     void getChoiceRoundLoading(int i);
         unsigned int getCurrentPlayerIndex() const noexcept {
             return turnNumber % players.size();
