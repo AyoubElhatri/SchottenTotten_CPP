@@ -7,7 +7,7 @@
 #include <iostream>
 #include <memory>
 
-void Traitor::getEvent(StoneTiles* /* stoneTiles */) {
+/*void Traitor::getEvent(StoneTiles* ) {
     GameBoard& board = GameBoard::getInstance();
     Player* currentPlayer = GameLogic::getInstance().getCurrentPlayer();
     unsigned int currentPlayerId = currentPlayer->getPlayerID();
@@ -87,4 +87,4 @@ void Traitor::getEvent(StoneTiles* /* stoneTiles */) {
 
     playerSet.addCard(std::move(stolenCard));
     DisplayManager::getInstance()->output("Carte volée avec succès et posée sur la tuile " + std::to_string(toTileIndex) + "\n");
-}
+}*/
