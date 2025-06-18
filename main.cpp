@@ -147,8 +147,8 @@ int main() {
          //.addTacticalCard("BlindMan", 1) //Fonctionne
            //.addTacticalCard("Traitor", 1) //Fonctionne
             //.addTacticalCard("Banshee", 1) //Fonctionne
-            //.addTacticalCard("Stratege",1)
-           .addTacticalCard("Recruiter", 1)
+            .addTacticalCard("Stratege",1)
+           //.addTacticalCard("Recruiter", 1)
            .setNumberMaxOfCardsPerPlayer(6)
            .setNumberMaxOfCardsPerTiles(3);
 
