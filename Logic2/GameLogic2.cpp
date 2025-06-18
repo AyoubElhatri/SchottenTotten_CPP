@@ -52,7 +52,7 @@ void CGameLogic::printBoardalpha2() {
             for (int i = 0; i < tileCount; ++i) {
                 const auto& cards = sharedTiles[i]->getPlayerCardsOnTilesByPlayerId(playerId).getRawCards();
                 if (row < static_cast<int>(cards.size())) {
-                    line+=" "+GameBoard::getInstance().formatCard(cards[row])+"     ";
+                    line+="  "+GameBoard::getInstance().formatCard(cards[row])+"     ";
                 } else {
                     line+="          ";
                 }
@@ -64,7 +64,7 @@ void CGameLogic::printBoardalpha2() {
 
         // Après le joueur 1, afficher la ligne de séparation des tuiles
         if (playerId == 1) {
-            std::string tileStr;
+            std::string tileStr=" ";
             string combat="";
             int which=-1;
             for (int i = 0; i < tileCount; ++i) {
@@ -74,14 +74,14 @@ void CGameLogic::printBoardalpha2() {
                 } else if (sharedTiles[i]->getCombatModeCards().getSize()!=0) {
                     if (sharedTiles[i]->getCombatModeCards().getSize()==1)
                     {
-                        tileStr+=sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+" ";
+                        tileStr+=sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+"  ";
                     }
                     else if (sharedTiles[i]->getCombatModeCards().getSize()>1)
                     {
-                        combat=string(tileStr.size(),' ')+sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+" ";
-                        printOption(combat);
+                        combat=string(getClean(tileStr).size(),' ')+sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+"  ";
+                        printClean(combat+string(80,' '));
                         which=i;
-                        tileStr+="         ";
+                        tileStr+="          ";
                     }
                 }
                 else{
@@ -92,9 +92,9 @@ void CGameLogic::printBoardalpha2() {
             printClean(tileStr);
             if (which!=-1)
             {
-                combat=combat.substr(0,combat.size()-6);
-                combat+=sharedTiles[which]->getCombatModeCards().getCardAt(0)->getName()+" ";
-                printOption(combat);
+                combat=combat.substr(0,combat.size()-10);
+                combat+=sharedTiles[which]->getCombatModeCards().getCardAt(1)->getName()+" ";
+                printClean(combat+string(80,' '));
             }
         }
     }
