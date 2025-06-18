@@ -13,6 +13,7 @@
 #include "Collections/Set.h"
 #include "Rules/Rules.h"
 #include "Logic/GameLogic.h"
+#include "Logic2/GameLogic2.h"
 
 // Affiche le plateau et les cartes posées par chaque joueur sur chaque tuile
 /*void printBoard(const GameBoard& board) {
@@ -155,8 +156,8 @@ int main() {
 
     // Appel de buildInstance avec le builder
     Rules::buildInstance(builder);
-
-    GameLogic::getInstance().startGame();
+    DisplayManager::createInstance<DisplayConsole>();
+    CGameLogic::getInstance().startGame();
 
 
 }

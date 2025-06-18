@@ -27,6 +27,9 @@ void CGameLogic::printBoardalpha2() {
     const std::string red = "\033[1;31m";
     const std::string reset = "\033[0m";
 
+    printStars();
+    getFreespace(5);
+
     vector<shared_ptr<StoneTiles>> sharedTiles=GameBoard::getInstance().getSharedTiles();
     const int tileCount = static_cast<int>(sharedTiles.size());
     const int cardWidth = 7;
@@ -276,6 +279,7 @@ void CGameLogic::startGame() {
     printStars();
     getSleep(4);
     //fillTestCards(*board);
+    clearScreen();
     runGameLoop();
 
 
@@ -291,7 +295,7 @@ void CGameLogic::runGameLoop() {
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
 
-        board.printBoard();
+        printBoardalpha2();
 
         try {
             currentPlayer->playTurn();
