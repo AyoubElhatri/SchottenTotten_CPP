@@ -115,7 +115,7 @@ void StoneTiles::printStoneTiles() {
     getCombatModeCards().printSet();
     DisplayManager::getInstance()->output("\n");
 }
-StoneTiles::StoneTiles(unsigned int pos) : Position(pos) {
+StoneTiles::StoneTiles(unsigned int pos) : Position(pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()) {
     StoneTileIsClaimed=false;
     for (const auto& player : GameLogic::getInstance().getPlayers()) {
         PlayerCards.emplace(player->getPlayerID(), std::make_unique<Set>());
