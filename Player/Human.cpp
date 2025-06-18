@@ -3,7 +3,7 @@
 #include "../Cards/EliteTroopsCards.h"
 #include "../Cards/CombatModeCards.h"
 #include "../Cards/RusesCards.h"
-#include "../Logic/GameLogic.h"
+#include "../Logic2/GameLogic2.h"
 
 
 void Human::playCard() {
@@ -113,23 +113,24 @@ void Human::playCard() {
         }
     }
 
-    // Piocher une carte si disponible
-    bool canDrawClan = board.getRemainingClanCards().getSize() > 0;
-    bool canDrawTactical = board.getRemainingTacticalCards().getSize() > 0;
+    if ( CGameLogic::getInstance().getPlayerById(getPlayerID())->getPlayerDeck().getSize()<Rules::getInstance()->getNumberMaxOfCardsPerPlayer()) {
+        // Piocher une carte si disponible
+        bool canDrawClan = board.getRemainingClanCards().getSize() > 0;
+        bool canDrawTactical = board.getRemainingTacticalCards().getSize() > 0;
 
-    if (canDrawClan || canDrawTactical) {
-        DisplayManager::getInstance()->output("\nChoose the type of card to draw:\n");
-        if (canDrawClan) DisplayManager::getInstance()->output("1. Clan Card\n");
-        if (canDrawTactical) DisplayManager::getInstance()->output("2. Tactical Card\n");
+        if (canDrawClan || canDrawTactical) {
+            DisplayManager::getInstance()->output("\nChoose the type of card to draw:\n");
+            if (canDrawClan) DisplayManager::getInstance()->output("1. Clan Card\n");
+            if (canDrawTactical) DisplayManager::getInstance()->output("2. Tactical Card\n");
 
-        string choice = DisplayManager::getInstance()->takeInput();
-        if (choice == "1" && canDrawClan) drawClanCards(1);
-        else if (choice == "2" && canDrawTactical) drawTacticalCards(1);
-        else DisplayManager::getInstance()->output("Invalid choice or no cards available.\n");
-    } else {
-        DisplayManager::getInstance()->output("\nNo more cards to draw.\n");
+            string choice = DisplayManager::getInstance()->takeInput();
+            if (choice == "1" && canDrawClan) drawClanCards(1);
+            else if (choice == "2" && canDrawTactical) drawTacticalCards(1);
+            else DisplayManager::getInstance()->output("Invalid choice or no cards available.\n");
+        } else {
+            DisplayManager::getInstance()->output("\nNo more cards to draw.\n");
+        }
     }
-
     DisplayManager::getInstance()->output("\nYour current hand: ");
     getPlayerDeck().printSet();
 }
