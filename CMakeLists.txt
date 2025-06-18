@@ -53,4 +53,6 @@ Logic/GameLogic.h
 Logic/GameLogic.cpp
         Cards/ShieldBear.cpp
         CustomException/CustomException.h
-        Cards/BlindMan.cpp)
+        Cards/BlindMan.cpp
+        Logic2/GameLogic2.cpp
+        Logic2/GameLogic2.h)
