@@ -376,7 +376,29 @@ void CGameLogic::runGameLoop() {
 
     }
 
-}
+}    //No stress c'est moi
+/*void CGameLogic::runGameLoop() {
+    clearScreen();
+
+    while (true) {
+        Player* currentPlayer = players[getCurrentPlayerIndex()].get();
+
+        printBoardalpha2();
+
+        try {
+            currentPlayer->playTurn();
+        } catch (const std::exception& e) {
+            clearScreen();
+            DisplayManager::getInstance()->output(string(e.what()) + "\n");
+            continue;
+        }
+
+
+        if (checkWinner()) break;
+
+        turnNumber++;
+    }
+}*/
 void CGameLogic::printStars()
 {   Display *c=DisplayManager::getInstance();
     string stars=string(CONSOLE_WIDTH,'#')+"\n";
