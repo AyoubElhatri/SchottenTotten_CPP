@@ -142,12 +142,13 @@ int main() {
            .addClanCardColor(Colors::Magenta, 9)
             //.addTacticalCard("Spy", 1)//Fonctionne
             //.addTacticalCard("Joker", 2)//Fonctionne
-           // .addTacticalCard("Traitor", 1)
-           // .addTacticalCard("Banshee", 1)
+            // .addTacticalCard("MudFight", 1)//Fonctionne
+        //.addTacticalCard("ShieldBear", 1)//Fonctionne
+         //.addTacticalCard("BlindMan", 1) //Fonctionne
+           //.addTacticalCard("Traitor", 1) //Fonctionne
+            //.addTacticalCard("Banshee", 1) //Fonctionne
+            //.addTacticalCard("Stratege",1)
            .addTacticalCard("Recruiter", 1)
-           // .addTacticalCard("MudFight", 1)//Fonctionne
-           //.addTacticalCard("ShieldBear", 1)//Fonctionne
-            //.addTacticalCard("BlindMan", 1) //Fonctionne
            .setNumberMaxOfCardsPerPlayer(6)
            .setNumberMaxOfCardsPerTiles(3);
 

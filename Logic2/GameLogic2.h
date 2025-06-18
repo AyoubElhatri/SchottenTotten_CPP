@@ -48,6 +48,7 @@ class CGameLogic {
     void printBoardalpha2();
     void printInLast(string Text);
     void PlayerVictory(int i);
+
     public :
         CGameLogic(const CGameLogic&) = delete;
         CGameLogic(CGameLogic&&) = delete;

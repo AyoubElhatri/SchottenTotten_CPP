@@ -15,6 +15,7 @@
 std::unique_ptr<CGameLogic> CGameLogic::instance = nullptr;
 
 CGameLogic ::CGameLogic() {
+    turnNumber= 0;
     Player* player1 = new Human(1);
     Player* player2 = new Human(2);
 

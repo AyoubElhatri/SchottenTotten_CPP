@@ -2,83 +2,90 @@
 #include <iostream>
 
 #include "../GameBoard/GameBoard.h"
-#include "../Logic/GameLogic.h"
+#include "../Logic2/GameLogic2.h"
+#include "../Cards/TacticalCards.h"
+#include "../Cards/ClanCards.h"
+#include "../Display/DisplayManager.h"
 
-
-void Recruiter::getEvent(StoneTiles* stoneTiles) {
-    int cardsToDraw = 3;
+void Recruiter::getEvent(StoneTiles* /* unused */) {
     GameBoard* board = &GameBoard::getInstance();
-    Player* currentPlayer = GameLogic::getInstance().getCurrentPlayer();
+    Player* currentPlayer = CGameLogic::getInstance().getCurrentPlayer();
+    Set& deck = currentPlayer->getPlayerDeck();
 
-    // Phase 1 : Piocher 3 cartes
-    while (cardsToDraw > 0) {
-        const Set& remainingTacticalCard = board->getRemainingTacticalCards();
-        const Set& remainingClanCard = board->getRemainingClanCards();
+    // Retirer la carte Recruiter du deck et la mettre dans la défausse
+    for (unsigned int i = 0; i < deck.getSize(); ++i) {
+        if (deck.getCardAt(i)->getName() == "Recruiter") {
+            deck.moveCard(i, board->getDiscardedCards());
+            break;
+        }
+    }
 
-        DisplayManager::getInstance()->output("Piochez une carte (" + std::to_string(cardsToDraw) + " restantes)");
-        DisplayManager::getInstance()->output("Quel type de carte voulez-vous piocher ? (1 pour Tactique, 2 pour Clan)");
-        unsigned int type = stoi(DisplayManager::getInstance()->takeInput());
+    DisplayManager::getInstance()->output("Vous allez piocher 3 cartes (clan ou tactique).\n");
 
-        if (type == 1) {
-            if (remainingTacticalCard.getSize() != 0) {
-                currentPlayer->drawTacticalCards(1);
-                cardsToDraw--;
+    // Phase 1 : piocher 3 cartes
+    int cardsToDraw = 3;
+    for (int i = 0; i < cardsToDraw; ) {
+        DisplayManager::getInstance()->output("Piochez une carte (" + std::to_string(cardsToDraw - i) + " restantes)\n1. Tactique   2. Clan");
+        std::string input = DisplayManager::getInstance()->takeInput();
+
+        if (input == "1") {
+            if (board->getRemainingTacticalCards().getSize() > 0) {
+                board->getRemainingTacticalCards().moveCard(0, deck);
+                ++i;
             } else {
-                DisplayManager::getInstance()->output("Plus de cartes tactiques disponibles.");
+                DisplayManager::getInstance()->output("Plus de cartes tactiques disponibles.\n");
             }
-        } else if (type == 2) {
-            if (remainingClanCard.getSize() != 0) {
-                currentPlayer->drawClanCards(1);
-                cardsToDraw--;
+        } else if (input == "2") {
+            if (board->getRemainingClanCards().getSize() > 0) {
+                board->getRemainingClanCards().moveCard(0, deck);
+                ++i;
             } else {
-                DisplayManager::getInstance()->output("Plus de cartes de clan disponibles.");
+                DisplayManager::getInstance()->output("Plus de cartes de clan disponibles.\n");
             }
+        } else {
+            DisplayManager::getInstance()->output("Choix invalide, veuillez entrer 1 ou 2.\n");
         }
     }
 
     // Phase 2 : Choisir et replacer 2 cartes
-    int cardsToReturn = 2;
-    DisplayManager::getInstance()->output("\nVotre main actuelle :");
-    currentPlayer->getPlayerDeck().printSet();
+    DisplayManager::getInstance()->output("\nVoici votre main après la pioche :");
+    deck.printSet();
 
+    int toReturn = 2;
+    while (toReturn > 0) {
+        DisplayManager::getInstance()->output("Choisissez une carte à remettre sous la pioche (" + std::to_string(toReturn) + " restantes)");
+        DisplayManager::getInstance()->output("Index de carte (0 à " + std::to_string(deck.getSize() - 1) + ") :\n>> ");
 
-while (cardsToReturn > 0) {
-    DisplayManager::getInstance()->output("\nVotre main actuelle :");
-    currentPlayer->getPlayerDeck().printSet();
+        std::string input = DisplayManager::getInstance()->takeInput();
+        unsigned int index;
 
-    DisplayManager::getInstance()->output("Choisissez une carte à remettre sous la pioche (" +
-        std::to_string(cardsToReturn) + " restantes)");
-    DisplayManager::getInstance()->output("Entrez l'index de la carte (0-" +
-        std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + ") :");
-
-    unsigned int cardIndex = stoi(DisplayManager::getInstance()->takeInput());
-    DisplayManager::getInstance()->output("Accès à la carte à l'index : " + std::to_string(cardIndex));
-
-    unsigned int deckSize = currentPlayer->getPlayerDeck().getSize();
-
-    if (cardIndex < deckSize) {
-        // Faire une copie intelligente du pointeur de type AVANT déplacement
-        bool isTactical = false;
-        {
-            const Cards* tempCard = currentPlayer->getPlayerDeck().getCardAt(cardIndex);
-            if (!tempCard) {
-                DisplayManager::getInstance()->output("Carte invalide !");
-                return;
-            }
-            isTactical = dynamic_cast<const TacticalCards*>(tempCard) != nullptr;
+        try {
+            index = std::stoi(input);
+        } catch (...) {
+            DisplayManager::getInstance()->output("Entrée invalide, veuillez entrer un nombre.\n");
+            continue;
         }
 
-        // Puis déplacer la carte (maintenant que le type est connu)
-        if (isTactical) {
-            currentPlayer->getPlayerDeck().moveCard(cardIndex, GameBoard::getInstance().getRemainingTacticalCards());
+        if (index >= deck.getSize()) {
+            DisplayManager::getInstance()->output("Index hors limites, veuillez réessayer.\n");
+            continue;
+        }
+
+        Cards* card = deck.getCardAt(index);
+        std::unique_ptr<Cards> removedCard = deck.getCardbyIndex(index);
+
+        if (dynamic_cast<TacticalCards*>(card)) {
+            board->getRemainingTacticalCards().addCard(std::move(removedCard));
         } else {
-            currentPlayer->getPlayerDeck().moveCard(cardIndex, GameBoard::getInstance().getRemainingClanCards());
+            board->getRemainingClanCards().addCard(std::move(removedCard));
         }
 
+        --toReturn;
 
-        cardsToReturn--;
-    } else {
-        DisplayManager::getInstance()->output("Index invalide, veuillez réessayer.");
+        // Afficher la main mise à jour après chaque retrait
+        DisplayManager::getInstance()->output("\nMain actuelle :");
+        deck.printSet();
     }
-}
+
+    DisplayManager::getInstance()->output("Deux cartes ont été remises sous la pioche.\n");
 }
