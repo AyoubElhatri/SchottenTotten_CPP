@@ -7,7 +7,7 @@
 class Traitor : public RusesCards {
 public:
     Traitor(){cardName="Traitor";};
-    void getEvent(StoneTiles* stoneTiles){std::cout<<"hello"<<endl;}
+    void getEvent(StoneTiles* stoneTiles);
 
 };
 

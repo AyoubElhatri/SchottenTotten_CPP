@@ -1,5 +1,7 @@
 #include "GameLogic.h"
 
+#include <limits>
+
 #include "../Display/DisplayConsole.h"
 #include "../GameBoard/GameBoard.h"
 #include"../Cards/Recruiter.h"
@@ -99,6 +101,9 @@ void GameLogic::runGameLoop() {
 #else
         system("clear");
 #endif
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     }
 }
 bool GameLogic::checkWinner() const {
