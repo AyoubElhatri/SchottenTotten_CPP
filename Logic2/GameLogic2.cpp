@@ -237,6 +237,7 @@ void CGameLogic::printClean(string text)
 
 
 void CGameLogic::startGame() {
+    clearScreen();
     printStars();
     string Cards="Clan cards:";
     fillWithDashes(Cards);
@@ -279,7 +280,6 @@ void CGameLogic::startGame() {
     printStars();
     getSleep(4);
     //fillTestCards(*board);
-    clearScreen();
     runGameLoop();
 
 
@@ -290,7 +290,7 @@ void CGameLogic::startGame() {
 }
 void CGameLogic::runGameLoop() {
     GameBoard& board = GameBoard::getInstance();
-
+    clearScreen();
 
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
