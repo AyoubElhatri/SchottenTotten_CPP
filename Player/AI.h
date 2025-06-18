@@ -13,7 +13,6 @@ public:
     AI(unsigned int playerId)
       : Player(playerId) {}
     virtual ~AI() = default;
-    virtual void playTurn(vector<unique_ptr<Cards>>& hand, GameBoard& gameBoard) = 0;
 };
 
 #endif // AI_H
