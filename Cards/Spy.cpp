@@ -3,15 +3,15 @@
 using namespace std;
 #include "../Display/DisplayManager.h"
 void Spy::getEvent(StoneTiles* stoneTiles) {
-    DisplayManager::getInstance()->output("What's the color of the card you want to play?");
+    DisplayManager::getInstance()->output("What's the color of the Spy you want to play?");
     try {
-        int colorInput = stoi(DisplayManager::getInstance()->takeInput());
+        string strcolorInput = DisplayManager::getInstance()->takeInput();
+        int colorInput=getColor(strcolorInput);
         Colors cardColor = static_cast<Colors>(colorInput);
         setColor(cardColor);
     }
     catch (...) {
-        CustomException Exc01=CustomException(INVALIDCOLORINPUT);
-        throw(Exc01);
+        throw invalid_argument("Invalid input for color.");
     }
 
 

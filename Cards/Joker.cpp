@@ -8,18 +8,17 @@ void Joker::getEvent(StoneTiles* stoneTiles) {
         setNumber(cardNumber);
     }
     catch (...) {
-       CustomException Exc1=CustomException(INVALIDNUMBERINPUT);//INVALIDNUMBERINPUT defined within CustomException class.
-        throw(Exc1);
+        throw(invalid_argument("Invalid number input. Please choose a correct number."));
     }
-    DisplayManager::getInstance()->output("What's the color of the card you want to play?");
+    DisplayManager::getInstance()->output("What's the color of the Joker you want to play? (red, green...)");
     try {
-        int colorInput = stoi(DisplayManager::getInstance()->takeInput());
+        string strcolorInput = DisplayManager::getInstance()->takeInput();
+        int colorInput=getColor(strcolorInput);
         Colors cardColor = static_cast<Colors>(colorInput);
         setColor(cardColor);
     }
     catch (...) {
-        CustomException Exc2=CustomException(INVALIDCOLORINPUT);
-        throw(Exc2);
+        throw invalid_argument("Invalid input for color.");
     }
 
 
