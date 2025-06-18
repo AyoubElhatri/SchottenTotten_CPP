@@ -421,7 +421,7 @@ void Human::playCard() {
     getPlayerDeck().printSet();
 }
 
-/*void Human::playTurn() {
+void Human::playTurn() {
         DisplayManager::getInstance()->output("It's the turn of the player " + std::to_string(getPlayerID())+":");
         string choice1="\nWhat do you wish to do?  ";
         DisplayManager::getInstance()->output(choice1);
@@ -476,9 +476,9 @@ void Human::playCard() {
         
 
 
-}*/
+}
 
-void Human::playTurn() {
+/*void Human::playTurn() {
     DisplayManager::getInstance()->output("It's the turn of the player " + std::to_string(getPlayerID()) + ":");
     string choice1 = "\nWhat do you wish to do?  ";
     DisplayManager::getInstance()->output(choice1);
@@ -532,4 +532,4 @@ void Human::playTurn() {
             throw(invalid_argument("Invalid choice '" + choice + "', please enter a correct input."));
         }
     } while (true);
-}
+}*/
