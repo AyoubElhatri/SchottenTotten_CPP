@@ -9,6 +9,7 @@
 #include "../Cards/ShieldBear.h"
 #include "../Cards/Spy.h"
 #include "../Cards/Traitor.h"
+#include "../Cards/Stratege.h"
 #include <string>
 
 using namespace std;
@@ -24,6 +25,7 @@ public:
         else if (Card=="ShieldBear") return make_unique<ShieldBear>();
         else if (Card=="Recruiter") return make_unique<Recruiter>();
         else if (Card=="BlindMan") return make_unique<Blindman>();
+        else if (Card=="Stratege") return make_unique<Stratege>();
         else return nullptr;
 };
 };
