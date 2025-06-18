@@ -76,13 +76,11 @@ void Human::playCard() {
         getPlayerDeck().moveCard(cardIndex, tile->getCombatModeCards());
     }
     else if (auto ruse = dynamic_cast<RusesCards*>(selectedCard)) {
+        getPlayerDeck().moveCard(getPlayerDeck().getIndexOfCard(ruse->getName()), board.getDiscardedCards());
         ruse->getEvent(nullptr);  // Peut modifier la main !
 
-        if (cardIndex < getPlayerDeck().getSize() && getPlayerDeck().getCardAt(cardIndex) == selectedCard) {
-            getPlayerDeck().moveCard(cardIndex, board.getDiscardedCards());
-        } else {
-            DisplayManager::getInstance()->output(" Carte modifiée pendant l'effet. Suppression manuelle ignorée.\n");
-        }
+
+
     }
     else {
         DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " +
