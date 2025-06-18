@@ -62,6 +62,9 @@ void Human::playCard() {
         }
 
         auto& tile = board.getSharedTiles()[tileIndex];
+        if (tile->isAlreadyClaimed()) {
+            throw std::runtime_error("Tile is already claimed, cannot apply combat mode");
+        }
         combatMode->getEvent(tile.get()); // Activation de l'effet sur la tuile
         getPlayerDeck().moveCard(cardIndex, tile->getCombatModeCards());
     }
