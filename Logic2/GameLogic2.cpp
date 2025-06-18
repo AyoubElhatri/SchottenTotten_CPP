@@ -70,7 +70,7 @@ void CGameLogic::printBoardalpha2() {
             for (int i = 0; i < tileCount; ++i) {
 
                 if (sharedTiles[i]->isAlreadyClaimed()) {
-                    tileStr = red + "[XXXX]" + reset+"   ";
+                    tileStr += red + "[XXXX]" + reset+"    ";
                 } else if (sharedTiles[i]->getCombatModeCards().getSize()!=0) {
                     if (sharedTiles[i]->getCombatModeCards().getSize()==1)
                     {
