@@ -5,7 +5,7 @@
 #include "../Display/DisplayManager.h"
 #include "../StoneTiles/StoneTiles.h"
 #include "../GameBoard/GameBoard.h"
-
+#include "../Cards/EliteTroopsCards.h"
 Set::Set(Set&& IndexSet) {
     SetOfCards = std::move(IndexSet.SetOfCards);
 }
@@ -58,7 +58,7 @@ unsigned int Set::getIndexOfCard(string CardName) const {
 
 
 // A REFAIRE IL FAUT PEUT ETRE UNE CLASSE CHECK COMBINATION
-CombinationType Set::evaluateCombination(StoneTiles& tiles) const {
+CombinationType Set::evaluateCombination(StoneTiles& tiles)  {
    // METTRE CETTE MECANIQUE AILLEUR
    // if (!isComplete()) return CombinationType::None;
 
@@ -72,12 +72,16 @@ CombinationType Set::evaluateCombination(StoneTiles& tiles) const {
 
 // a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
-        const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get());
-        if (clanCard) {
-            values.push_back(clanCard->getNumber());
-            colors.insert(clanCard->getColor());
-        }
+    if (const EliteTroopsCards * eliteTroop = dynamic_cast< const EliteTroopsCards*>(card.get())) {
+        const_cast<TacticalCards*>(static_cast<const TacticalCards*>(eliteTroop))->getEvent(&tiles);
+        values.push_back(eliteTroop->getNumber()); // si ya un probleme avec les elites troops ca va venir du fait qu'on recast pas en elite troops
+        colors.insert(eliteTroop->getColor());
+    } 
+    else if (const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get())) {
+        values.push_back(clanCard->getNumber());
+        colors.insert(clanCard->getColor());
     }
+}
     sort(values.begin(), values.end());
 
     bool isSequence = true;

@@ -27,77 +27,50 @@ std::unique_ptr<Cards> StoneTiles::removeCardFromPlayer(unsigned int playerId, u
     return playerCards.getCardbyIndex(cardIndex);
 }
 
-void StoneTiles::claim() {
+void StoneTiles::claim(unsigned int playerId) {
+
     if (StoneTileIsClaimed) return;
 
-    Rules* rules = Rules::getInstance();
-    unsigned int maxCards = rules->getNumberMaxOfCardsPerTiles();
-    auto& cards1 = getPlayerCardsOnTilesByPlayerId(1);
-    auto& cards2 = getPlayerCardsOnTilesByPlayerId(2);
+    unsigned int maxCards = getNbOfPlayableCards();
+    auto& cards1 = getPlayerCardsOnTilesByPlayerId(playerId);
+    unsigned int player2id=3- playerId; // Assuming player IDs are 1 and 2
+    auto& cards2 = getPlayerCardsOnTilesByPlayerId(3-playerId);
 
-    if (cards1.getSize() > maxCards || cards2.getSize() > maxCards) {
-        return;
-    }
 
-    // Les deux joueurs ont le maximum de cartes
-    if (cards1.getSize() == maxCards && cards2.getSize() == maxCards) {
-        CombinationType combo1 = cards1.evaluateCombination(*this);
-        CombinationType combo2 = cards2.evaluateCombination(*this);
-
-        if (combo1 > combo2) {
-            claimedBy = 1;
-            StoneTileIsClaimed = true;
-            std::cout << Position << " --------- Joueur 1 a gagné la tuile (combo supérieur) ----------" << std::endl;
-        }
-        else if (combo2 > combo1) {
-            claimedBy = 2;
-            StoneTileIsClaimed = true;
-            std::cout << Position << " --------- Joueur 2 a gagné la tuile (combo supérieur) ----------" << std::endl;
-        }
-        else {
-            // En cas d'égalité de combinaison
-            int sum1 = cards1.getTotalValue();
-            int sum2 = cards2.getTotalValue();
-
-            if (sum1 > sum2) {
-                claimedBy = 1;
+    // Vérifier si le joueur a déjà le nombre maximum de cartes
+    if (cards1.getSize()== maxCards && cards2.getSize() == maxCards) {
+        if (comboType == CombinationType::Sum) {
+            if (cards1.getTotalValue() > cards2.getTotalValue()) {
                 StoneTileIsClaimed = true;
-                std::cout << Position << " --------- Joueur 1 a gagné (égalité combo, somme supérieure) ----------" << std::endl;
+                claimedBy = playerId;
+                }
+            else if (cards2.getTotalValue()>cards1.getTotalValue()) {
+                StoneTileIsClaimed = true;
+                claimedBy = 3-playerId;
             }
-            else if (sum2 > sum1) {
-                claimedBy = 2;
+            else {
                 StoneTileIsClaimed = true;
-                std::cout << Position << " --------- Joueur 2 a gagné (égalité combo, somme supérieure) ----------" << std::endl;
+                claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
             }
-            else if (firstPlayerToFillTheStoneTile != nullptr) {
-                claimedBy = firstPlayerToFillTheStoneTile->getPlayerID();
+        }
+        else  {
+            if (cards1.evaluateCombination(*this) > cards2.evaluateCombination(*this)) {  // le 1 claim
                 StoneTileIsClaimed = true;
-                std::cout << Position << " --------- Joueur " << claimedBy 
-                         << " a gagné (égalité combo et somme, priorité au 1er à remplir) ----------" << std::endl;
+                claimedBy = playerId;
+            }
+            else if (cards2.evaluateCombination(*this) > cards1.evaluateCombination(*this)) {
+                StoneTileIsClaimed = true;
+                claimedBy = 3-playerId;
+            }
+            else {
+                StoneTileIsClaimed = true;
+                claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
             }
         }
     }
+    else {
 
-    // Revendication anticipée
-    try {
-        if (cards1.getSize() == maxCards && cards2.getSize() < maxCards) {
-            CombinationType combo1 = cards1.evaluateCombination(*this);
-            if (combo1 > CombinationType::ColorRun) {
-                claimedBy = 1;
-                StoneTileIsClaimed = true;
-                std::cout << Position << " --------- Joueur 1 revendique (adverse ne peut pas battre combo) ----------" << std::endl;
-            }
-        } 
-        else if (cards2.getSize() == maxCards && cards1.getSize() < maxCards) {
-            CombinationType combo2 = cards2.evaluateCombination(*this);
-            if (combo2 > CombinationType::ColorRun) {
-                claimedBy = 2;
-                StoneTileIsClaimed = true;
-                std::cout << Position << " --------- Joueur 2 revendique (adverse ne peut pas battre combo) ----------" << std::endl;
-            }
-        }
-    } catch (...) {
-        // Ignorer les exceptions lors de l'évaluation incomplète
+        //revendication anticipé
     }
 }
 
@@ -115,7 +88,7 @@ void StoneTiles::printStoneTiles() {
     getCombatModeCards().printSet();
     DisplayManager::getInstance()->output("\n");
 }
-StoneTiles::StoneTiles(unsigned int pos) : Position(pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()) {
+StoneTiles::StoneTiles(unsigned int pos) : Position(pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()),firstPlayerToFillTheStoneTile(nullptr) {
     StoneTileIsClaimed=false;
     for (const auto& player : GameLogic::getInstance().getPlayers()) {
         PlayerCards.emplace(player->getPlayerID(), std::make_unique<Set>());

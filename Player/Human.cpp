@@ -3,10 +3,12 @@
 #include "../Cards/EliteTroopsCards.h"
 #include "../Cards/CombatModeCards.h"
 #include "../Cards/RusesCards.h"
+#include "../Logic/GameLogic.h"
+
 void Human::playCard() {
     GameBoard& board = GameBoard::getInstance();
     
-    DisplayManager::getInstance()->output("\nIt's Player " + std::to_string(this->getPlayerID()) + "'s turn\n");
+    DisplayManager::getInstance()->output("\nIt's Player " + std::to_string(getPlayerID()) + "'s turn\n");
     getPlayerDeck().printSet();
 
     int cardIndex = -1;
@@ -14,7 +16,7 @@ void Human::playCard() {
 
     // Sélection de la carte
     DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " +
-                                          std::to_string(this->getPlayerDeck().getSize() - 1) + "): ");
+                                          std::to_string(getPlayerDeck().getSize() - 1) + "): ");
     try {
         cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
     } catch (...) {
@@ -84,6 +86,9 @@ void Human::playCard() {
 
         board.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
     }
+    if (board.getSharedTiles()[tileIndex]->getPlayerCardsOnTilesByPlayerId(getPlayerID()).getSize()==board.getSharedTiles()[tileIndex]->getNbOfPlayableCards() && board.getSharedTiles()[tileIndex]->getFirstPlayerToFillTheStoneTile()==nullptr) {
+        board.getSharedTiles()[tileIndex]->setFirstPlayerToFillTheStoneTile(this);
+    }
     board.printBoard();
 
     // Piocher une carte si possible
@@ -149,9 +154,9 @@ void Human::playTurn() {
                 try {
                     int tileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
                     if (tileIndex >= 0 && tileIndex < board.getBoardSize()) {
-                        /*
-                        board.claimTileByIndex(tileIndex, getPlayerID());
-                        */
+
+                        board.getSharedTiles()[tileIndex]->claim(getPlayerID());
+
                         break;
                     }
                     else {

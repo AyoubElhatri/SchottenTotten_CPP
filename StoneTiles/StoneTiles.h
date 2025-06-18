@@ -29,13 +29,12 @@ public:
     bool isAlreadyClaimed() const { return StoneTileIsClaimed; }
     CombinationType getComboType() const { return comboType; }
     void setComboType(CombinationType type) { comboType = type; }
-    void claim();
-
-
+    void claim(unsigned int playerId);
+    Player * getFirstPlayerToFillTheStoneTile() const { return firstPlayerToFillTheStoneTile; }
     unsigned int getNbOfPlayableCards() const { return NbOfPlayableCards; }
     void setNbOfPlayableCards(unsigned int nbOfPlayableCards) { NbOfPlayableCards = nbOfPlayableCards; }
     void setPosition(unsigned int Pos) { Position = Pos; }
-
+    void setFirstPlayerToFillTheStoneTile(Player* player) { firstPlayerToFillTheStoneTile = player; }
     void addCardOnTilesOfPlayer(unsigned int playerId,  const string& Cardname, Set& provenanceOfTheCard);
     std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
 
