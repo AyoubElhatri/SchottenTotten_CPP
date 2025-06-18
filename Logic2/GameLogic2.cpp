@@ -4,26 +4,93 @@
 
 #include "GameLogic2.h"
 
-#include "../DisplayConsole.h"
-#include "../GameBoard.h"
+#include "../Display/DisplayConsole.h"
+#include "../GameBoard/GameBoard.h"
 #include"../Cards/Recruiter.h"
-#include"../DisplayManager.h"
+#include"../Display/DisplayManager.h"
 #include "../Player/Human.h"
 #include"../Player/Player.h"
 
 
-std::unique_ptr<GameLogic> GameLogic::instance = nullptr;
+std::unique_ptr<CGameLogic> CGameLogic::instance = nullptr;
 
-GameLogic ::GameLogic() {
-    Player* player1 = new Human(1, Set());
-    Player* player2 = new Human(2, Set());
+CGameLogic ::CGameLogic() {
+    Player* player1 = new Human(1);
+    Player* player2 = new Human(2);
 
     addPlayer(std::unique_ptr<Player>(player1));
     addPlayer(std::unique_ptr<Player>(player2));
 }
 
+void CGameLogic::printBoardalpha2() {
+    const std::string blue = "\033[1;34m";
+    const std::string red = "\033[1;31m";
+    const std::string reset = "\033[0m";
 
-void GameLogic::printBoardalpha() {
+    vector<shared_ptr<StoneTiles>> sharedTiles=GameBoard::getInstance().getSharedTiles();
+    const int tileCount = static_cast<int>(sharedTiles.size());
+    const int cardWidth = 7;
+    const std::string spacer = "   ";
+
+
+
+    // --- Pour chaque joueur (1 et 2) ---
+    for (unsigned int playerId = 1; playerId <= 2; ++playerId) {
+        // Trouver le nombre maximum de cartes pour ce joueur
+        int maxCards = 0;
+        for (const auto& tile : sharedTiles) {
+            const auto& playerCards = tile->getPlayerCardsOnTilesByPlayerId(playerId).getRawCards();
+            maxCards = std::max(maxCards, static_cast<int>(playerCards.size()));
+        }
+
+        // Afficher les cartes pour ce joueur
+        for (int row = 0; row < maxCards; ++row) {
+            string line=" ";
+            for (int i = 0; i < tileCount; ++i) {
+                const auto& cards = sharedTiles[i]->getPlayerCardsOnTilesByPlayerId(playerId).getRawCards();
+                if (row < static_cast<int>(cards.size())) {
+                    line+="  "+GameBoard::getInstance().formatCard(cards[row])+"     ";
+                } else {
+                    line+="          ";
+                }
+                printClean(line);
+                line=" ";
+            }
+
+        }
+
+        // Après le joueur 1, afficher la ligne de séparation des tuiles
+        if (playerId == 1) {
+            std::string tileStr;
+            for (int i = 0; i < tileCount; ++i) {
+
+                if (sharedTiles[i]->isAlreadyClaimed()) {
+                    tileStr = red + "[XXXX]" + reset;
+                } else {
+                    tileStr+="--ST"+to_string(i)+"--   ";
+                }
+            }
+            printClean(tileStr);
+        }
+    }
+    string claimed="Claimed Tiles: ";
+    string tilec="";
+    for (size_t i = 0; i < sharedTiles.size(); ++i) {
+        if (sharedTiles[i]->isAlreadyClaimed()) {
+            tilec+=(" Borne " + std::to_string(i) +
+                " : Joueur " + std::to_string(sharedTiles[i]->getClaimedBy()));
+        }
+
+    }
+    printOption(tilec);
+    getFreespace(4);
+    string info="ST[*]: Stone Tile n°* ";
+    printInLast(info);
+    printStars();
+
+}
+/*
+void CGameLogic::printBoardalpha() {
     printStars();
     getFreespace(5);
     const std::string blue = "\033[1;34m";   // bleu clair gras
@@ -79,8 +146,8 @@ void GameLogic::printBoardalpha() {
     string info="ST[*]: Stone Tile n°* ";
     printInLast(info);
     printStars();
-}
-void GameLogic::printInLast(string Text)
+}*/
+void CGameLogic::printInLast(string Text)
 {
     int space=100-Text.size();
     string toprint="#"+string(space-1,' ')+Text+"#\n";
@@ -91,13 +158,13 @@ void GameLogic::printInLast(string Text)
 
 
 
-GameLogic &GameLogic::getInstance() {
+CGameLogic &CGameLogic::getInstance() {
     if (instance == nullptr) {
-        instance = unique_ptr<GameLogic>(new GameLogic());
+        instance = unique_ptr<CGameLogic>(new CGameLogic());
     }
     return *instance;
 }
-void GameLogic::clearScreen() {
+void CGameLogic::clearScreen() {
 #ifdef _WIN32
     system("cls");
 #else
@@ -116,11 +183,11 @@ unsigned int getUTF8size(string message){
     return (unsigned int)size;
 }
 
-void GameLogic::addPlayer(std::unique_ptr<Player> player) {
+void CGameLogic::addPlayer(std::unique_ptr<Player> player) {
     players.push_back(std::move(player));
 }
 
-void GameLogic::initializePlayerDecks() {
+void CGameLogic::initializePlayerDecks() {
     GameBoard& board = GameBoard::getInstance();
     Set& deck = board.getRemainingClanCards();
     unsigned int nbCards = Rules::getInstance()->getNumberMaxOfCardsPerPlayer();
@@ -141,16 +208,16 @@ void GameLogic::initializePlayerDecks() {
     }
 
 }
-void GameLogic::printLoading() {
+void CGameLogic::printLoading() {
     string loading="LOADING...";
     printWithColor(loading,"green");
 }
-string GameLogic::getClean(string text)
+string CGameLogic::getClean(string text)
 {
     static const std::regex ansiRegex("\x1B\\[[0-9;]*[A-Za-z]");
     return regex_replace(text, ansiRegex, "");
 }
-void GameLogic::printClean(string text)
+void CGameLogic::printClean(string text)
 {
     Display *d=DisplayManager::getInstance();
     string clean=getClean(text);
@@ -166,7 +233,7 @@ void GameLogic::printClean(string text)
 }
 
 
-void GameLogic::startGame() {
+void CGameLogic::startGame() {
     printStars();
     string Cards="Clan cards:";
     fillWithDashes(Cards);
@@ -217,65 +284,33 @@ void GameLogic::startGame() {
 
 
 }
-void GameLogic::runGameLoop() {
+void CGameLogic::runGameLoop() {
     GameBoard& board = GameBoard::getInstance();
+
 
     while (!checkWinner()) {
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
 
-        printBoardalpha();
-        DisplayManager::getInstance()->output("\nIt's Player " + std::to_string(currentPlayer->getPlayerID()) + "'s turn\n");
-        currentPlayer->getPlayerDeck().printSet();
+        board.printBoard();
 
-        int cardIndex = -1;
-        int tileIndex = -1;
-        DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " + std::to_string(currentPlayer->getPlayerDeck().getSize() - 1) + "): ");
         try {
-            cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
-        } catch (...) {
-            DisplayManager::getInstance()->output("Invalid input. Try again.\n");
+            currentPlayer->playTurn();
+        } catch (const std::exception& e) {
+            DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
             continue;
         }
 
-        if (cardIndex < 0 || cardIndex >= (int)currentPlayer->getPlayerDeck().getSize()) {
-            DisplayManager::getInstance()->output("Invalid card index.\n");
-            continue;
-        }
-
-        DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " + std::to_string(board.getBoardSize() - 1) + "): ");
-        try {
-            tileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
-        } catch (...) {
-            DisplayManager::getInstance()->output("Invalid input. Try again.\n");
-            continue;
-        }
-
-        if (tileIndex < 0 || tileIndex >= board.getBoardSize()) {
-            DisplayManager::getInstance()->output("Invalid tile index.\n");
-            continue;
-        }
-
-        std::string cardName = currentPlayer->getPlayerDeck().getCardAt(cardIndex)->getName();
-        std::cout << "[DEBUG] Joueur " << currentPlayer->getPlayerID() << " joue la carte : " << cardName << std::endl;
-
-        Set& playerDeck = currentPlayer->getPlayerDeck();
-
-        board.getSharedTiles()[tileIndex]->addCardToPlayer(currentPlayer->getPlayerID(), cardName, playerDeck);
-        // Suppression de la carte se fait dans moveCard
-
-        if (board.getRemainingClanCards().getSize() > 0) {
-            currentPlayer->drawClanCards(1);
-        }
         turnNumber++;
+        clearScreen();
     }
 }
-void GameLogic::printStars()
+void CGameLogic::printStars()
 {   Display *c=DisplayManager::getInstance();
     string stars=string(CONSOLE_WIDTH,'#')+"\n";
     c->output(stars);
 }
 
-bool GameLogic::checkWinner() const {
+bool CGameLogic::checkWinner() const {
     auto * rules = Rules::getInstance();
     const auto alignedToWin = rules->getNumberOfAlignedTilesToWin();
     const auto unalignedToWin = rules->getNumberOfUnalignedTilesToWin();
@@ -291,7 +326,7 @@ bool GameLogic::checkWinner() const {
     }
     return false;
 }
-void GameLogic::printOption(string option){
+void CGameLogic::printOption(string option){
     Display* c=DisplayManager::getInstance();
     int remainder=CONSOLE_WIDTH-option.size();
     if(remainder%2==0){
@@ -303,7 +338,7 @@ void GameLogic::printOption(string option){
         c->output(out);
     }
 }
-void GameLogic::printWithColor(string option, string color="red")
+void CGameLogic::printWithColor(string option, string color="red")
 {
     Display *c=DisplayManager::getInstance();
     string colorCode;
@@ -328,7 +363,7 @@ void GameLogic::printWithColor(string option, string color="red")
 
     c->output(line);
 }
-void GameLogic::getFreespace(int i)
+void CGameLogic::getFreespace(int i)
 {
     Display* c=DisplayManager::getInstance();
     string stars=string(CONSOLE_WIDTH,'#')+"\n";
@@ -338,7 +373,7 @@ void GameLogic::getFreespace(int i)
     }
 }
 
-void GameLogic::mainDisplay(){
+void CGameLogic::mainDisplay(){
     Display *c=DisplayManager::getInstance();
     string stars=string(CONSOLE_WIDTH,'#')+"\n";
     string freespace="#"+string(getRemainder(stars,3),' ')+"#\n";
@@ -388,7 +423,7 @@ void GameLogic::mainDisplay(){
 
 
 }
-void GameLogic::getChoiceRoundLoading(int i){
+void CGameLogic::getChoiceRoundLoading(int i){
     Display* d= DisplayManager::getInstance();
     string start="Starting round number "+to_string(i)+".";
     printStars();
@@ -399,7 +434,7 @@ void GameLogic::getChoiceRoundLoading(int i){
     getFreespace(4);
     printStars();
 }
-void GameLogic::fillWithDashes(string text) {
+void CGameLogic::fillWithDashes(string text) {
     Display* c=DisplayManager::getInstance();
     int spaceForDashes=CONSOLE_WIDTH-text.size();
     string Dashes="";
@@ -412,7 +447,7 @@ void GameLogic::fillWithDashes(string text) {
     c->output(Dashes);
 }
 
-void GameLogic::getChoiceMain()
+void CGameLogic::getChoiceMain()
 {
     Display* c=DisplayManager::getInstance();
     string Projet = "Welcome to the SchottenTotten game. (Console Edition)";
@@ -433,11 +468,11 @@ void GameLogic::getChoiceMain()
     getFreespace(3);
     printStars();
 }
-void GameLogic::getReturn(){
+void CGameLogic::getReturn(){
     string returnback="Enter -1 to return to previous menu";
     printWithColor(returnback,"red");
 }
-void GameLogic::getChoiceStart(){
+void CGameLogic::getChoiceStart(){
     string rounds="How many rounds of Schotten Totten do you wish to play?";
     printStars();
     getFreespace(7);
@@ -447,7 +482,7 @@ void GameLogic::getChoiceStart(){
     getFreespace(4);
     printStars();
 }
-void GameLogic::getChoiceInfo()
+void CGameLogic::getChoiceInfo()
 {
     string info="Schotten Totten game Project version 1.0. Created by M. Hachelef, A. Elhatri, Y. Atouf.";
     string license="Project available on https://github.com/ZTOUF/SchottenTotten_CPP under GNU license.";
@@ -467,7 +502,7 @@ void GameLogic::getChoiceInfo()
     getFreespace(2);
     printStars();
 }
-void GameLogic::getSleep(int timeToSleep)
+void CGameLogic::getSleep(int timeToSleep)
 {
 #ifdef _WIN32
     Sleep(timeToSleep * 1000);  // Convert to milliseconds
@@ -475,7 +510,7 @@ void GameLogic::getSleep(int timeToSleep)
     usleep(timeToSleep*1000000);         // Already in seconds
 #endif
 }
-void GameLogic::getMainConsole() {
+void CGameLogic::getMainConsole() {
     string inputString;
     int currentRound=0;
     int maxRounds=1;
