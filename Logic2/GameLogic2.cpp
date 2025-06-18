@@ -509,7 +509,7 @@ void CGameLogic::getChoiceInfo()
 void CGameLogic::getSleep(int timeToSleep)
 {
 #ifdef _WIN32
-    Sleep(timeToSleep * 1000);  // Convert to milliseconds
+    this_thread::sleep_for(chrono::seconds(timeToSleep));  // Convert to milliseconds
 #else
     usleep(timeToSleep*1000000);         // Already in seconds
 #endif
