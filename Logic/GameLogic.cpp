@@ -13,7 +13,7 @@
 std::unique_ptr<GameLogic> GameLogic::instance = nullptr;
 
 GameLogic ::GameLogic() {
-
+    turnNumber=0;
     Player* player1 = new Human(1);
     Player* player2 = new Human(2);
 

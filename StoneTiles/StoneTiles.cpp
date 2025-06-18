@@ -34,7 +34,7 @@ void StoneTiles::claim(unsigned int playerId) {
     unsigned int maxCards = getNbOfPlayableCards();
     auto& cards1 = getPlayerCardsOnTilesByPlayerId(playerId);
     unsigned int player2id=3- playerId; // Assuming player IDs are 1 and 2
-    auto& cards2 = getPlayerCardsOnTilesByPlayerId(3-playerId);
+    auto& cards2 = getPlayerCardsOnTilesByPlayerId(player2id);
 
 
     // Vérifier si le joueur a déjà le nombre maximum de cartes
@@ -46,7 +46,7 @@ void StoneTiles::claim(unsigned int playerId) {
                 }
             else if (cards2.getTotalValue()>cards1.getTotalValue()) {
                 StoneTileIsClaimed = true;
-                claimedBy = 3-playerId;
+                claimedBy = player2id;
             }
             else {
                 StoneTileIsClaimed = true;
@@ -60,11 +60,21 @@ void StoneTiles::claim(unsigned int playerId) {
             }
             else if (cards2.evaluateCombination(*this) > cards1.evaluateCombination(*this)) {
                 StoneTileIsClaimed = true;
-                claimedBy = 3-playerId;
+                claimedBy = player2id;
             }
             else {
-                StoneTileIsClaimed = true;
-                claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
+                if (cards1.getTotalValue() > cards2.getTotalValue()) {
+                    StoneTileIsClaimed = true;
+                    claimedBy = playerId;
+                }
+                else if (cards2.getTotalValue()>cards1.getTotalValue()) {
+                    StoneTileIsClaimed = true;
+                    claimedBy = player2id;
+                }
+                else {
+                    StoneTileIsClaimed = true;
+                    claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
+                }
             }
         }
     }
