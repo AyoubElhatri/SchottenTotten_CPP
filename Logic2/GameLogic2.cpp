@@ -301,11 +301,12 @@ void CGameLogic::runGameLoop() {
         try {
             currentPlayer->playTurn();
         } catch (const std::exception& e) {
-            DisplayManager::getInstance()->output(std::string("Erreur : ") + e.what() + "\n");
+            clearScreen();
+            DisplayManager::getInstance()->output(string(e.what()) + "\n");
             continue;
         }
         turnNumber++;
-        clearScreen();
+
     }
 }
 void CGameLogic::printStars()

@@ -134,15 +134,15 @@ void Human::playCard() {
 }
 
 void Human::playTurn() {
-    try {
-        DisplayManager::getInstance()->output("\nC'est le tour du Joueur " + std::to_string(getPlayerID()));
-        DisplayManager::getInstance()->output("\nQue souhaitez-vous faire ?");
-        DisplayManager::getInstance()->output("1. Jouer une carte");
-        DisplayManager::getInstance()->output("2. Réclamer une balise");
+        DisplayManager::getInstance()->output("It's the turn of the player " + std::to_string(getPlayerID())+":");
+        string choice1="\nWhat do you wish to do?  ";
+        DisplayManager::getInstance()->output(choice1);
+        DisplayManager::getInstance()->output("1. Play a card.\n");
+        DisplayManager::getInstance()->output(string(choice1.size()-1,' ')+"2. Claim a Stone Tile.");
         
         string choice;
         do {
-            DisplayManager::getInstance()->output("\nVotre choix (1 ou 2) : ");
+            DisplayManager::getInstance()->output("\n>> ");
             choice = DisplayManager::getInstance()->takeInput();
             
             if (choice == "1") {
@@ -151,30 +151,41 @@ void Human::playTurn() {
             }
             else if (choice == "2") {
                 GameBoard& board = GameBoard::getInstance();
-                DisplayManager::getInstance()->output("Choisissez l'index de la balise à réclamer (0 à " + 
+                DisplayManager::getInstance()->output("Enter the index of The Stone Tile you wish to claim (0 à " +
                     std::to_string(board.getBoardSize() - 1) + ") : ");
-                
-                try {
-                    int tileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
-                    if (tileIndex >= 0 && tileIndex < board.getBoardSize()) {
-
-                        board.getSharedTiles()[tileIndex]->claim(getPlayerID());
-
+                string tileIndex = DisplayManager::getInstance()->takeInput();
+                int tileInd;
+                try
+                {
+                    tileInd=stoi(tileIndex);
+                }
+                    catch (...) {
+                        throw(invalid_argument("Invalid input'"+tileIndex+"'. Please enter a number."));;
+                    }
+                    if (tileInd >= 0 && tileInd < board.getBoardSize()) {
+                        if (!(GameBoard::getInstance().getSharedTiles()[tileInd]->isAlreadyClaimed()))
+                        {
+                            board.getSharedTiles()[tileInd]->claim(getPlayerID());
+                            if ((GameBoard::getInstance().getSharedTiles()[tileInd]->isAlreadyClaimed()))
+                                throw(invalid_argument("This tile is now claimed, Congrats."));
+                            else
+                                throw(invalid_argument("This time cannot be claimed at the moment, please continue playing."));
+                        }
+                        else{
+                            throw(invalid_argument("This Tile is already claimed, please claim another one."));
+                        }
                         break;
                     }
                     else {
-                        DisplayManager::getInstance()->output("Index de balise invalide.");
+                        throw(invalid_argument("Invalid Tile Index '"+tileIndex+"' is out of bounds."));
                     }
-                } catch (...) {
-                    throw std::runtime_error("Index de balise invalide");
-                }
+
             }
             else {
-                DisplayManager::getInstance()->output("Choix invalide. Veuillez réessayer.");
+                throw(invalid_argument("Invalid choice '"+choice+"', please enter a correct input."));
             }
         } while (true);
         
-    } catch (const std::exception& e) {
-        DisplayManager::getInstance()->output("Erreur : " + std::string(e.what()));
-    }
+
+
 }
