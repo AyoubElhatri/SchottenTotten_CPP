@@ -5,7 +5,7 @@
 #include "../Cards/RusesCards.h"
 #include "../Logic/GameLogic.h"
 
-void Human::playCard() {
+/*void Human::playCard() {
     GameBoard& board = GameBoard::getInstance();
     
     DisplayManager::getInstance()->output("\n");
@@ -151,6 +151,134 @@ void Human::playCard() {
 
 
 
+}*/
+void Human::playCard() {
+    GameBoard& board = GameBoard::getInstance();
+
+    DisplayManager::getInstance()->output("\n");
+    getPlayerDeck().printSet();
+
+    int cardIndex = -1;
+    int tileIndex = -1;
+
+    // Sélection de la carte
+    DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " +
+                                          std::to_string(getPlayerDeck().getSize() - 1) + "): \n>> ");
+    string strCardind = DisplayManager::getInstance()->takeInput();
+    try {
+        cardIndex = stoi(strCardind);
+    } catch (...) {
+        throw std::invalid_argument("Invalid input '" + strCardind + "', please choose a correct card index.");
+    }
+
+    if (cardIndex < 0 || cardIndex >= (int)getPlayerDeck().getSize()) {
+        throw std::invalid_argument("Invalid card index '" + strCardind + "' out of range.");
+    }
+
+    // Récupération de la carte sélectionnée
+    Cards* selectedCard = getPlayerDeck().getCardAt(cardIndex);
+
+    // Gestion des différents types de cartes
+    if (auto eliteTroop = dynamic_cast<EliteTroopsCards*>(selectedCard)) {
+        DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " +
+                                              std::to_string(board.getBoardSize() - 1) + "): \n>> ");
+        string strtile = DisplayManager::getInstance()->takeInput();
+        try {
+            tileIndex = std::stoi(strtile);
+        } catch (...) {
+            throw std::invalid_argument("Invalid input '" + strtile + "', please enter a valid tile index");
+        }
+
+        if (tileIndex < 0 || tileIndex >= board.getBoardSize()) {
+            throw std::invalid_argument("Invalid tile index '" + strtile + "' out of bounds.");
+        }
+
+        if (board.getSharedTiles()[tileIndex]->isAlreadyClaimed()) {
+            throw std::invalid_argument("Tile number '" + strtile + "' is already claimed.");
+        }
+
+        board.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
+    }
+    else if (auto combatMode = dynamic_cast<CombatModeCards*>(selectedCard)) {
+        DisplayManager::getInstance()->output("Choose a tile index to apply combat mode (0 to " +
+                                              std::to_string(board.getBoardSize() - 1) + "): ");
+        string strtile2 = DisplayManager::getInstance()->takeInput();
+        try {
+            tileIndex = std::stoi(strtile2);
+        } catch (...) {
+            throw std::invalid_argument("Invalid input '" + strtile2 + "', please enter a valid tile index.");
+        }
+
+        if (tileIndex < 0 || tileIndex >= board.getBoardSize()) {
+            throw std::invalid_argument("Tile index '" + strtile2 + "' is out of bounds.");
+        }
+
+        auto& tile = board.getSharedTiles()[tileIndex];
+        if (tile->isAlreadyClaimed()) {
+            throw std::invalid_argument("Tile index '" + strtile2 + "' is already claimed.");
+        }
+
+        combatMode->getEvent(tile.get());
+        getPlayerDeck().moveCard(cardIndex, tile->getCombatModeCards());
+    }
+    else if (auto ruse = dynamic_cast<RusesCards*>(selectedCard)) {
+        ruse->getEvent(nullptr);  // Peut modifier la main !
+
+        // ⚠️ Vérifie que la main n’a pas changé
+        if (cardIndex < getPlayerDeck().getSize() && getPlayerDeck().getCardAt(cardIndex) == selectedCard) {
+            getPlayerDeck().moveCard(cardIndex, board.getDiscardedCards());
+        } else {
+            DisplayManager::getInstance()->output("⚠️ Carte modifiée pendant l'effet. Suppression manuelle ignorée.\n");
+        }
+    }
+    else {
+        DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " +
+                                              std::to_string(board.getBoardSize() - 1) + "): ");
+        string strtile3 = DisplayManager::getInstance()->takeInput();
+        try {
+            tileIndex = std::stoi(strtile3);
+        } catch (...) {
+            throw std::invalid_argument("Invalid input '" + strtile3 + "', please enter a valid tile index.");
+        }
+
+        if (tileIndex < 0 || tileIndex >= board.getBoardSize()) {
+            throw std::invalid_argument("Tile index '" + strtile3 + "' is out of bounds.");
+        }
+
+        if (board.getSharedTiles()[tileIndex]->isAlreadyClaimed()) {
+            throw std::invalid_argument("Tile number '" + strtile3 + "' is already claimed.");
+        }
+
+        board.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
+    }
+
+    if (tileIndex != -1) {
+        auto& tile = board.getSharedTiles()[tileIndex];
+        if (tile->getPlayerCardsOnTilesByPlayerId(getPlayerID()).getSize() == tile->getNbOfPlayableCards()
+            && tile->getFirstPlayerToFillTheStoneTile() == nullptr) {
+            tile->setFirstPlayerToFillTheStoneTile(this);
+        }
+    }
+
+    // Piocher une carte si disponible
+    bool canDrawClan = board.getRemainingClanCards().getSize() > 0;
+    bool canDrawTactical = board.getRemainingTacticalCards().getSize() > 0;
+
+    if (canDrawClan || canDrawTactical) {
+        DisplayManager::getInstance()->output("\nChoose the type of card to draw:\n");
+        if (canDrawClan) DisplayManager::getInstance()->output("1. Clan Card\n");
+        if (canDrawTactical) DisplayManager::getInstance()->output("2. Tactical Card\n");
+
+        string choice = DisplayManager::getInstance()->takeInput();
+        if (choice == "1" && canDrawClan) drawClanCards(1);
+        else if (choice == "2" && canDrawTactical) drawTacticalCards(1);
+        else DisplayManager::getInstance()->output("Invalid choice or no cards available.\n");
+    } else {
+        DisplayManager::getInstance()->output("\nNo more cards to draw.\n");
+    }
+
+    DisplayManager::getInstance()->output("\nYour current hand: ");
+    getPlayerDeck().printSet();
 }
 
 void Human::playTurn() {
