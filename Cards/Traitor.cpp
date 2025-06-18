@@ -1,81 +1,90 @@
-/*#include "Traitor.h"
-#include "../GameBoard.h"
+#include "Traitor.h"
+#include "../GameBoard/GameBoard.h"
+#include "../Logic/GameLogic.h"
+#include "../Rules/Rules.h"
+#include "../Player/Player.h"
+#include "../Cards/ClanCards.h"
 #include <iostream>
+#include <memory>
 
-void Traitor::getEvent() {
-    GameBoard& gameBoard = GameBoard::getInstance();
-    unsigned int currentPlayerId = gameBoard.getCurrentPlayerId();
+void Traitor::getEvent(StoneTiles* /* stoneTiles */) {
+    GameBoard& board = GameBoard::getInstance();
+    Player* currentPlayer = GameLogic::getInstance().getCurrentPlayer();
+    unsigned int currentPlayerId = currentPlayer->getPlayerID();
     unsigned int opponentId = (currentPlayerId == 1) ? 2 : 1;
 
-    std::cout << "[Traitor] Activation de l'effet Traître." << std::endl;
-
-    std::vector<std::shared_ptr<StoneTiles>> unclaimedBorders;
-
-    for (auto& tile : gameBoard.getSharedTiles()) {
-        if (!tile->isAlreadyClaimed()) {
-            unclaimedBorders.push_back(tile);
+    // Affichage des tuiles non revendiquées
+    std::vector<std::shared_ptr<StoneTiles>> eligibleTiles;
+    for (const auto& tile : board.getSharedTiles()) {
+        if (!tile->isAlreadyClaimed() &&
+            tile->getPlayerCards2().getSize() > 0 &&
+            currentPlayerId == 1) {
+            eligibleTiles.push_back(tile);
+        } else if (!tile->isAlreadyClaimed() &&
+                   tile->getPlayerCards1().getSize() > 0 &&
+                   currentPlayerId == 2) {
+            eligibleTiles.push_back(tile);
         }
     }
 
-    if (unclaimedBorders.empty()) {
-        std::cout << "Aucune borne non revendiquée disponible." << std::endl;
+    if (eligibleTiles.empty()) {
+        DisplayManager::getInstance()->output("Aucune carte adverse disponible à voler.\n");
         return;
     }
 
-    std::vector<std::tuple<unsigned int, unsigned int>> adversaryCards;
-    unsigned int index = 0;
-
-    std::cout << "Cartes adverses disponibles :" << std::endl;
-    for (auto& tile : unclaimedBorders) {
-        unsigned int pos = tile->getPosition();
-        unsigned int nb = (opponentId == 1) ? tile->getPlayerCards1().getSize() : tile->getPlayerCards2().getSize();
-        for (unsigned int i = 0; i < nb; ++i) {
-            std::cout << index << ") Borne " << pos << ", carte " << i << std::endl;
-            adversaryCards.emplace_back(pos, i);
-            ++index;
-        }
+    DisplayManager::getInstance()->output("Voici les tuiles non revendiquées avec des cartes adverses :\n");
+    for (const auto& tile : eligibleTiles) {
+        DisplayManager::getInstance()->output("Tuile " + std::to_string(tile->getPosition()) + "\n");
     }
 
-    if (adversaryCards.empty()) {
-        std::cout << "Aucune carte adverse à déplacer." << std::endl;
+    // Choisir la tuile source
+    DisplayManager::getInstance()->output("Entrez l'indice de la tuile dont vous voulez voler une carte : ");
+    unsigned int fromTileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
+    auto fromTile = board.findTileByPosition(fromTileIndex);
+
+    if (!fromTile || fromTile->isAlreadyClaimed()) {
+        DisplayManager::getInstance()->output("Tuile invalide ou déjà revendiquée.\n");
         return;
     }
 
-    unsigned int choice;
-    std::cout << "Choisissez la carte à voler : ";
-    std::cin >> choice;
-    if (choice >= adversaryCards.size()) {
-        std::cout << "Choix invalide." << std::endl;
+    Set& opponentSet = (currentPlayerId == 1) ? fromTile->getPlayerCards2() : fromTile->getPlayerCards1();
+    if (opponentSet.getSize() == 0) {
+        DisplayManager::getInstance()->output("Aucune carte à voler sur cette tuile.\n");
         return;
     }
 
-    auto [fromPos, cardIndex] = adversaryCards[choice];
+    DisplayManager::getInstance()->output("Cartes adverses sur cette tuile :\n");
+    opponentSet.printSet();
 
-    std::cout << "Bornes valides pour placer la carte : " << std::endl;
-    for (unsigned int i = 0; i < unclaimedBorders.size(); ++i) {
-        std::cout << i << ") Borne " << unclaimedBorders[i]->getPosition() << std::endl;
-    }
+    DisplayManager::getInstance()->output("Entrez l'index de la carte que vous voulez voler : ");
+    unsigned int cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
 
-    unsigned int toChoice;
-    std::cout << "Choisissez la borne de destination : ";
-    std::cin >> toChoice;
-
-    if (toChoice >= unclaimedBorders.size()) {
-        std::cout << "Choix invalide." << std::endl;
+    if (cardIndex >= opponentSet.getSize()) {
+        DisplayManager::getInstance()->output("Index invalide.\n");
         return;
     }
 
-    unsigned int toPos = unclaimedBorders[toChoice]->getPosition();
+    std::unique_ptr<Cards> stolenCard = opponentSet.getCardbyIndex(cardIndex);
 
-    try {
-        std::shared_ptr<StoneTiles> fromTile = gameBoard.findTileByPosition(fromPos);
-        std::shared_ptr<StoneTiles> toTile = gameBoard.findTileByPosition(toPos);
+    // Choisir une tuile de destination
+    DisplayManager::getInstance()->output("Entrez l'indice de la tuile sur laquelle placer la carte volée : ");
+    unsigned int toTileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
 
-        auto card = fromTile->removeCardFromPlayer(opponentId, cardIndex);
-        toTile->addCardToPlayer(currentPlayerId, std::move(card));
+    auto toTile = board.findTileByPosition(toTileIndex);
 
-        std::cout << "Carte déplacée avec succès." << std::endl;
-    } catch (const std::exception& e) {
-        std::cout << "Erreur : " << e.what() << std::endl;
+    if (!toTile || toTile->isAlreadyClaimed()) {
+        DisplayManager::getInstance()->output("Tuile invalide ou déjà revendiquée.\n");
+        return;
     }
-}*/
+
+    Set& playerSet = (currentPlayerId == 1) ? toTile->getPlayerCards1() : toTile->getPlayerCards2();
+    unsigned int maxPerTile = Rules::getInstance()->getNumberMaxOfCardsPerTiles();
+
+    if (playerSet.getSize() >= maxPerTile) {
+        DisplayManager::getInstance()->output("Vous avez déjà atteint le nombre maximum de cartes sur cette tuile.\n");
+        return;
+    }
+
+    playerSet.addCard(std::move(stolenCard));
+    DisplayManager::getInstance()->output("Carte volée avec succès et posée sur la tuile " + std::to_string(toTileIndex) + "\n");
+}

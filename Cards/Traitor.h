@@ -7,7 +7,7 @@
 class Traitor : public RusesCards {
 public:
     Traitor(){cardName="Traitor";};
-    void getEvent(StoneTiles* stoneTiles){cout <<"Jawak bahii"<<endl;};
+    void getEvent(StoneTiles* stoneTiles);
 
 };
 
