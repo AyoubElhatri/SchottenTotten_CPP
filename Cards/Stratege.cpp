@@ -1,12 +1,12 @@
 #include "Stratege.h"
 #include "../GameBoard/GameBoard.h"
-#include "../Logic/GameLogic.h"
+#include "../Logic2/GameLogic2.h"
 #include "../Display/DisplayManager.h"
 #include <iostream>
 
 void Stratege::getEvent(StoneTiles* /* unused */) {
     GameBoard& board = GameBoard::getInstance();
-    Player* currentPlayer = GameLogic::getInstance().getCurrentPlayer();
+    Player* currentPlayer = CGameLogic::getInstance().getCurrentPlayer();
     unsigned int currentPlayerId = currentPlayer->getPlayerID();
 
     // Étape 1 : Lister les bornes non revendiquées où le joueur a au moins une carte
