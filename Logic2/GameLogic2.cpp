@@ -386,7 +386,12 @@ void CGameLogic::startGame() {
     fillWithDashes("-");
     string tactic="Tactical Cards:";
     fillWithDashes(tactic);
-    printOption(GameBoard::getInstance().getRemainingTacticalCards().getStringSet());
+    string op1=GameBoard::getInstance().getRemainingTacticalCards().getStringSet();
+    size_t pos1=op1.rfind(' ',90);
+    string op2=op1.substr(0,pos1);
+    string op3= op1.substr(pos1);
+    printOption(op2);
+    printOption(op3);
     fillWithDashes("-");
     getFreespace();
     initializePlayerDecks();
