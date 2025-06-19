@@ -8,7 +8,6 @@
 #include "../Cards/Cards.h"
 #include "../CombinationType.h"
 #include "../Cards/ClanCards.h"
-#include "../CustomException/CustomException.h"
 
 using namespace std;
 

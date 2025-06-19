@@ -5,8 +5,7 @@ void ShieldBear::getEvent(StoneTiles* stoneTiles) {
     try {
         unsigned int cardNumber = stoi(DisplayManager::getInstance()->takeInput());
         if (cardNumber!=1 && cardNumber!=2 && cardNumber!=3) {
-            CustomException Exc02=CustomException(INVALIDNUMBERINPUT);
-            throw(Exc02);
+            throw(invalid_argument("Invalid card number"));
         }
         setNumber(cardNumber);
     }

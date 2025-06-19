@@ -83,7 +83,7 @@ void CGameLogic::printBoardalpha2() {
                     else if (sharedTiles[i]->getCombatModeCards().getSize()>1)
                     {
                         combat=string(getClean(tileStr).size(),' ')+sharedTiles[i]->getCombatModeCards().getCardAt(0)->getName()+"  ";
-                        printClean(combat+string(80,' '));
+                        printClean(combat+string((8-i)*10,' '));
                         which=i;
                         tileStr+="          ";
                     }
@@ -98,7 +98,7 @@ void CGameLogic::printBoardalpha2() {
             {
                 combat=combat.substr(0,combat.size()-10);
                 combat+=sharedTiles[which]->getCombatModeCards().getCardAt(1)->getName()+" ";
-                printClean(combat+string(80,' '));
+                printClean(combat+string((8-which)*10,' '));
             }
         }
     }
@@ -111,13 +111,23 @@ void CGameLogic::printBoardalpha2() {
         }
 
     }
-    if (tilec.size()>=98)
+    if (tilec.size()>=90)
     {
-        size_t pos=tilec.rfind('B',98);
+        size_t pos=tilec.rfind('S',90);
         string tilec1=tilec.substr(0,pos);
         string tilec2=tilec.substr(pos);
-        printOption(tilec1);
-        printOption(tilec2);
+        if (tilec.size()>=180) {
+            size_t pos2=tilec2.rfind('S',90);
+            string tilec3=tilec2.substr(0,pos2);
+            string tilec4=tilec2.substr(pos2);
+            printOption(tilec1);
+            printOption(tilec3);
+            printOption(tilec4);
+        }
+        else {
+            printOption(tilec1);
+            printOption(tilec2);
+        }
 
     }
     else
@@ -373,6 +383,7 @@ void CGameLogic::runGameLoop() {
 
 
     while (!checkWinner()) {
+        clearScreen();
         Player* currentPlayer = players[getCurrentPlayerIndex()].get();
 
         printBoardalpha2();
@@ -380,8 +391,9 @@ void CGameLogic::runGameLoop() {
         try {
             currentPlayer->playTurn();
         } catch (const std::exception& e) {
-            clearScreen();
+            DisplayManager::getInstance()->output("\n");
             DisplayManager::getInstance()->output(string(e.what()) + "\n");
+            getSleep(3);
             continue;
         }
         turnNumber++;
@@ -405,10 +417,11 @@ bool CGameLogic::checkWinner()
     for (int playerId = 1; playerId < 3; playerId++) {
         int aligned = board.getAlingnedControlledTilesCount(playerId);
         int total = board.getControlledTilesCount(playerId);
-        if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfStoneTiles()) {
+        if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfUnalignedTilesToWin()) {
             DisplayManager::getInstance()->output(" Player " +to_string(playerId)+" won the game ! \n" );
             if (playerId==1)Player1Wins+=1;
             else Player2Wins+=1;
+            clearScreen();
             PlayerVictory(playerId);
             getSleep(4);
             return true;
@@ -632,13 +645,14 @@ void CGameLogic::getMainConsole() {
     Display *c=DisplayManager::getInstance();
     while (iMenu!=0) {
         clearScreen();
+        c->output(sError+"\n");
         if (iMenu==(-1)) {
             mainDisplay();
             getSleep();
             iMenu=1;
             sError.clear();
         }
-        if (iMenu==1) {
+        else if (iMenu==1) {
             getChoiceMain();
             c->output(">> ");
             cin>>inputString;
@@ -660,7 +674,7 @@ void CGameLogic::getMainConsole() {
         }
         else if (iMenu==5)
         {
-            removeLastPlayer();
+
             getChoicePlayer();
             c->output(">> ");
             cin>>inputString;
@@ -674,13 +688,16 @@ void CGameLogic::getMainConsole() {
             }
             else {
                 try {
+
                     int playerop=stoi(inputString);
                     if (playerop==2)
                     {
+                        removeLastPlayer();
                         players.push_back(unique_ptr<Player>(new Human(2)));
                     }
                     else if (playerop==1)
                     {
+                        removeLastPlayer();
                         players.push_back(unique_ptr<Player>(new AIEasy(2)));
                     }else{
                         throw(invalid_argument("Invalid input"));
@@ -737,6 +754,7 @@ void CGameLogic::getMainConsole() {
         }
         else if (iMenu==4) {
             while (currentRound<maxRounds) {
+                GameBoard::getInstance();
                 getChoiceRoundLoading(currentRound);
                 getSleep(3);
                 clearScreen();
@@ -744,12 +762,13 @@ void CGameLogic::getMainConsole() {
                 currentRound+=1;
                 GameBoard::deleteInstance();
             }
+            clearScreen();
             PlayerRounds();
             getSleep(4);
             iMenu=1;
             sError.clear();
         }
-        c->output(sError+"\n");
+
     }
 }
 

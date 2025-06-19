@@ -62,8 +62,7 @@ CombinationType Set::evaluateCombination(StoneTiles& tiles)  {
     set<Colors> colors;
     unsigned int nbrMaxOfCards= tiles.getNbOfPlayableCards();
     if (SetOfCards.size() < nbrMaxOfCards) {
-        CustomException Exc01=CustomException(INCOMPLETESET);
-        throw(Exc01);
+        throw std::invalid_argument("Not enough cards in set");
     }
 
     for (const auto& card : SetOfCards) {

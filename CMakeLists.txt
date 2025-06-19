@@ -49,7 +49,6 @@ Cards/Recruiter.cpp
         Cards/Spy.cpp
 
         Cards/ShieldBear.cpp
-        CustomException/CustomException.h
         Cards/BlindMan.cpp
         Logic/GameLogic.cpp
         Logic/GameLogic.h)

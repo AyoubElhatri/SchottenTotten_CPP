@@ -8,7 +8,7 @@
 
 
 
-/*void Banshee::getEvent(StoneTiles* stoneTiles) {
+void Banshee::getEvent(StoneTiles* stoneTiles) {
     GameBoard& board = GameBoard::getInstance();
     auto& players = CGameLogic::getInstance().getPlayers();
     Player* currentPlayer = players[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
@@ -84,8 +84,8 @@
     } catch (const std::exception& e) {
         DisplayManager::getInstance()->output(std::string("Erreur lors de la suppression de la carte : ") + e.what() + "\n");
     }
-}*/
-void Banshee::getEvent(StoneTiles* ) {
+}
+/*void Banshee::getEvent(StoneTiles* ) {
     GameBoard& board = GameBoard::getInstance();
     auto& players = CGameLogic::getInstance().getPlayers();
     Player* currentPlayer = players[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
@@ -167,7 +167,7 @@ void Banshee::getEvent(StoneTiles* ) {
     } catch (const std::exception& e) {
         DisplayManager::getInstance()->output(std::string("Erreur lors de la suppression de la carte : ") + e.what() + "\n");
     }
-}
+}*/
 
 
 

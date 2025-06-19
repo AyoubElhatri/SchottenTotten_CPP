@@ -124,7 +124,7 @@ void Human::playCard() {
             string choice = DisplayManager::getInstance()->takeInput();
             if (choice == "1" && canDrawClan) drawClanCards(1);
             else if (choice == "2" && canDrawTactical) drawTacticalCards(1);
-            else DisplayManager::getInstance()->output("Invalid choice or no cards available.\n");
+            else if ((choice=="2" && board.getRemainingTacticalCards().getSize()==0) || (choice=="1" && board.getRemainingClanCards().getSize()==0))DisplayManager::getInstance()->output("Invalid choice or no cards available.\n");
         } else {
             DisplayManager::getInstance()->output("\nNo more cards to draw.\n");
         }

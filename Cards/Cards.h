@@ -4,7 +4,6 @@
 #include <memory>
 using namespace std;
 #include "../Display/DisplayManager.h"
-#include "../CustomException/CustomException.h"
 #include <string>
 class StoneTiles;
 
