@@ -12,7 +12,7 @@ void AIEasy::playCard() {
     int cardIndex = rand() % deck.getSize();
     Cards* selectedCard = deck.getCardAt(cardIndex);
 
-    // Choisir une tuile non revendiquée (la première disponible aléatoirement)
+
     int tileIndex = rand() % board.getBoardSize();
     for (int offset = 0; offset < board.getBoardSize(); ++offset) {
         int index = (tileIndex + offset) % board.getBoardSize();
@@ -22,7 +22,7 @@ void AIEasy::playCard() {
         }
     }
 
-    // Poser la carte
+
     board.placeCardOnTileByIndexOfTheTile(tileIndex, *selectedCard, getPlayerID());
 
     auto& tile = board.getSharedTiles()[tileIndex];
@@ -31,7 +31,7 @@ void AIEasy::playCard() {
         tile->setFirstPlayerToFillTheStoneTile(this);
         }
 
-    // Piocher une carte : seulement Clan
+
     if (board.getRemainingClanCards().getSize() > 0) {
         drawClanCards();
     }
@@ -43,7 +43,7 @@ void AIEasy::playTurn() {
     GameBoard& board = GameBoard::getInstance();
     int boardSize = board.getBoardSize();
 
-    // 20% de chance de revendiquer une tuile
+
     if (rand() % 100 < 20) {
         for (int i = 0; i < boardSize; ++i) {
             auto& tile = board.getSharedTiles()[i];

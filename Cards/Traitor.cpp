@@ -14,7 +14,7 @@ void Traitor::getEvent(StoneTiles* ) {
     unsigned int currentPlayerId = currentPlayer->getPlayerID();
     unsigned int opponentId = 3-currentPlayerId;
 
-    // Étape 1 : Récupérer les tuiles non revendiquées avec cartes de l'adversaire
+    //Récupérer les tuiles non revendiquées avec cartes de l'adversaire
     std::vector<std::shared_ptr<StoneTiles>> eligibleTiles;
     for (const auto& tile : board.getSharedTiles()) {
         if (!tile->isAlreadyClaimed()) {
@@ -26,53 +26,53 @@ void Traitor::getEvent(StoneTiles* ) {
     }
 
     if (eligibleTiles.empty()) {
-        DisplayManager::getInstance()->output("Aucune carte adverse disponible à voler.\n");
+        DisplayManager::getInstance()->output("No opponent card is available to steal.\n");
         return;
     }
 
-    // Afficher les tuiles admissibles
-    DisplayManager::getInstance()->output("Tuiles non revendiquées avec des cartes adverses :\n");
+
+    DisplayManager::getInstance()->output("Unclaimed Tiles with opponent cards: \n");
     for (const auto& tile : eligibleTiles) {
-        DisplayManager::getInstance()->output(" - Tuile " + std::to_string(tile->getPosition()) + "\n");
+        DisplayManager::getInstance()->output(" - StoneTile " + std::to_string(tile->getPosition()) + "\n");
     }
 
-    // Choix de la tuile source
-    DisplayManager::getInstance()->output("Entrez l'indice de la tuile d'où voler une carte : ");
+
+    DisplayManager::getInstance()->output("Enter the index of stone tile from where to steal the card: ");
     unsigned int fromTileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
     auto fromTile = board.findTileByPosition(fromTileIndex);
 
     if (!fromTile || fromTile->isAlreadyClaimed()) {
-        DisplayManager::getInstance()->output("Tuile invalide ou déjà revendiquée.\n");
+        DisplayManager::getInstance()->output("Invalid stone tile or already claimed.\n");
         return;
     }
 
     Set& opponentSet = fromTile->getPlayerCardsOnTilesByPlayerId(opponentId);
     if (opponentSet.getSize() == 0) {
-        DisplayManager::getInstance()->output("Pas de carte à voler sur cette tuile.\n");
+        DisplayManager::getInstance()->output("No cards to steal on this Stone tile.\n");
         return;
     }
 
-    DisplayManager::getInstance()->output("Cartes disponibles à voler :\n");
+    DisplayManager::getInstance()->output("Available cards to steal :\n");
     opponentSet.printSet();
 
-    DisplayManager::getInstance()->output("Entrez l'index de la carte à voler : ");
+    DisplayManager::getInstance()->output("Enter the index of the card to steal : ");
     unsigned int cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
 
     if (cardIndex >= opponentSet.getSize()) {
-        DisplayManager::getInstance()->output("Index invalide.\n");
+        DisplayManager::getInstance()->output("Invalid index.\n");
         return;
     }
 
-    // Récupération et suppression de la carte
+
     std::unique_ptr<Cards> stolenCard = opponentSet.getCardbyIndex(cardIndex);
 
-    // Choix de la tuile destination
-    DisplayManager::getInstance()->output("Entrez l'indice de la tuile où poser la carte volée : ");
+
+    DisplayManager::getInstance()->output("Enter the index of the stone tile on which you wish to put the card : ");
     unsigned int toTileIndex = std::stoi(DisplayManager::getInstance()->takeInput());
 
     auto toTile = board.findTileByPosition(toTileIndex);
     if (!toTile || toTile->isAlreadyClaimed()) {
-        DisplayManager::getInstance()->output("Tuile invalide ou déjà revendiquée.\n");
+        DisplayManager::getInstance()->output("Invalid stone tile or already claimed.\n");
         return;
     }
 
@@ -80,10 +80,10 @@ void Traitor::getEvent(StoneTiles* ) {
     unsigned int maxCardsPerTile = Rules::getInstance()->getNumberMaxOfCardsPerTiles();
 
     if (playerSet.getSize() >= maxCardsPerTile) {
-        DisplayManager::getInstance()->output("Vous avez déjà le nombre maximum de cartes sur cette tuile.\n");
+        DisplayManager::getInstance()->output("You already have the maximum number of cards on this stone tile.\n");
         return;
     }
 
     playerSet.addCard(std::move(stolenCard));
-    DisplayManager::getInstance()->output("Carte volée avec succès et placée sur la tuile " + std::to_string(toTileIndex) + "\n");
+    DisplayManager::getInstance()->output("Card stolen and placed on the stole tile successfully of index: " + std::to_string(toTileIndex) + "\n");
 }

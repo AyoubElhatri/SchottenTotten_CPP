@@ -15,7 +15,7 @@ void Human::playCard() {
     int cardIndex = -1;
     int tileIndex = -1;
 
-    // Sélection de la carte
+
     DisplayManager::getInstance()->output("Choose a card index from your hand (0 to " +
                                           std::to_string(getPlayerDeck().getSize() - 1) + "): \n>> ");
     string strCardind = DisplayManager::getInstance()->takeInput();
@@ -29,10 +29,10 @@ void Human::playCard() {
         throw std::invalid_argument("Invalid card index '" + strCardind + "' out of range.");
     }
 
-    // Récupération de la carte sélectionnée
+
     Cards* selectedCard = getPlayerDeck().getCardAt(cardIndex);
 
-    // Gestion des différents types de cartes
+
     if (auto eliteTroop = dynamic_cast<EliteTroopsCards*>(selectedCard)) {
         DisplayManager::getInstance()->output("Choose a tile index to play on (0 to " +
                                               std::to_string(board.getBoardSize() - 1) + "): \n>> ");
@@ -77,7 +77,7 @@ void Human::playCard() {
     }
     else if (auto ruse = dynamic_cast<RusesCards*>(selectedCard)) {
         getPlayerDeck().moveCard(getPlayerDeck().getIndexOfCard(ruse->getName()), board.getDiscardedCards());
-        ruse->getEvent(nullptr);  // Peut modifier la main !
+        ruse->getEvent(nullptr);
 
 
 
@@ -112,7 +112,7 @@ void Human::playCard() {
     }
 
     if ( CGameLogic::getInstance().getPlayerById(getPlayerID())->getPlayerDeck().getSize()<Rules::getInstance()->getNumberMaxOfCardsPerPlayer()) {
-        // Piocher une carte si disponible
+
         bool canDrawClan = board.getRemainingClanCards().getSize() > 0;
         bool canDrawTactical = board.getRemainingTacticalCards().getSize() > 0;
 

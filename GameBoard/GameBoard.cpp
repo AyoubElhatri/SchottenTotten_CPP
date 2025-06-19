@@ -37,7 +37,7 @@ GameBoard::GameBoard() {
     RemainingTacticalCards.mixSet();
 }
 
-// Récupération de l’instance singleton
+
 GameBoard& GameBoard::getInstance() {
     if (!instance) {
         instance = std::unique_ptr<GameBoard>(new GameBoard());
@@ -45,7 +45,7 @@ GameBoard& GameBoard::getInstance() {
     return *instance;
 }
 
-// Récupérer une tuile par position
+
 std::shared_ptr<StoneTiles> GameBoard::findTileByPosition(unsigned int position) {
     for (auto& tile : sharedTiles) {
         if (tile->getPosition() == position) {
@@ -55,12 +55,12 @@ std::shared_ptr<StoneTiles> GameBoard::findTileByPosition(unsigned int position)
     return nullptr;
 }
 
-// Accès aux tuiles partagées
+
 const std::vector<std::shared_ptr<StoneTiles>>& GameBoard::getSharedTiles() const {
     return sharedTiles;
 }
 
-// Accès aux paquets restants / défausse
+
 Set& GameBoard::getRemainingClanCards() {
     return RemainingClanCards;
 }
@@ -80,10 +80,10 @@ void GameBoard::placeCardOnTileByIndexOfTheTile(int tileIndex, const Cards& card
     auto& tile = getSharedTiles()[tileIndex];
     auto& playerDeck = CGameLogic::getInstance().getPlayerById(playerId)->getPlayerDeck();
 
-    // Ajout de la carte sur la tuile
+
     tile->addCardOnTilesOfPlayer(playerId, card.getName(), playerDeck);
 
-    string message="[DEBUG] Joueur " + to_string(playerId) + " joue la carte : " + card.getName() + " sur la tuile " + to_string(tileIndex);
+    string message=" Joueur " + to_string(playerId) + " joue la carte : " + card.getName() + " sur la tuile " + to_string(tileIndex);
 }
 
 bool GameBoard::isTileFree(int tileIndex) const {

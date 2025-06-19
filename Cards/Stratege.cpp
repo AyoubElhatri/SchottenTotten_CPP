@@ -4,12 +4,12 @@
 #include "../Display/DisplayManager.h"
 #include <iostream>
 
-void Stratege::getEvent(StoneTiles* /* unused */) {
+void Stratege::getEvent(StoneTiles* ) {
     GameBoard& board = GameBoard::getInstance();
     Player* currentPlayer = CGameLogic::getInstance().getCurrentPlayer();
     unsigned int currentPlayerId = currentPlayer->getPlayerID();
 
-    // Étape 1 : Lister les bornes non revendiquées où le joueur a au moins une carte
+    // Lister les bornes non revendiquées où le joueur a au moins une carte
     std::vector<std::shared_ptr<StoneTiles>> eligibleTiles;
     for (const auto& tile : board.getSharedTiles()) {
         if (!tile->isAlreadyClaimed()) {
@@ -21,50 +21,50 @@ void Stratege::getEvent(StoneTiles* /* unused */) {
     }
 
     if (eligibleTiles.empty()) {
-        DisplayManager::getInstance()->output("Vous n'avez aucune carte sur une borne non revendiquée.\n");
+        DisplayManager::getInstance()->output("You have no cards on an unclaimed Stone tile.\n");
         return;
     }
 
-    // Afficher les bornes admissibles
-    DisplayManager::getInstance()->output("Bornes non revendiquées avec vos cartes :\n");
+
+    DisplayManager::getInstance()->output("Unclaimed Stone tile with your cards :\n");
     for (const auto& tile : eligibleTiles) {
         DisplayManager::getInstance()->output(" - Tuile " + std::to_string(tile->getPosition()) + "\n");
     }
 
-    // Choisir la borne source
-    DisplayManager::getInstance()->output("Entrez l'indice de la tuile source : ");
+
+    DisplayManager::getInstance()->output("Enter the index of the source Stone Tile : ");
     unsigned int fromTilePos = std::stoi(DisplayManager::getInstance()->takeInput());
     auto fromTileIt = std::find_if(eligibleTiles.begin(), eligibleTiles.end(),
                                    [fromTilePos](const std::shared_ptr<StoneTiles>& t) {
                                        return t->getPosition() == fromTilePos;
                                    });
     if (fromTileIt == eligibleTiles.end()) {
-        DisplayManager::getInstance()->output("Tuile invalide.\n");
+        DisplayManager::getInstance()->output("Invalid Stone tile.\n");
         return;
     }
     auto fromTile = *fromTileIt;
 
-    // Afficher les cartes du joueur sur cette tuile
+
     auto& fromCards = fromTile->getPlayerCardsOnTilesByPlayerId(currentPlayerId);
-    DisplayManager::getInstance()->output("Cartes disponibles sur la tuile " + std::to_string(fromTilePos) + " :\n");
+    DisplayManager::getInstance()->output("Available cards on the stone tile " + std::to_string(fromTilePos) + " :\n");
     fromCards.printSet();
 
     // Choisir la carte à déplacer ou défausser
-    DisplayManager::getInstance()->output("Entrez l'index de la carte à déplacer ou défausser : ");
+    DisplayManager::getInstance()->output("Enter the index of the card to move or to discard away.");
     unsigned int cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
     if (cardIndex >= fromCards.getSize()) {
-        DisplayManager::getInstance()->output("Index de carte invalide.\n");
+        DisplayManager::getInstance()->output("Invalid card Index \n");
         return;
     }
 
     std::unique_ptr<Cards> chosenCard = fromCards.getCardbyIndex(cardIndex);
 
     // Choisir entre déplacer ou défausser
-    DisplayManager::getInstance()->output("Voulez-vous déplacer cette carte sur une autre tuile (1) ou la défausser (2) ? ");
+    DisplayManager::getInstance()->output("Do you want to move this card to another tile (1) or discard it away (2)?");
     std::string choice = DisplayManager::getInstance()->takeInput();
 
     if (choice == "1") {
-        // Lister les bornes non revendiquées (sauf celle source) pour déplacer la carte
+
         std::vector<std::shared_ptr<StoneTiles>> destTiles;
         for (const auto& tile : board.getSharedTiles()) {
             if (!tile->isAlreadyClaimed() && tile->getPosition() != fromTilePos) {
@@ -73,18 +73,17 @@ void Stratege::getEvent(StoneTiles* /* unused */) {
         }
 
         if (destTiles.empty()) {
-            DisplayManager::getInstance()->output("Aucune tuile valide pour déplacer la carte.\n");
-            // Option : remettre la carte dans la tuile d'origine pour ne pas la perdre
+            DisplayManager::getInstance()->output("No valid stone tile to move the card.\n");
             fromCards.addCard(std::move(chosenCard));
             return;
         }
 
-        DisplayManager::getInstance()->output("Bornes possibles pour déplacer la carte :\n");
+        DisplayManager::getInstance()->output("Possible stone tiles to move the card: \n");
         for (const auto& tile : destTiles) {
-            DisplayManager::getInstance()->output(" - Tuile " + std::to_string(tile->getPosition()) + "\n");
+            DisplayManager::getInstance()->output(" - StoneTile " + std::to_string(tile->getPosition()) + "\n");
         }
 
-        DisplayManager::getInstance()->output("Entrez l'indice de la tuile destination : ");
+        DisplayManager::getInstance()->output("Enter the index of the stone tile destination: ");
         unsigned int toTilePos = std::stoi(DisplayManager::getInstance()->takeInput());
 
         auto toTileIt = std::find_if(destTiles.begin(), destTiles.end(),
@@ -92,31 +91,31 @@ void Stratege::getEvent(StoneTiles* /* unused */) {
                                          return t->getPosition() == toTilePos;
                                      });
         if (toTileIt == destTiles.end()) {
-            DisplayManager::getInstance()->output("Tuile destination invalide.\n");
-            // Remettre la carte sur la tuile source
+            DisplayManager::getInstance()->output("Invalid StoneTile destination. \n");
+
             fromCards.addCard(std::move(chosenCard));
             return;
         }
         auto toTile = *toTileIt;
 
-        // Ajouter la carte sur la tuile destination
+
         auto& toCards = toTile->getPlayerCardsOnTilesByPlayerId(currentPlayerId);
         if (toCards.getSize() >= Rules::getInstance()->getNumberMaxOfCardsPerTiles()) {
-            DisplayManager::getInstance()->output("La tuile destination est déjà pleine.\n");
+            DisplayManager::getInstance()->output("Stone tile destination is already full. \n");
             fromCards.addCard(std::move(chosenCard));
             return;
         }
 
         toCards.addCard(std::move(chosenCard));
-        DisplayManager::getInstance()->output("Carte déplacée avec succès.\n");
+        DisplayManager::getInstance()->output("Card moved successfully\n");
 
     } else if (choice == "2") {
-        // Défausser la carte face visible à côté de la pioche
+
         board.getDiscardedCards().addCard(std::move(chosenCard));
-        DisplayManager::getInstance()->output("Carte défaussée avec succès.\n");
+        DisplayManager::getInstance()->output("Card discarded successfully.\n");
     } else {
-        // Mauvais choix, remettre la carte dans la tuile d'origine
-        DisplayManager::getInstance()->output("Choix invalide.\n");
+
+        DisplayManager::getInstance()->output("Invalid Choice. \n");
         fromCards.addCard(std::move(chosenCard));
     }
 }

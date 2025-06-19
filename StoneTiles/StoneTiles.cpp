@@ -8,7 +8,7 @@
 void StoneTiles::addCardOnTilesOfPlayer(unsigned int playerId, const string& cardName, Set& provenanceOfTheCard) {
     unsigned int nbrMaxOnStoneTile = getNbOfPlayableCards();
 
-    // Vérifier si le joueur a déjà le nombre maximum de cartes
+
     if (getPlayerCardsOnTilesByPlayerId(playerId).getSize() >= nbrMaxOnStoneTile) {
         throw std::out_of_range("Player " + std::to_string(playerId) + 
                                " already has the maximum number of cards on this tile.");
@@ -30,7 +30,7 @@ void StoneTiles::claim(unsigned int playerId) {
     GameBoard& board = GameBoard::getInstance();
     Player* opponent = CGameLogic::getInstance().getPlayerById(player2id);
 
-    // === Revendication anticipée ===
+
     if ((cards1.getSize() == maxCards && cards2.getSize() != maxCards) ||
         (cards2.getSize() == maxCards && cards1.getSize() != maxCards)) {
 
@@ -38,7 +38,7 @@ void StoneTiles::claim(unsigned int playerId) {
         Set& opponentCards = cards1.getSize() == maxCards ? cards2 : cards1;
         unsigned int claimantId = cards1.getSize() == maxCards ? playerId : player2id;
 
-        // Empêche la revendication anticipée si carte tactique sur la tuile
+
         for (auto& [_, set] : PlayerCards) {
             for (Cards* c : set->getRawCards()) {
                 if (dynamic_cast<TacticalCards*>(c)) {
@@ -48,25 +48,25 @@ void StoneTiles::claim(unsigned int playerId) {
             }
         }
 
-        // Rassembler toutes les cartes disponibles pour l’adversaire
+
         std::vector<Cards*> pool = opponentCards.getRawCards();
 
-        // Main
+
         for (Cards* c : opponent->getPlayerDeck().getRawCards()) {
             pool.push_back(c);
         }
 
-        // Pioche
+
         for (Cards* c : board.getRemainingClanCards().getRawCards()) {
             pool.push_back(c);
         }
 
-        // Défausse
+
         for (Cards* c : board.getDiscardedCards().getRawCards()) {
             pool.push_back(c);
         }
 
-        // Toutes les cartes posées sur le plateau (autres tuiles)
+
         for (auto& tile : board.getSharedTiles()) {
             if (tile.get() != this) {
                 for (Cards* c : tile->getPlayerCardsOnTilesByPlayerId(player2id).getRawCards()) {
@@ -75,7 +75,7 @@ void StoneTiles::claim(unsigned int playerId) {
             }
         }
 
-        // On ne garde que les ClanCards
+
         std::vector<const ClanCards*> usable;
         for (Cards* c : pool) {
             if (auto* cc = dynamic_cast<ClanCards*>(c)) {
@@ -83,7 +83,7 @@ void StoneTiles::claim(unsigned int playerId) {
             }
         }
 
-        // Générer toutes les combinaisons possibles de maxCards
+
         int n = usable.size();
         bool canBeat = false;
         std::vector<int> indices(maxCards);
@@ -104,7 +104,7 @@ void StoneTiles::claim(unsigned int playerId) {
                 break;
             }
 
-            // Générer prochaine combinaison
+
             int i = maxCards - 1;
             while (i >= 0 && indices[i] == i + n - maxCards) --i;
             if (i < 0) break;
@@ -122,7 +122,7 @@ void StoneTiles::claim(unsigned int playerId) {
         }
     }
 
-    // === Revendication normale ===
+   //Mode Normal
     if (cards1.getSize() == maxCards && cards2.getSize() == maxCards) {
         if (comboType == CombinationType::Sum) {
             if (cards1.getTotalValue() > cards2.getTotalValue()) {

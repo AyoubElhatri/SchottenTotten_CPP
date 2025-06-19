@@ -16,9 +16,6 @@
 
 int main() {
 
-
-
-
     Rules::Builder builder;
     builder.setNumberOfStoneTiles(9)
            .setNumberOfAlignedTilesToWin(3)
@@ -34,15 +31,15 @@ int main() {
          .addTacticalCard("BlindMan", 1) //Fonctionne
            .addTacticalCard("Traitor", 1) //Fonctionne
             .addTacticalCard("Banshee", 1) //Fonctionne
-            .addTacticalCard("Stratege",1)
-           .addTacticalCard("Recruiter", 1)
+            .addTacticalCard("Stratege",1)//Fonctionne
+           .addTacticalCard("Recruiter", 1)//Fonctionne
            .setNumberMaxOfCardsPerPlayer(6)
            .setNumberMaxOfCardsPerTiles(3);
 
 
 
 
-    // Appel de buildInstance avec le builder
+
     Rules::buildInstance(builder);
     DisplayManager::createInstance<DisplayConsole>();
     CGameLogic::getInstance().getMainConsole();
