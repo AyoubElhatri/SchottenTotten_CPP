@@ -256,7 +256,7 @@ void StoneTiles::claim(unsigned int playerId) {
         if (!canBeat) {
             StoneTileIsClaimed = true;
             claimedBy = claimantId;
-            DisplayManager::getInstance()->output("✅ Revendication anticipée réussie par le joueur " + std::to_string(claimantId) + " sur la tuile " + std::to_string(Position) + "\n");
+            DisplayManager::getInstance()->output("Revendication anticipée réussie par le joueur " + std::to_string(claimantId) + " sur la tuile " + std::to_string(Position) + "\n");
             return;
         }
     }
