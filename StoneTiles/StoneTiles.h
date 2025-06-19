@@ -35,8 +35,6 @@ public:
     void setPosition(unsigned int Pos) { Position = Pos; }
     void setFirstPlayerToFillTheStoneTile(Player* player) { firstPlayerToFillTheStoneTile = player; }
     void addCardOnTilesOfPlayer(unsigned int playerId,  const string& Cardname, Set& provenanceOfTheCard);
-    std::unique_ptr<Cards> removeCardFromPlayer(unsigned int playerId, unsigned int cardIndex);
-
     Set& getCombatModeCards() { return CombatModeCards; }
     unordered_map<unsigned int, std::unique_ptr<Set>>& getPlayerCards() { 
     return PlayerCards; 
@@ -45,7 +43,6 @@ public:
     return *PlayerCards[playerId]; 
 }
 
-    void printStoneTiles();
 
 
 };

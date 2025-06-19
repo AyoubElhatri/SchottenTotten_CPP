@@ -38,13 +38,12 @@ public:
     int getBoardSize() const{return static_cast<int>(sharedTiles.size());}
     bool isTileFree(int index) const;
 
-    const std::vector<std::shared_ptr<StoneTiles>>& getUnclaimedTiles(); // pourquoi y en a besoin ??
+    const std::vector<std::shared_ptr<StoneTiles>>& getUnclaimedTiles();
     void moveCardBetweenTiles(unsigned int fromBorderPos, unsigned int toBorderPos, unsigned int playerId, unsigned int cardIndex);
     std::shared_ptr<StoneTiles> findTileByPosition(unsigned int position);
 
     int getControlledTilesCount(int playerId) const;
     int getAlingnedControlledTilesCount(int playerId) const;
-    void printBoard() ;
 
     string formatCard(const Cards* card) ;
     static void deleteInstance();

@@ -57,11 +57,7 @@ unsigned int Set::getIndexOfCard(string CardName) const{
 
 
 
-// A REFAIRE IL FAUT PEUT ETRE UNE CLASSE CHECK COMBINATION
 CombinationType Set::evaluateCombination(StoneTiles& tiles)  {
-   // METTRE CETTE MECANIQUE AILLEUR
-   // if (!isComplete()) return CombinationType::None;
-
     vector<int> values;
     set<Colors> colors;
     unsigned int nbrMaxOfCards= tiles.getNbOfPlayableCards();
@@ -70,11 +66,10 @@ CombinationType Set::evaluateCombination(StoneTiles& tiles)  {
         throw(Exc01);
     }
 
-// a corriger doit prendre en compte le nbr max de cartes par joueurs
     for (const auto& card : SetOfCards) {
     if (const EliteTroopsCards * eliteTroop = dynamic_cast< const EliteTroopsCards*>(card.get())) {
         const_cast<TacticalCards*>(static_cast<const TacticalCards*>(eliteTroop))->getEvent(&tiles);
-        values.push_back(eliteTroop->getNumber()); // si ya un probleme avec les elites troops ca va venir du fait qu'on recast pas en elite troops
+        values.push_back(eliteTroop->getNumber());
         colors.insert(eliteTroop->getColor());
     } 
     else if (const ClanCards* clanCard = dynamic_cast<const ClanCards*>(card.get())) {
@@ -116,13 +111,6 @@ void Set::mixSet() {
     std::shuffle(SetOfCards.begin(), SetOfCards.end(), gen);
 }
 
-/*
-void Set::printSet() const {
-    for (const auto& card : SetOfCards) {
-        DisplayManager::getInstance()->output( card->getName()+"/");
-    }
-}
-*/
 string Set::getStringSet()
 {
     string TextSet;
@@ -140,8 +128,6 @@ void Set::printSet() const {
     }
     DisplayManager::getInstance()->output("\n");
 }
-
-
 
 unsigned int Set::getTotalValue() const {
     unsigned int total = 0;

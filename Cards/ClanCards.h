@@ -14,9 +14,7 @@ private:
     unsigned int number;
     Colors color;
 public:
-    // Constructeur explicite prenant number et color
-    ClanCards(): number(0), color(Colors::Red) {
-        }
+    ClanCards(): number(0), color(Colors::Red) {}
 
     ClanCards(unsigned int num, Colors col) : number(num), color(col) {
     cardName = std::to_string(getNumber()) + "-" + std::to_string(static_cast<int>(getColor()));
@@ -25,7 +23,6 @@ public:
     Colors getColor() const  { return color; }
     void setNumber(unsigned int numbers) { number = numbers; }
     void setColor(Colors colors) { color = colors; }
-    /*std::unique_ptr<Cards> clone() const override { return std::make_unique<ClanCards>(*this); }*/
     void getEvent(StoneTiles* stoneTiles)override { return ;};
 };
 
