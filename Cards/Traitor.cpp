@@ -1,6 +1,6 @@
 #include "Traitor.h"
 #include "../GameBoard/GameBoard.h"
-#include "../Logic2/GameLogic2.h"
+#include "../Logic/GameLogic.h"
 #include "../Rules/Rules.h"
 #include "../Player/Player.h"
 #include "../Cards/ClanCards.h"

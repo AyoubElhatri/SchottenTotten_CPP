@@ -13,7 +13,6 @@
 #include "Collections/Set.h"
 #include "Rules/Rules.h"
 #include "Logic/GameLogic.h"
-#include "Logic2/GameLogic2.h"
 
 // Affiche le plateau et les cartes posées par chaque joueur sur chaque tuile
 /*void printBoard(const GameBoard& board) {
@@ -148,7 +147,7 @@ int main() {
            .addTacticalCard("Traitor", 1) //Fonctionne
             .addTacticalCard("Banshee", 1) //Fonctionne
             .addTacticalCard("Stratege",1)
-           .addTacticalCard("Recruiter", 1)
+           //.addTacticalCard("Recruiter", 1)
            .setNumberMaxOfCardsPerPlayer(6)
            .setNumberMaxOfCardsPerTiles(3);
 

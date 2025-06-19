@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "../GameBoard/GameBoard.h"
-#include "../Logic2/GameLogic2.h"
+#include "../Logic/GameLogic.h"
 
 
 void Recruiter::getEvent(StoneTiles* stoneTiles) {

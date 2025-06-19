@@ -12,7 +12,6 @@
 
 using namespace std;
 
-//#define maxOfCards 3 // A RETIRER
 
 class Set {
 private:
@@ -41,8 +40,6 @@ public:
     void moveCard(unsigned int IndexCard, Set& toSet);
 
     unsigned int getIndexOfCard(string CardName) const;
-
-   //bool isComplete() const { return SetOfCards.size() == maxOfCards; }//  A RETIRER/MODIFIER AVEC RULES
 
     CombinationType evaluateCombination(StoneTiles& tiles)  ;
     void mixSet();

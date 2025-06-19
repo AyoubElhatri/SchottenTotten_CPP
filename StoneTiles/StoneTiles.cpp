@@ -3,7 +3,7 @@
 #include <memory>
 #include "../Logic/GameLogic.h"
 #include"../Cards/TacticalCards.h"
-
+#include <functional>
 
 void StoneTiles::addCardOnTilesOfPlayer(unsigned int playerId, const string& cardName, Set& provenanceOfTheCard) {
     unsigned int nbrMaxOnStoneTile = getNbOfPlayableCards();
@@ -160,8 +160,8 @@ void StoneTiles::claim(unsigned int playerId) {
     auto& cards2 = getPlayerCardsOnTilesByPlayerId(player2id);
 
     GameBoard& board = GameBoard::getInstance();
-    Player* opponent = GameLogic::getInstance().getPlayerById(player2id);
-    Player* claimant = GameLogic::getInstance().getPlayerById(playerId);
+    Player* opponent = CGameLogic::getInstance().getPlayerById(player2id);
+    Player* claimant = CGameLogic::getInstance().getPlayerById(playerId);
 
     // === Revendication anticipée ===
     if ((cards1.getSize() == maxCards && cards2.getSize() != maxCards) ||
@@ -353,7 +353,7 @@ void StoneTiles::printStoneTiles() {
 }
 StoneTiles::StoneTiles(unsigned int pos) : Position(pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()),firstPlayerToFillTheStoneTile(nullptr) {
     StoneTileIsClaimed=false;
-    for (const auto& player : GameLogic::getInstance().getPlayers()) {
+    for (const auto& player : CGameLogic::getInstance().getPlayers()) {
         PlayerCards.emplace(player->getPlayerID(), std::make_unique<Set>());
     }
 }

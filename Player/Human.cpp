@@ -3,7 +3,7 @@
 #include "../Cards/EliteTroopsCards.h"
 #include "../Cards/CombatModeCards.h"
 #include "../Cards/RusesCards.h"
-#include "../Logic2/GameLogic2.h"
+#include "../Logic/GameLogic.h"
 
 
 void Human::playCard() {
