@@ -8,7 +8,7 @@
 
 
 
-void Banshee::getEvent(StoneTiles* /* unused */) {
+void Banshee::getEvent(StoneTiles* stoneTiles) {
     GameBoard& board = GameBoard::getInstance();
     auto& players = CGameLogic::getInstance().getPlayers();
     Player* currentPlayer = players[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
