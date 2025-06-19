@@ -816,7 +816,6 @@ void CGameLogic::getMainConsole() {
                 clearScreen();
                 startGame();
                 currentRound+=1;
-                CGameLogic::deleteInstance();
                 GameBoard::deleteInstance();
             }
             PlayerRounds();
