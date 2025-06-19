@@ -8,7 +8,7 @@
 
 
 
-void Banshee::getEvent(StoneTiles* stoneTiles) {
+/*void Banshee::getEvent(StoneTiles* stoneTiles) {
     GameBoard& board = GameBoard::getInstance();
     auto& players = CGameLogic::getInstance().getPlayers();
     Player* currentPlayer = players[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
@@ -58,12 +58,99 @@ void Banshee::getEvent(StoneTiles* stoneTiles) {
     opponentSet.printSet();
 
     // Étape 3 : Choix de la carte à défausser
+    unsigned int cardIndex;
+    do {
     DisplayManager::getInstance()->output("Entrez l’index de la carte à défausser : ");
     unsigned int cardIndex = std::stoi(DisplayManager::getInstance()->takeInput());
 
     if (cardIndex >= opponentSet.getSize()) {
         DisplayManager::getInstance()->output("Index invalide.\n");
         return;
+    }
+
+    }while (cardIndex >= opponentSet.getSize());
+
+    // Étape 4 : Suppression sécurisée de la carte
+    try {
+        std::unique_ptr<Cards> removedCard = opponentSet.getCardbyIndex(cardIndex);
+        if (!removedCard) {
+            DisplayManager::getInstance()->output("Erreur : la carte sélectionnée est invalide.\n");
+            return;
+        }
+
+        board.getDiscardedCards().addCard(std::move(removedCard));
+        DisplayManager::getInstance()->output("Carte défaussée avec succès.\n");
+
+    } catch (const std::exception& e) {
+        DisplayManager::getInstance()->output(std::string("Erreur lors de la suppression de la carte : ") + e.what() + "\n");
+    }
+}*/
+void Banshee::getEvent(StoneTiles* ) {
+    GameBoard& board = GameBoard::getInstance();
+    auto& players = CGameLogic::getInstance().getPlayers();
+    Player* currentPlayer = players[CGameLogic::getInstance().getCurrentPlayerIndex()].get();
+    unsigned int currentPlayerId = currentPlayer->getPlayerID();
+    unsigned int opponentId = 3 - currentPlayerId;
+
+    // Étape 1 : Trouver les tuiles valides
+    std::vector<std::shared_ptr<StoneTiles>> eligibleTiles;
+    for (const auto& tile : board.getSharedTiles()) {
+        if (!tile->isAlreadyClaimed()) {
+            Set& opponentSet = tile->getPlayerCardsOnTilesByPlayerId(opponentId);
+            if (opponentSet.getSize() > 0) {
+                eligibleTiles.push_back(tile);
+            }
+        }
+    }
+
+    if (eligibleTiles.empty()) {
+        DisplayManager::getInstance()->output("Aucune carte adverse disponible à défausser.\n");
+        return;
+    }
+
+    DisplayManager::getInstance()->output("Tuiles avec cartes adverses non revendiquées :\n");
+    for (const auto& tile : eligibleTiles) {
+        DisplayManager::getInstance()->output(" - Tuile " + std::to_string(tile->getPosition()) + "\n");
+    }
+
+    // Étape 2 : Choix de la tuile avec validation
+    int tileIndex = -1;
+    std::shared_ptr<StoneTiles> selectedTile = nullptr;
+    while (!selectedTile) {
+        DisplayManager::getInstance()->output("Entrez l’indice de la tuile contenant la carte à défausser : ");
+        std::string input = DisplayManager::getInstance()->takeInput();
+        try {
+            tileIndex = std::stoi(input);
+            auto tile = board.findTileByPosition(tileIndex);
+            if (tile && !tile->isAlreadyClaimed() && tile->getPlayerCardsOnTilesByPlayerId(opponentId).getSize() > 0) {
+                selectedTile = tile;
+            } else {
+                DisplayManager::getInstance()->output("Tuile invalide ou sans cartes adverses.\n");
+            }
+        } catch (...) {
+            DisplayManager::getInstance()->output("Entrée invalide, veuillez entrer un nombre correct.\n");
+        }
+    }
+
+    Set& opponentSet = selectedTile->getPlayerCardsOnTilesByPlayerId(opponentId);
+    DisplayManager::getInstance()->output("Cartes adverses sur cette tuile :\n");
+    opponentSet.printSet();
+
+    // Étape 3 : Choix de la carte à défausser avec validation
+    int cardIndex = -1;
+    while (true) {
+        DisplayManager::getInstance()->output("Entrez l’index de la carte à défausser : ");
+        std::string input = DisplayManager::getInstance()->takeInput();
+        try {
+            cardIndex = std::stoi(input);
+            if (cardIndex >= 0 && (unsigned int)cardIndex < opponentSet.getSize()) {
+                break;
+            } else {
+                DisplayManager::getInstance()->output("Index hors limites. Veuillez réessayer.\n");
+            }
+        } catch (...) {
+            DisplayManager::getInstance()->output("Entrée invalide. Veuillez entrer un nombre.\n");
+        }
     }
 
     // Étape 4 : Suppression sécurisée de la carte
