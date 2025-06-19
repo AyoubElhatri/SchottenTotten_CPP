@@ -11,7 +11,7 @@ class StoneTiles;
 
 class TacticalCards : public Cards {
     public:
-    void getEvent(StoneTiles* stoneTiles) override{std::cout<<"";};
+    void getEvent(StoneTiles* stoneTiles) override{};
 
 };
 
