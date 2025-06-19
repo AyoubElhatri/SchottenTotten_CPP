@@ -151,64 +151,7 @@ void CGameLogic::printBoardalpha2() {
     printStars();
 
 }
-/*
-void CGameLogic::printBoardalpha() {
-    printStars();
-    getFreespace(5);
-    const std::string blue = "\033[1;34m";   // bleu clair gras
-    const std::string reset = "\033[0m";
-        vector<shared_ptr<StoneTiles>> sharedTiles=GameBoard::getInstance().getSharedTiles();
 
-    const int tileCount = static_cast<int>(sharedTiles.size());
-
-    // Trouver la hauteur max de cartes pour chaque joueur
-    int maxCardsP1 = 0, maxCardsP2 = 0;
-    for (const auto& tile : sharedTiles) {
-        maxCardsP1 = std::max(maxCardsP1, static_cast<int>(tile->getPlayerCards1().getRawCards().size()));
-        maxCardsP2 = std::max(maxCardsP2, static_cast<int>(tile->getPlayerCards2().getRawCards().size()));
-    }
-
-    // Afficher les cartes du joueur 1 (en haut), ligne par ligne
-    string cardss=" ";
-    for (int row = 0; row < maxCardsP1; ++row) {
-        for (const auto& tile : sharedTiles) {
-            const auto& cards = tile->getPlayerCards1().getRawCards();
-            if (row < static_cast<int>(cards.size())) {
-                cardss+="  "+GameBoard::getInstance().formatCard(cards[row])+"     ";
-            } else {
-                cardss+="          ";
-            }
-        }
-        printClean(cardss);
-        cardss=" ";
-    }
-
-    string tilesToPrint=" ";
-    // Afficher la séparation (ligne de tuiles)
-    for (int i = 0; i < tileCount; ++i) {
-        tilesToPrint+="--ST"+to_string(i)+"--   ";
-    }
-    printClean(tilesToPrint);
-
-    // Afficher les cartes du joueur 2 (en bas), ligne par ligne
-    string cardsss2=" ";
-    for (int row = 0; row < maxCardsP2; ++row) {
-        for (const auto& tile : sharedTiles) {
-            const auto& cards = tile->getPlayerCards2().getRawCards();
-            if (row < static_cast<int>(cards.size())) {
-                cardsss2+="  "+GameBoard::getInstance().formatCard(cards[row])+"     ";
-            } else {
-                cardsss2+="          "; // Espace vide si pas de carte
-            }
-        }
-        printClean(cardsss2);
-        cardsss2=" ";
-    }
-    getFreespace(4);
-    string info="ST[*]: Stone Tile n°* ";
-    printInLast(info);
-    printStars();
-}*/
 void CGameLogic::printInLast(string Text)
 {
     int space=100-Text.size();
@@ -439,29 +382,7 @@ void CGameLogic::runGameLoop() {
 
     }
 
-}    //No stress c'est moi
-/*void CGameLogic::runGameLoop() {
-    clearScreen();
-
-    while (true) {
-        Player* currentPlayer = players[getCurrentPlayerIndex()].get();
-
-        printBoardalpha2();
-
-        try {
-            currentPlayer->playTurn();
-        } catch (const std::exception& e) {
-            clearScreen();
-            DisplayManager::getInstance()->output(string(e.what()) + "\n");
-            continue;
-        }
-
-
-        if (checkWinner()) break;
-
-        turnNumber++;
-    }
-}*/
+}
 void CGameLogic::printStars()
 {   Display *c=DisplayManager::getInstance();
     string stars=string(CONSOLE_WIDTH,'#')+"\n";

@@ -21,7 +21,7 @@ private:
     unordered_map<Colors, unsigned int> clanCardsByColor;
     unordered_map<string, unsigned int> tacticalCards;
 
-    Rules();  // constructeur privé par défaut
+    Rules();
 
 public:
     static Rules* instance;
