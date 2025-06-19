@@ -15,7 +15,38 @@
 #include "Logic/GameLogic.h"
 #include "Logic2/GameLogic2.h"
 
+// Affiche le plateau et les cartes posées par chaque joueur sur chaque tuile
+/*void printBoard(const GameBoard& board) {
+    const auto& tiles = board.getSharedTiles();
+    std::cout << "\n--- Plateau de jeu ---\n";
+    for (size_t i = 0; i < tiles.size(); ++i) {
+        auto& tile = tiles[i];
+        std::cout << "Tuile " << i << " (pos: " << tile->getPosition() << "): ";
 
+        auto& player1Cards = tile->getPlayerCards1();
+        auto& player2Cards = tile->getPlayerCards2();
+
+        std::cout << "J1[";
+        for (unsigned int c = 0; c < player1Cards.getSize(); ++c) {
+            const Cards* card = player1Cards.getCardAt(c);
+            if (card) {
+                std::cout << card->getNumber() << ",";
+            }
+        }
+        std::cout << "] ";
+
+        std::cout << "J2[";
+        for (unsigned int c = 0; c < player2Cards.getSize(); ++c) {
+            const Cards* card = player2Cards.getCardAt(c);
+            if (card) {
+                std::cout << card->getNumber() << ",";
+            }
+        }
+        std::cout << "]\n";
+    }
+    std::cout << "---------------------\n";
+}
+*/
 int main() {
     /*
     std::srand(std::time(nullptr));  // Initialiser le générateur aléatoire
@@ -109,15 +140,15 @@ int main() {
            .addClanCardColor(Colors::Yellow, 9)
            .addClanCardColor(Colors::Blue, 9)
            .addClanCardColor(Colors::Magenta, 9)
-            //.addTacticalCard("Spy", 1)//Fonctionne
-            //.addTacticalCard("Joker", 2)//Fonctionne
-            // .addTacticalCard("MudFight", 1)//Fonctionne
-        //.addTacticalCard("ShieldBear", 1)//Fonctionne
-         //.addTacticalCard("BlindMan", 1) //Fonctionne
-           //.addTacticalCard("Traitor", 1) //Fonctionne
-            //.addTacticalCard("Banshee", 1) //Fonctionne
+            .addTacticalCard("Spy", 1)//Fonctionne
+            .addTacticalCard("Joker", 2)//Fonctionne
+             .addTacticalCard("MudFight", 1)//Fonctionne
+        .addTacticalCard("ShieldBear", 1)//Fonctionne
+         .addTacticalCard("BlindMan", 1) //Fonctionne
+           .addTacticalCard("Traitor", 1) //Fonctionne
+            .addTacticalCard("Banshee", 1) //Fonctionne
             .addTacticalCard("Stratege",1)
-           //.addTacticalCard("Recruiter", 1)
+           .addTacticalCard("Recruiter", 1)
            .setNumberMaxOfCardsPerPlayer(6)
            .setNumberMaxOfCardsPerTiles(3);
 
