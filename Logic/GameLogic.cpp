@@ -400,7 +400,7 @@ bool CGameLogic::checkWinner()
         int aligned = board.getAlingnedControlledTilesCount(playerId);
         int total = board.getControlledTilesCount(playerId);
         if (aligned >= rules->getNumberOfAlignedTilesToWin() || total >= rules->getNumberOfStoneTiles()) {
-            std::cout << " Player " << playerId << " won the game !" << std::endl;
+            DisplayManager::getInstance()->output(" Player " +to_string(playerId)+" won the game ! \n" );
             if (playerId==1)Player1Wins+=1;
             else Player2Wins+=1;
             PlayerVictory(playerId);

@@ -38,18 +38,25 @@ void StoneTiles::claim(unsigned int playerId) {
 
         Set& claimantCards = cards1.getSize() == maxCards ? cards1 : cards2;
         Set& opponentCards = cards1.getSize() == maxCards ? cards2 : cards1;
-        unsigned int claimantId = cards1.getSize() == maxCards ? playerId : player2id;
-        unsigned int opponentId = 3 - claimantId;
+        unsigned int claimantId;
+        if (cards1.getSize() == maxCards) {
+            claimantId = playerId;
+        } else {
+            claimantId = player2id;
+        }
 
         // Si carte tactique présente sur la tuile, on bloque la revendication anticipée
-        for (auto& [_, set] : PlayerCards) {
+        for (auto& [number, set] : PlayerCards) {
             for (Cards* c : set->getRawCards()) {
-                if (dynamic_cast<TacticalCards*>(c)) return;
+                if (dynamic_cast<TacticalCards*>(c)){  DisplayManager::getInstance()->output("There is a tactical card on the tile, you cannot pre-claim it.");
+                    return;
+                }
             }
         }
 
-        // Récupérer toutes les cartes restantes potentielles de l'adversaire
-        std::vector<Cards*> availableCards = opponentCards.getRawCards();  // celles déjà posées
+
+        bool canStillWin = false;
+        std::vector<Cards*> availableCards = opponentCards.getRawCards();
         for (Cards* c : board.getRemainingClanCards().getRawCards()) {
             availableCards.push_back(c);
         }
@@ -57,74 +64,58 @@ void StoneTiles::claim(unsigned int playerId) {
             availableCards.push_back(c);
         }
 
-        int missing = maxCards - opponentCards.getSize();
+        int n = availableCards.size();
+        int k = maxCards;
+        std::vector<int> indices(k);
+        for (int i = 0; i < k; ++i) indices[i] = i;
 
-        // Générer toutes les combinaisons possibles
-        std::function<bool(int, std::vector<Cards*>&)> dfs;
-        dfs = [&](int idx, std::vector<Cards*>& combination) -> bool {
-            if ((int)combination.size() == maxCards) {
-                Set simulated;
-                for (Cards* c : combination) {
-                    const auto* cc = dynamic_cast<ClanCards*>(c);
-                    if (!cc) return false;
-                    simulated.addCard(std::make_unique<ClanCards>(*cc));
+        while (true) {
+            // Construire la combinaison
+            Set simulated;
+            bool valid = true;
+            for (int idx : indices) {
+                const auto* cc = dynamic_cast<ClanCards*>(availableCards[idx]);
+                if (!cc) {
+                    valid = false;
+                    break;
                 }
-
+                simulated.addCard(std::make_unique<ClanCards>(*cc));
+            }
+            if (valid) {
                 int evalSim = simulated.evaluateCombination(*this);
                 int evalClaimant = claimantCards.evaluateCombination(*this);
                 if (evalSim > evalClaimant ||
                     (evalSim == evalClaimant && simulated.getTotalValue() > claimantCards.getTotalValue())) {
-                    return true;  // Peut battre le demandeur
-                }
-                return false;
+                    canStillWin = true;
+                    break;
+                    }
             }
 
-            for (size_t i = idx; i < availableCards.size(); ++i) {
-                combination.push_back(availableCards[i]);
-                if (dfs(i + 1, combination)) return true;
-                combination.pop_back();
+            int i = k - 1;
+            while (i >= 0 && indices[i] == i + n - k) {
+                --i;
             }
-            return false;
-        };
 
-        std::vector<Cards*> attempt = opponentCards.getRawCards(); // base
-        bool canStillWin = dfs(0, attempt);
+            if (i < 0) {
+                break;
+            }
 
-        if (!canStillWin) {
-            StoneTileIsClaimed = true;
-            claimedBy = claimantId;
-            return;
+            ++indices[i];
+            for (int j = i + 1; j < k; ++j) {
+                indices[j] = indices[j - 1] + 1;
+            }
+
+            if (!canStillWin) {
+                StoneTileIsClaimed = true;
+                claimedBy = claimantId;
+                return;
+            }
+
         }
-    }
 
-    // === Revendication normale ===
-    if (cards1.getSize() == maxCards && cards2.getSize() == maxCards) {
-        if (comboType == CombinationType::Sum) {
-            if (cards1.getTotalValue() > cards2.getTotalValue()) {
-                StoneTileIsClaimed = true;
-                claimedBy = playerId;
-            }
-            else if (cards2.getTotalValue() > cards1.getTotalValue()) {
-                StoneTileIsClaimed = true;
-                claimedBy = player2id;
-            }
-            else {
-                StoneTileIsClaimed = true;
-                claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
-            }
-        } else {
-            int eval1 = cards1.evaluateCombination(*this);
-            int eval2 = cards2.evaluateCombination(*this);
-
-            if (eval1 > eval2) {
-                StoneTileIsClaimed = true;
-                claimedBy = playerId;
-            }
-            else if (eval2 > eval1) {
-                StoneTileIsClaimed = true;
-                claimedBy = player2id;
-            }
-            else {
+        // === Revendication normale ===
+        if (cards1.getSize() == maxCards && cards2.getSize() == maxCards) {
+            if (comboType == CombinationType::Sum) {
                 if (cards1.getTotalValue() > cards2.getTotalValue()) {
                     StoneTileIsClaimed = true;
                     claimedBy = playerId;
@@ -137,11 +128,36 @@ void StoneTiles::claim(unsigned int playerId) {
                     StoneTileIsClaimed = true;
                     claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
                 }
+            } else {
+                int eval1 = cards1.evaluateCombination(*this);
+                int eval2 = cards2.evaluateCombination(*this);
+
+                if (eval1 > eval2) {
+                    StoneTileIsClaimed = true;
+                    claimedBy = playerId;
+                }
+                else if (eval2 > eval1) {
+                    StoneTileIsClaimed = true;
+                    claimedBy = player2id;
+                }
+                else {
+                    if (cards1.getTotalValue() > cards2.getTotalValue()) {
+                        StoneTileIsClaimed = true;
+                        claimedBy = playerId;
+                    }
+                    else if (cards2.getTotalValue() > cards1.getTotalValue()) {
+                        StoneTileIsClaimed = true;
+                        claimedBy = player2id;
+                    }
+                    else {
+                        StoneTileIsClaimed = true;
+                        claimedBy = getFirstPlayerToFillTheStoneTile()->getPlayerID();
+                    }
+                }
             }
         }
-    }
+        }
 }
-
 
 
 StoneTiles::StoneTiles(unsigned int pos) : Position(pos), NbOfPlayableCards(Rules::getInstance()->getNumberMaxOfCardsPerTiles()),firstPlayerToFillTheStoneTile(nullptr) {
