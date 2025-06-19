@@ -151,7 +151,7 @@ void Human::playTurn() {
             }
             else if (choice == "2") {
                 GameBoard& board = GameBoard::getInstance();
-                DisplayManager::getInstance()->output("Enter the index of The Stone Tile you wish to claim (0 à " +
+                DisplayManager::getInstance()->output("Enter the index of The Stone Tile you wish to claim (0 to " +
                     std::to_string(board.getBoardSize() - 1) + ") : ");
                 string tileIndex = DisplayManager::getInstance()->takeInput();
                 int tileInd;
